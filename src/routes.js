@@ -7,6 +7,7 @@ import Services from './components/Services/Services'
 
 
 export default (
+
     <Switch>
 
         <Route component={ Home } exact path="/" /> 
@@ -15,4 +16,5 @@ export default (
         <Route component={ Services } path="/services" /> 
 
     </Switch>
+    
 )
