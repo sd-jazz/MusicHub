@@ -7,13 +7,14 @@
 }
 
 .navBar__title {
-    margin: 7px 2%;
+    font-size: 40px;
+    margin: 1.5% 2%;
     color: var(--main-text-color)
 }
 
 .navBar__navInput {
     margin: 0 auto;
-    padding-top: 28px;
+    padding-top: 32px;
 }
 
 input {
@@ -24,7 +25,8 @@ input {
 
 .navBar__smallNavs {
     display: flex;
-    margin: 12px 40px;
+    margin: 36px 40px;
+    font-size: 22px;
 }
 
 h2 {
