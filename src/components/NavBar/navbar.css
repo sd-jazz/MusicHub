@@ -6,12 +6,12 @@
     display: flex;
 }
 
-.title {
+.navBar__title {
     margin: 7px 2%;
     color: var(--main-text-color)
 }
 
-.navInput {
+.navBar__navInput {
     margin: 0 auto;
     padding-top: 28px;
 }
@@ -22,7 +22,7 @@ input {
     border-radius: 5px;
 }
 
-.smallNavs {
+.navBar__smallNavs {
     display: flex;
     margin: 12px 40px;
 }

@@ -9,15 +9,15 @@ const NavBar = () => {
 
         <div className="navBar">
         
-            <div className="title">
+            <div className="navBar__title">
                 <Link to="/">
                     <h1>MusicHub</h1>
                 </Link>
             </div>
-            <div className="navInput">
+            <div className="navBar__navInput">
                 <input />
             </div>
-            <div className="smallNavs">
+            <div className="navBar__smallNavs">
                 <Link to="/sell">
                     <h2>Sell</h2>
                 </Link>
