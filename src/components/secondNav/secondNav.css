@@ -1,0 +1,12 @@
+:root {
+    --main-second-header: black;
+    --main-text-color: white;
+}
+
+.secondNav {
+    display: flex;
+    justify-content: space-around;
+    padding-top: 4px;
+    height: 70px;
+    background-color: var(--main-second-header);
+}

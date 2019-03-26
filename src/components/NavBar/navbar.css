@@ -1,0 +1,37 @@
+:root {
+    --main-text-color: white;
+}
+
+.navBar {
+    display: flex;
+}
+
+.title {
+    margin: 7px 2%;
+    color: var(--main-text-color)
+}
+
+.navInput {
+    margin: 0 auto;
+    padding-top: 28px;
+}
+
+input {
+    width: 500px;
+    height: 30px;
+    border-radius: 5px;
+}
+
+.smallNavs {
+    display: flex;
+    margin: 12px 40px;
+}
+
+h2 {
+    padding: 0 20px;
+}
+
+a {
+    text-decoration: none;
+    color: var(--main-text-color)
+}
