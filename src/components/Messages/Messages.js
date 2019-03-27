@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 
-class GigBoard extends Component {
+class Messages extends Component {
     constructor (props){
 
     super(props)
@@ -16,4 +16,4 @@ class GigBoard extends Component {
     }
 }
 
-export default GigBoard;
+export default Messages;
