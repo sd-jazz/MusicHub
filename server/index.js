@@ -27,6 +27,7 @@ massive( process.env.CONNECTION_STRING ).then( db => {
   app.get('/api/get_user_listings/:id', pc.getUserListings);
   app.delete('/api/delete_listing:listing_id', pc.deleteListing);
   app.get('/api/listings/:listing_id', pc.getListingInfo)
+  app.get('/api/get_listings_by_type/:listing_type', pc.getListingByType)
   // app.put('/api/edit_listing/', pc.editListing;
 
   // CLOUDINARY
