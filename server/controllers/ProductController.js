@@ -27,13 +27,22 @@ module.exports = {
         }).catch(err => console.log("createListing", err))
     },
   
-      deleteListing: (req, res, next ) => {
+      deleteListing: (req, res, next) => {
         const { listing_id } = req.params;
         console.log("listing_id", listing_id, "req.params", req.params)
         req.app.get('db').delete_listing({ listing_id: listing_id }).then(response =>{
           res.status(200).json(response);
         }).catch(err => console.log ('deleteListing ERROR', err))
       },
+
+      getListingID: (req, res, next) => {
+        console.log("getListingID")
+        const { id } = req.params
+        console.log("req.params", req.params)
+        req.app.get('db').get_listing_by_id([id]).then(listing => {
+          res.status(200).json(listing);
+        }).catch(err => console.log('getListingID ERROR', err))
+      }
 
     //   editListing: (req, res, next) => {
     //     const { listing_name } = req.params

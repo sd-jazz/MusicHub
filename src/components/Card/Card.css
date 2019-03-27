@@ -1,0 +1,26 @@
+.card {
+    border: solid black 1px;
+    margin: 5px;
+
+}
+
+.card__outerContainer {
+    width: 200px;
+}
+
+.card__fullContainer {
+
+}
+
+.card__image {
+    width: 200px;
+    height: 225px;
+}
+
+.card__container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0px;
+    padding: 0px 10px;
+}
+
