@@ -6,15 +6,18 @@ import Messages from './components/Messages/Messages'
 import User from './components/User/User'
 
 
-export default function routes() {
-  return (
-    <div>
-        <Switch>
-          <Route component={ Home } exact path="/" /> 
-          <Route component={ Sell } path="/sell" /> 
-          <Route component={ Messages } path="/messages" /> 
-          <Route component={ User } path="/user" /> 
-        </Switch>
-    </div>
-  )
+export default function routes() { 
+
+    return (
+
+    <Switch>
+
+        <Route component={ Home } exact path="/" /> 
+        <Route component={ Sell } path="/sell" /> 
+        <Route component={ Messages } path="/messages" /> 
+        <Route component={ User } path="/user" /> 
+
+    </Switch>
+    
+    )
 }
