@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import './Home.css'
-import FilterSearch from '../FilterSearch/FilterSearch';
 import SortDropdown from '../SortDropdown/SortDropdown';
-import HOCdatafetcher from '../HocDataFetcher/HocDataFetcher'
 import Card from '../Card/Card';
 import {Link} from 'react-router-dom'
-
+import { connect } from 'react-redux'; 
+import { update_listing_id } from '../../redux/reducer'
+import axios from 'axios';
 
 class Home extends Component {
     constructor (props){
@@ -13,10 +13,18 @@ class Home extends Component {
     super(props)
         this.state = {
             filterText: '',
-            listings: []
+            listings: [],
+            listing_id: this.props.listing_id
         }
     }
     
+    componentDidMount = () => {
+        axios.get('/api/get_listings').then(response =>{
+            this.setState({
+                listings: response.data
+            })
+        })
+    }
 
     filterTextHandler = (val) => {
         this.setState({
@@ -31,7 +39,7 @@ class Home extends Component {
         //     return listing.listing_name.toLowerCase().includes(this.state.filterText)
         // })
 
-        const filteredListings = this.props.data.filter(listing => {
+        const filteredListings = this.state.listings.filter(listing => {
             return listing.listing_name.toLowerCase().includes(this.state.filterText)
         })
 
@@ -53,4 +61,11 @@ class Home extends Component {
     }
 }
 
-export default HOCdatafetcher(Home, `/api/get_listings`)
+const mapStateToProps = (reducerState) => {
+    return {
+        listing_id: reducerState.listing_id
+    }
+}
+
+export default connect (mapStateToProps, { update_listing_id })(Home);
+

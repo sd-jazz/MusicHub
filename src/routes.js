@@ -6,7 +6,9 @@ import Messages from './components/Messages/Messages'
 import User from './components/User/User'
 
 
-export default (
+export default function routes() { 
+
+    return (
 
     <Switch>
 
@@ -17,4 +19,5 @@ export default (
 
     </Switch>
     
-)
+    )
+}
