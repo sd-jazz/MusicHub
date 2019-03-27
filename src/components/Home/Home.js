@@ -34,7 +34,7 @@ class Home extends Component {
 
 
     render(){
-        const { listings } = this.state
+        const { listing_id } = this.state
         // const filteredListings = listings.filter(listing => {
         //     return listing.listing_name.toLowerCase().includes(this.state.filterText)
         // })
@@ -45,8 +45,17 @@ class Home extends Component {
 
 
         let mappedListings = filteredListings.map(listing => {
-            return <Link key={listing.listing_id}  to='#' className='home__card'><Card listing={listing}/></Link>
+            return <Link key={listing.listing_id}  to={`/productview/${listing.listing_id}`}className='home__card'><Card listing={listing} 
+            onClick={() => {this.props.update_listing_id(listing.listing_id)}}
+             /></Link>
         })
+
+
+        /* 
+           onClick={ () => {
+           this.props.getPreset(preset.preset_json); this.props.getIsPreset(true); this.props.getPresetId(preset.preset_id);}}
+           className='header' to={`/cube/${preset.preset_id}`}>{`${preset.preset_name}` || `Cube ${index}` }</Link>
+           */
         return (
             <div className='home'>
                 <div className='home__filter'>

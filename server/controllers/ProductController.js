@@ -35,11 +35,11 @@ module.exports = {
         }).catch(err => console.log ('deleteListing ERROR', err))
       },
 
-      getListingID: (req, res, next) => {
+      getListingInfo: (req, res, next) => {
         console.log("getListingID")
-        const { id } = req.params
+        const { listing_id } = req.params
         console.log("req.params", req.params)
-        req.app.get('db').get_listing_by_id([id]).then(listing => {
+        req.app.get('db').get_listing_info([listing_id]).then(listing => {
           res.status(200).json(listing);
         }).catch(err => console.log('getListingID ERROR', err))
       }
