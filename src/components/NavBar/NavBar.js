@@ -1,11 +1,32 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { Link } from 'react-router-dom'
 // import { connect } from react-redux 
 import './navbar.css'
+import axios from 'axios';
+// import { throws } from 'assert';
 
-const NavBar = () => {
+class NavBar extends Component {
+    constructor(){
+        super()
 
-    return (
+        this.state = {
+            searchFilter: '',
+            filteredListings: []
+        }
+    }
+    componentDidMount = () => {
+        axios.get('/api/get_listings', this.state.searchFilter).then(res => {
+            this.setState({filteredListings: res.data})
+        })
+    }
+    searchBarGlobal = (value) => {
+        this.setState({
+            searchFilter: value
+        })
+    }
+    render(){
+        console.log(this.state.searchFilter)
+        return(
 
         <div className="navBar">
         
@@ -15,7 +36,13 @@ const NavBar = () => {
                 </Link>
             </div>
             <div className="navBar__navInput">
-                <input />
+            <input
+                placeholder="Search..."
+                onChange={e => this.searchBarGlobal(e.target.value)}
+            />
+            <button className="navBar__searchButton" onClick={(this.searchBarGlobal)}>
+                Search
+            </button>
             </div>
             <div className="navBar__smallNavs">
                 <Link to="/sell">
@@ -29,8 +56,8 @@ const NavBar = () => {
                 </Link>
             </div>
     </div>
-
     )
+    }
 }
 
 export default NavBar; 
