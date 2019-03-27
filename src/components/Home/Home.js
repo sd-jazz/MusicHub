@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import './Home.css'
-import FilterSearch from '../FilterSearch/FilterSearch';
+import './home.css'
+
 import SortDropdown from '../SortDropdown/SortDropdown';
 import HOCdatafetcher from '../HocDataFetcher/HocDataFetcher'
 import Card from '../Card/Card';
