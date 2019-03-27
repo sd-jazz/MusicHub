@@ -1,0 +1,21 @@
+.productView {
+    display: flex;
+    flex-direction: column
+}
+
+.productView__images{
+    display: flex; 
+}
+
+
+.productView__descriptionAndUserInfo{
+    display: flex; 
+}
+
+.productView__userInfo{
+    width: 20vw;
+}
+
+.productView__similarDisplay{
+    display: flex; 
+}
