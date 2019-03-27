@@ -45,7 +45,7 @@ massive( process.env.CONNECTION_STRING ).then( db => {
     };
         res.json(payload);
 
-}).catch(err => console.log(err))
+})
 
   
 
