@@ -6,15 +6,15 @@ import GigBoard from './components/GigBoard/GigBoard'
 import Services from './components/Services/Services'
 
 
-export default (
-
-    <Switch>
-
-        <Route component={ Home } exact path="/" /> 
-        <Route component={ Gear } path="/gear" /> 
-        <Route component={ GigBoard } path="/gig_board" /> 
-        <Route component={ Services } path="/services" /> 
-
-    </Switch>
-    
-)
+export default function routes() {
+  return (
+    <div>
+        <Switch>
+            <Route component={ Home } exact path="/" /> 
+            <Route component={ Gear } path="/gear" /> 
+            <Route component={ GigBoard } path="/gig_board" /> 
+            <Route component={ Services } path="/services" /> 
+        </Switch>
+    </div>
+  )
+}

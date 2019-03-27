@@ -3,6 +3,7 @@ module.exports = {
     getAllListings: (req, res, next) => {
         console.log("getAllListings")
         req.app.get('db').get_all_listings().then(listing => {
+          console.log('listing:', listing)
           res.status(200).json(listing);
         }).catch(err => console.log('(getAllListings) ERROR', err))
       },

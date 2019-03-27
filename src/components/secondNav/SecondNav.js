@@ -7,7 +7,7 @@ const SecondNav = () => {
 
     return (
         <div className="secondNav">
-            <Link to="/">
+            <Link to="/classical">
                 <h3>Classical</h3>
             </Link>
             <Link to="/guitars">
