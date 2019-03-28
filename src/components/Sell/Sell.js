@@ -10,7 +10,7 @@ class Sell extends Component {
     }
     render(){
         return (
-            <div></div>
+            <div className="sell"></div>
         )
     }
 }

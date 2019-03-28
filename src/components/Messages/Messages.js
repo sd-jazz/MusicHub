@@ -11,7 +11,7 @@ class Messages extends Component {
     }
     render(){
         return (
-            <div></div>
+            <div className="messages"></div>
         )
     }
 }

@@ -1,0 +1,16 @@
+.footer {
+    height: 100px;
+    display: flex;
+    background-color: black;
+    color: white;
+    padding-top: 44px;
+    justify-content: space-around;
+}
+
+h3 {
+    margin-left: 36.1%;
+}
+
+.footer__linksLeft, .footer__linksRight {
+    display: flex;
+}
