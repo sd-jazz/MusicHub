@@ -26,7 +26,7 @@ class NavBar extends Component {
     searchBarGlobal = () => {
         const {searchFilter} = this.state
         console.log("GLOBAL SEARCH FIRST", this.state.searchFilter)
-        axios.get(`/api/listing/${searchFilter}`).then(res => {
+        axios.get(`/api/listing/search/${searchFilter}`).then(res => {
             console.log("GLOBAL SEARCH", res)
             this.setState({filteredListings: res.data})
         })
