@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
+import {Modal, Header} from "semantic-ui-react";
 import { Link } from 'react-router-dom'
-// import { connect } from react-redux 
+// import { connect } from react-redux
 import './navbar.css'
 import axios from 'axios';
 // import { throws } from 'assert';
-
+import SellModal from "../Modal/Modal";
 class NavBar extends Component {
     constructor(){
         super()
@@ -14,11 +15,6 @@ class NavBar extends Component {
             filteredListings: []
         }
     }
-    // componentDidMount = () => {
-    //     axios.get('/api/get_status_all', this.state.searchFilter).then(res => {
-    //         this.setState({filteredListings: res.data})
-    //     })
-    // }
 
     updateSearch = (text) => {
         this.setState({
@@ -33,14 +29,9 @@ class NavBar extends Component {
         axios.get(`/api/listing/${searchFilter}`).then(res => {
             console.log("GLOBAL SEARCH", res)
             this.setState({filteredListings: res.data})
-
-        // this.setState({
-        //     searchFilter: value
-        // })
         })
     }
     render(){
-        // console.log(this.state.searchFilter)
         return(
 
         <div className="navBar">
@@ -51,11 +42,6 @@ class NavBar extends Component {
                 </Link>
             </div>
             <div className="navBar__navInput">
-            {/* <input
-                placeholder="Search..."
-                onChange={e => this.searchBarGlobal(e.target.value)}
-            /> */}
-
             <input onChange={(e) => this.updateSearch(e.target.value)} placeholder="Search MusicHub" />
             <button className="navBar__searchButton" onClick={() => this.searchBarGlobal()}>
                 Search
@@ -77,4 +63,4 @@ class NavBar extends Component {
     }
 }
 
-export default NavBar; 
+export default NavBar;
