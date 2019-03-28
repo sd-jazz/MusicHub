@@ -1,25 +1,25 @@
 import React, { Component } from 'react';
-import './Home.css'
 import SortDropdown from '../SortDropdown/SortDropdown';
 import Card from '../Card/Card';
 import {Link} from 'react-router-dom'
 import { connect } from 'react-redux'; 
-import { update_listing_id } from '../../redux/reducer'
+import { get_listing_type } from '../../redux/reducer'
 import axios from 'axios';
 
-class Home extends Component {
+class CatagoryView extends Component {
     constructor (props){
 
     super(props)
         this.state = {
             filterText: '',
             listings: [],
-            listing_id: this.props.listing_id
+            listing_id: this.props.listing_id,
+            listing_type: this.props.listing_type
         }
     }
     
     componentDidMount = () => {
-        axios.get('/api/get_listings').then(response =>{
+        axios.get(`/api/get_listings_by_type/${this.props.match.params.listing_type}`).then(response =>{
             this.setState({
                 listings: response.data
             })
@@ -34,28 +34,18 @@ class Home extends Component {
 
 
     render(){
-        const { listing_id } = this.state
-        // const filteredListings = listings.filter(listing => {
-        //     return listing.listing_name.toLowerCase().includes(this.state.filterText)
-        // })
+        const { listings } = this.state
+        console.log(listings)
 
-        const filteredListings = this.state.listings.filter(listing => {
+        
+        const filteredListings = listings.filter(listing => {
             return listing.listing_name.toLowerCase().includes(this.state.filterText)
         })
 
 
         let mappedListings = filteredListings.map(listing => {
-            return <Link key={listing.listing_id}  to={`/productview/${listing.listing_id}`}className='home__card'><Card listing={listing} 
-            onClick={() => {this.props.update_listing_id(listing.listing_id)}}
-             /></Link>
+            return <Link key={listing.listing_id}  to='#' className='home__card'><Card listing={listing}/></Link>
         })
-
-
-        /* 
-           onClick={ () => {
-           this.props.getPreset(preset.preset_json); this.props.getIsPreset(true); this.props.getPresetId(preset.preset_id);}}
-           className='header' to={`/cube/${preset.preset_id}`}>{`${preset.preset_name}` || `Cube ${index}` }</Link>
-           */
         return (
             <div className='home'>
                 <div className='home__filter'>
@@ -70,11 +60,4 @@ class Home extends Component {
     }
 }
 
-const mapStateToProps = (reducerState) => {
-    return {
-        listing_id: reducerState.listing_id
-    }
-}
-
-export default connect (mapStateToProps, { update_listing_id })(Home);
-
+export default CatagoryView
