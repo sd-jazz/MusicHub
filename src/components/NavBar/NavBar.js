@@ -5,14 +5,17 @@ import { Link } from 'react-router-dom'
 import './navbar.css'
 import axios from 'axios';
 // import { throws } from 'assert';
+import { get_searched_listing } from '../../redux/reducer'
+import { connect } from 'react-redux'; 
 import SellModal from "../Modal/Modal";
-class NavBar extends Component {
-    constructor(){
-        super()
 
+class NavBar extends Component {
+    constructor(props){
+        super(props)
         this.state = {
             searchFilter: '',
-            filteredListings: []
+            filteredListings: [],
+            searched_listing: this.props.searched_listing
         }
     }
 
@@ -63,4 +66,10 @@ class NavBar extends Component {
     }
 }
 
-export default NavBar;
+const mapStateToProps = (reducerState) => {
+    return {
+        searched_listing: reducerState.searched_listing
+    }
+}
+
+export default connect (mapStateToProps, { get_searched_listing })(NavBar);

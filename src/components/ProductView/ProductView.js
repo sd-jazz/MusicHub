@@ -33,8 +33,9 @@ class ProductView extends Component {
     }
 
     fetchListingID = () => {
+        console.log("fetchListingID BEGIN")
         axios.get(`/api/listings/${this.props.match.params.listing_id}`).then(response => {
-            console.log("fetchListingID", response)
+            console.log("fetchListingID", response, "listing_ID", this.state.listing_id)
             this.props.update_listing_id(response.data)
             this.setState({
                 listing_id: response.data
