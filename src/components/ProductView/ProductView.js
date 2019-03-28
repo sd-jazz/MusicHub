@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux'; 
+import './productView.css'
 import { update_listing_id } from '../../redux/reducer'
 
 class ProductView extends Component {
@@ -51,34 +52,92 @@ class ProductView extends Component {
 
                 <div className="productView__images">
                     {/* {this.state} */}
-                    IMAGES
+                    <img
+            src="https://i.ytimg.com/vi/R1b5FlhMc8s/maxresdefault.jpg"
+            className="card__image"
+            alt="kitten looking menacing."
+          />
+
                 </div>
 
                 <div className="productView__descriptionAndUserInfo">
 
-                    <div className="productView__description">
-                    {this.state.listing_id.description}
-                    {this.state.listing_id[0].description}
+                    <div className="productView__productInfo">
+
+                        <div className="productView__nameAndPrice">
+
+                            <div className="productView__listingName">
+                                NAME {this.state.listing_id[0].listing_name}
+                            </div>
+
+                            <div className="productView__listingPrice">
+                                PRICE ${this.state.listing_id[0].price}
+                            </div>
+
+                        </div>
+
+                        <div className="productView__location">
+                            LOCATION
+                            {this.state.listing_id[0].location}
+                        </div>
+                        
+                        <div className="productView__productBreakLine">
+                            <hr/>
+                        </div>
+
+                        <div className="productView__description">
+
+                            <div className="productView__textDescription">
+                                DESCRIPTION
+                            </div>
+
+                            <div>
+                                {this.state.listing_id[0].description}
+                            </div>
+
+                        </div>
                         
                     </div>
 
                     <div className="productView__userInfo">
-                    {this.state.listing_id[0].profile_name}
-                        USER INFO 
+
+                        <div className="productView__profilePicture">
+                            PROFILE PICTURE
+                        </div>
+
+                        <div className="productView__profileName">
+                            PROFILE NAME {this.state.listing_id[0].profile_name}
+                        </div>
+
+                        <div className="productView__userRating">
+                            USER RATING
+                        </div>
+
+                        <div className="productView__userBreakLine">
+                            <hr/>
+                        </div> 
+
+                        <button className="productView__messageButton">
+                            Message
+                        </button>
+
+                        <button className="productView__saveButton">
+                            Save
+                        </button>
+
                     </div>
                 
                 </div>
 
                 <div className="productView__googleMaps">
+
                     GOOGLE MAPS
+
                 </div>
 
                 <div className="productView__similarOfferings">
-                    SIMILAR OFFERINGS
 
-                    <div className='productView__similarDisplay'>
-                        SIMILAR PRODUCTS
-                    </div>
+                    SIMILAR OFFERINGS
 
                 </div>
                 
