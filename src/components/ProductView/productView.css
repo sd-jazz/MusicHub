@@ -5,15 +5,45 @@
 
 .productView__images{
     display: flex; 
+    justify-content: center; 
 }
 
+.productView__userInfo{
+    display: flex; 
+    flex-direction: column; 
+    border: solid black;
+}
 
 .productView__descriptionAndUserInfo{
     display: flex; 
 }
 
+.productView__textDescription{
+    display: flex; 
+}
+
+.productView__nameAndPrice{
+    display: flex;
+    justify-content: space-between; 
+}
+
+.productView__location{
+    display: flex;
+}
+
+.productView__productInfo{
+    display: flex; 
+    flex-direction: column; 
+    justify-content: flex-start;
+}
+
+.productView__profilePicture{
+    border: solid; 
+    border-radius: 50%;
+}
+
 .productView__userInfo{
-    width: 20vw;
+    width: 70vw;
 }
 
 .productView__similarDisplay{

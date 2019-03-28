@@ -26,7 +26,8 @@ massive( process.env.CONNECTION_STRING ).then( db => {
   app.get('/api/get_listings', pc.getAllListings);
   app.get('/api/get_user_listings/:id', pc.getUserListings);
   app.delete('/api/delete_listing:listing_id', pc.deleteListing);
-  app.get('/api/listing:id', pc.getListingID)
+  app.get('/api/listings/:listing_id', pc.getListingInfo)
+  app.get('/api/get_listings_by_type/:listing_type', pc.getListingByType)
   // app.put('/api/edit_listing/', pc.editListing;
 
   // CLOUDINARY
@@ -49,7 +50,7 @@ massive( process.env.CONNECTION_STRING ).then( db => {
 
   
 
-const PORT = process.env.SERVER_PORT || 4040; 
+const PORT = process.env.SERVER_PORT || 4000; 
 app.listen(PORT, () => console.log(`Ready to roll out on port ${PORT}`))
 
   
