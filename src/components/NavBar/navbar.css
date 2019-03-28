@@ -4,6 +4,7 @@
 
 .navBar {
     display: flex;
+    background: #37485C;
 }
 
 .navBar__title {
