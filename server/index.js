@@ -5,6 +5,7 @@ const massive = require("massive");
 const app = express();
 const cloudinary = require('cloudinary');
 const pc = require("./controllers/ProductController")
+const aC = require('./controllers/AuthController')
 
 require("dotenv").config();
 app.use(bodyParser.json());
@@ -28,6 +29,9 @@ massive( process.env.CONNECTION_STRING ).then( db => {
   app.delete('/api/delete_listing:listing_id', pc.deleteListing);
   app.get('/api/listings/:listing_id', pc.getListingInfo)
   app.get('/api/get_listings_by_type/:listing_type', pc.getListingByType)
+  app.get('/api/user_data', aC.getUserData)
+  app.get('/auth', aC.login)
+  app.get('/auth/logout', aC.logout)
   // app.put('/api/edit_listing/', pc.editListing;
 
   // CLOUDINARY
