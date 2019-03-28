@@ -50,7 +50,7 @@ massive( process.env.CONNECTION_STRING ).then( db => {
 
   
 
-const PORT = process.env.SERVER_PORT || 4040; 
+const PORT = process.env.SERVER_PORT || 4000; 
 app.listen(PORT, () => console.log(`Ready to roll out on port ${PORT}`))
 
   

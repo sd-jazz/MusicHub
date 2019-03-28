@@ -1,11 +1,11 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { Link } from 'react-router-dom'
 // import { connect } from react-redux 
 import './navbar.css'
 
-const NavBar = () => {
-
-    return (
+class NavBar extends Component {
+    render(){
+    return(
 
         <div className="navBar">
         
@@ -29,8 +29,8 @@ const NavBar = () => {
                 </Link>
             </div>
     </div>
-
     )
+}
 }
 
 export default NavBar; 
