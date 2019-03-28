@@ -1,0 +1,1 @@
+SELECT listing_name FROM listings WHERE listing_name ILIKE CONCAT('%', $1, '%');

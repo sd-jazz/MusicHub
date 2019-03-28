@@ -9,7 +9,7 @@
 
 .navBar__title {
     font-size: 40px;
-    margin: 1.5% 2%;
+    margin: 1.8% 2%;
     color: var(--main-text-color)
 }
 
@@ -28,6 +28,12 @@ input {
     display: flex;
     margin: 36px 40px;
     font-size: 22px;
+}
+
+.navBar__searchButton {
+    height: 30px;
+    margin-left: 10px;
+    border-radius: 3px;
 }
 
 h2 {

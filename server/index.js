@@ -32,6 +32,9 @@ massive( process.env.CONNECTION_STRING ).then( db => {
   app.get('/api/user_data', aC.getUserData)
   app.get('/auth', aC.login)
   app.get('/auth/logout', aC.logout)
+  app.get('/api/listing:id', pc.getListingID)
+  app.get('/api/listing/:searchFilter', pc.getStatusAll)
+
   // app.put('/api/edit_listing/', pc.editListing;
 
   // CLOUDINARY
@@ -53,8 +56,8 @@ massive( process.env.CONNECTION_STRING ).then( db => {
 })
 
   
+const PORT = process.env.SERVER_PORT || 4010; 
 
-const PORT = process.env.SERVER_PORT || 4000; 
 app.listen(PORT, () => console.log(`Ready to roll out on port ${PORT}`))
 
   

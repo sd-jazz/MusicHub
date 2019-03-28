@@ -25,11 +25,15 @@ class NavBar extends Component {
       this.props.getUser(res.data);
     });
   };
-  searchBarGlobal = value => {
-    this.setState({
-      searchFilter: value
-    });
-  };
+
+  searchBarGlobal = () => {
+        const {searchFilter} = this.state
+        console.log("GLOBAL SEARCH FIRST", this.state.searchFilter)
+        axios.get(`/api/listing/${searchFilter}`).then(res => {
+            console.log("GLOBAL SEARCH", res)
+            this.setState({filteredListings: res.data})
+        })
+    }
 
   login = () => {
     const redirectUri = encodeURIComponent(`${window.location.origin}/auth`);
@@ -55,18 +59,17 @@ class NavBar extends Component {
             <h1>MusicHub</h1>
           </Link>
         </div>
-        <div className="navBar__navInput">
-          <input
-            placeholder="Search..."
-            onChange={e => this.searchBarGlobal(e.target.value)}
-          />
-          <button
-            className="navBar__searchButton"
-            onClick={this.searchBarGlobal}
-          >
-            Search
-          </button>
-        </div>
+                  <div className="navBar__navInput">
+
+                <input onChange={(e) => this.updateSearch(e.target.value)} placeholder="Search MusicHub" />
+                <Link to='/search_results'>
+                    <button className="navBar__searchButton" onClick={() => this.searchBarGlobal()}> 
+                        Search
+                    </button>
+                </Link>
+
+            </div>
+
         <div className="navBar__smallNavs">
           <Modal trigger={<button>Sell</button>}>
             <Header>Upload an item</Header>
