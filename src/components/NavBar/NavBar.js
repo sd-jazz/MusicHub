@@ -32,6 +32,7 @@ class NavBar extends Component {
         axios.get(`/api/listing/search/${searchFilter}`).then(res => {
             console.log("GLOBAL SEARCH", res)
             this.setState({filteredListings: res.data})
+            
         })
     }
     render(){
@@ -40,26 +41,37 @@ class NavBar extends Component {
         <div className="navBar">
         
             <div className="navBar__title">
+
                 <Link to="/">
                     <h1>MusicHub</h1>
                 </Link>
             </div>
+
             <div className="navBar__navInput">
-            <input onChange={(e) => this.updateSearch(e.target.value)} placeholder="Search MusicHub" />
-            <button className="navBar__searchButton" onClick={() => this.searchBarGlobal()}>
-                Search
-            </button>
+
+                <input onChaånge={(e) => this.updateSearch(e.target.value)} placeholder="Search MusicHub" />
+                <Link to='/search_results'>
+                    <button className="navBar__searchButton" onClick={() => this.searchBarGlobal()}> 
+                        Search
+                    </button>
+                </Link>
+
             </div>
+
             <div className="navBar__smallNavs">
+
                 <Link to="/sell">
                     <h2>Sell</h2>
                 </Link>
+
                 <Link to="/messages">
                     <h2>Messages</h2>
                 </Link>
+
                 <Link to="/user">
                     <h2>User</h2>
                 </Link>
+
             </div>
     </div>
     )
