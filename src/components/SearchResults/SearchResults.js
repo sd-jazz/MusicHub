@@ -13,6 +13,16 @@ class SearchResults extends Component {
 
     render(){
 
+        const { searched_listing } = this.state 
+
+        searched_listing.map(listing => {
+            return (
+                <div className="searchResults__mappedResults" key={listing.listing_name}>
+                    <img src={ listing.images } alt={ listing.listing_name }/> 
+                </div>
+            )
+        })
+
         return(
 
             <div className='searchResults'>
