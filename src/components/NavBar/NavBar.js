@@ -14,18 +14,33 @@ class NavBar extends Component {
             filteredListings: []
         }
     }
-    componentDidMount = () => {
-        axios.get('/api/get_listings', this.state.searchFilter).then(res => {
-            this.setState({filteredListings: res.data})
-        })
-    }
-    searchBarGlobal = (value) => {
+    // componentDidMount = () => {
+    //     axios.get('/api/get_status_all', this.state.searchFilter).then(res => {
+    //         this.setState({filteredListings: res.data})
+    //     })
+    // }
+
+    updateSearch = (text) => {
         this.setState({
-            searchFilter: value
+            searchFilter: text
+        })
+        console.log(this.state.searchFilter)
+    }
+
+    searchBarGlobal = () => {
+        const {searchFilter} = this.state
+        console.log("GLOBAL SEARCH FIRST", this.state.searchFilter)
+        axios.get(`/api/listing/${searchFilter}`).then(res => {
+            console.log("GLOBAL SEARCH", res)
+            this.setState({filteredListings: res.data})
+
+        // this.setState({
+        //     searchFilter: value
+        // })
         })
     }
     render(){
-        console.log(this.state.searchFilter)
+        // console.log(this.state.searchFilter)
         return(
 
         <div className="navBar">
@@ -36,11 +51,13 @@ class NavBar extends Component {
                 </Link>
             </div>
             <div className="navBar__navInput">
-            <input
+            {/* <input
                 placeholder="Search..."
                 onChange={e => this.searchBarGlobal(e.target.value)}
-            />
-            <button className="navBar__searchButton" onClick={(this.searchBarGlobal)}>
+            /> */}
+
+            <input onChange={(e) => this.updateSearch(e.target.value)} placeholder="Search MusicHub" />
+            <button className="navBar__searchButton" onClick={() => this.searchBarGlobal()}>
                 Search
             </button>
             </div>
