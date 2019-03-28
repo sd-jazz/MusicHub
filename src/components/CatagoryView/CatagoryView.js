@@ -44,7 +44,7 @@ class CatagoryView extends Component {
 
 
         let mappedListings = filteredListings.map(listing => {
-            return <Link key={listing.listing_id}  to='#' className='home__card'><Card listing={listing}/></Link>
+            return <Link key={listing.listing_id} to={`/productview/${listing.listing_id}`}  className='home__card'><Card listing={listing}/></Link>
         })
         return (
             <div className='home'>
