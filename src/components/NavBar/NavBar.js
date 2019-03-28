@@ -26,14 +26,21 @@ class NavBar extends Component {
     });
   };
 
+  updateSearch = text => {
+    this.setState({
+      searchFilter: text
+    });
+    console.log(this.state.searchFilter);
+  };
+
   searchBarGlobal = () => {
-        const {searchFilter} = this.state
-        console.log("GLOBAL SEARCH FIRST", this.state.searchFilter)
-        axios.get(`/api/listing/${searchFilter}`).then(res => {
-            console.log("GLOBAL SEARCH", res)
-            this.setState({filteredListings: res.data})
-        })
-    }
+    const { searchFilter } = this.state;
+    console.log("GLOBAL SEARCH FIRST", this.state.searchFilter);
+    axios.get(`/api/listing/search/${searchFilter}`).then(res => {
+      console.log("GLOBAL SEARCH", res);
+      this.setState({ filteredListings: res.data });
+    });
+  };
 
   login = () => {
     const redirectUri = encodeURIComponent(`${window.location.origin}/auth`);
@@ -59,16 +66,20 @@ class NavBar extends Component {
             <h1>MusicHub</h1>
           </Link>
         </div>
-                  <div className="navBar__navInput">
-
-                <input onChange={(e) => this.updateSearch(e.target.value)} placeholder="Search MusicHub" />
-                <Link to='/search_results'>
-                    <button className="navBar__searchButton" onClick={() => this.searchBarGlobal()}> 
-                        Search
-                    </button>
-                </Link>
-
-            </div>
+        <div className="navBar__navInput">
+          <input
+            onChange={e => this.updateSearch(e.target.value)}
+            placeholder="Search MusicHub"
+          />
+          <Link to="/search_results">
+            <button
+              className="navBar__searchButton"
+              onClick={() => this.searchBarGlobal()}
+            >
+              Search
+            </button>
+          </Link>
+        </div>
 
         <div className="navBar__smallNavs">
           <Modal trigger={<button>Sell</button>}>
@@ -101,7 +112,4 @@ let mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  { getUser }
-)(NavBar);
+export default connect(mapStateToProps,{ getUser })(NavBar);

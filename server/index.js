@@ -32,8 +32,8 @@ massive( process.env.CONNECTION_STRING ).then( db => {
   app.get('/api/user_data', aC.getUserData)
   app.get('/auth', aC.login)
   app.get('/auth/logout', aC.logout)
-  app.get('/api/listing:id', pc.getListingID)
-  app.get('/api/listing/:searchFilter', pc.getStatusAll)
+  app.get('/api/listing/:listing_id', pc.getListingInfo)
+  app.get('/api/listing/search/:searchFilter', pc.getStatusAll)
 
   // app.put('/api/edit_listing/', pc.editListing;
 
