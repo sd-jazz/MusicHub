@@ -3,11 +3,9 @@ import { Link } from "react-router-dom";
 // import "./secondNav.css";
 import { connect } from "react-redux";
 import { get_listing_type } from "../../redux/reducer";
-
 class SecondNav2 extends Component {
   constructor() {
     super();
-
     this.state = {};
   }
   showMenu(prop, val) {
@@ -23,11 +21,9 @@ class SecondNav2 extends Component {
   }
   render() {
     console.log();
-
     let uiMenuStyle = {
       justifyContent: "space-between"
     };
-
     let dropDownStyle = {
       borderRadius: 0,
       textAlign: "center",
@@ -37,12 +33,10 @@ class SecondNav2 extends Component {
       text: "white",
       border: 'none'
     };
-
     let dropDownMenuStyle = {
       textAlign: "center",
       width: '100%'
     };
-
     return (
       <div className="ui menu" style={uiMenuStyle}>
         <div className="ui simple dropdown " style={dropDownStyle} >
@@ -130,16 +124,13 @@ class SecondNav2 extends Component {
     );
   }
 }
-
 const mapStateToProps = reducerState => {
   return {
     listing_type: reducerState.listing_type
   };
 };
-
 export default connect(
   mapStateToProps,
   { get_listing_type }
 )(SecondNav2);
-
 /////SECOND NAV ESSENTIALS
