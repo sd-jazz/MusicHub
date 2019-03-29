@@ -4,17 +4,16 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import "./navbar.css";
 import axios from "axios";
-import { getUser } from "../../redux/reducer";
+import { getUser, get_searched_listings } from "../../redux/reducer";
 // import { throws } from 'assert';
 import SellModal from "../Modal/Modal";
-
 class NavBar extends Component {
   constructor() {
     super();
-
     this.state = {
       searchFilter: "",
-      filteredListings: []
+      filteredListings: [],
+      searched_listings: this.props.searched_listings
     };
   }
   componentDidMount = () => {
@@ -25,14 +24,12 @@ class NavBar extends Component {
       this.props.getUser(res.data);
     });
   };
-
   updateSearch = text => {
     this.setState({
       searchFilter: text
     });
     console.log(this.state.searchFilter);
   };
-
   searchBarGlobal = () => {
     const { searchFilter } = this.state;
     console.log("GLOBAL SEARCH FIRST", this.state.searchFilter);
@@ -41,7 +38,6 @@ class NavBar extends Component {
       this.setState({ filteredListings: res.data });
     });
   };
-
   login = () => {
     const redirectUri = encodeURIComponent(`${window.location.origin}/auth`);
     window.location = `https://${
@@ -50,13 +46,11 @@ class NavBar extends Component {
       process.env.REACT_APP_CLIENT_ID
     }&scope=openid%20email%20profile&redirect_uri=${redirectUri}&response_type=code`;
   };
-
   logout = () => {
     axios.get("/auth/logout").then(res => {
       this.props.getUser(res.data);
     });
   };
-
   render() {
     console.log(this.state.searchFilter);
     return (
@@ -80,7 +74,6 @@ class NavBar extends Component {
             </button>
           </Link>
         </div>
-
         <div className="navBar__smallNavs">
           <Modal trigger={<button>Sell</button>}>
             <Header>Upload an item</Header>
@@ -104,12 +97,11 @@ class NavBar extends Component {
     );
   }
 }
-
 let mapStateToProps = state => {
   return {
     user: state.user,
-    preset: state.preset
+    preset: state.preset,
+    searched_listings: state.searched_listings
   };
 };
-
-export default connect(mapStateToProps,{ getUser })(NavBar);
+export default connect(mapStateToProps,{ getUser, get_searched_listings })(NavBar);

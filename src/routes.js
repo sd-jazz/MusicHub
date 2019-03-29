@@ -6,6 +6,7 @@ import Messages from './components/Messages/Messages'
 import User from './components/User/User'
 import CatagoryView from './components/CatagoryView/CatagoryView'
 import ProductView from './components/ProductView/ProductView';
+import SearchResults from './components/SearchResults/SearchResults';
 
 
 
@@ -18,6 +19,7 @@ export default function routes() {
         <Route component={ User } path="/user" />
         <Route component={ CatagoryView } path='/catagory_view/:listing_type'/>
         <Route component={ ProductView } path="/productview/:listing_id" />
+        <Route component={ SearchResults } path='/search_results/' /> 
     </Switch>
     )
 }
