@@ -16,9 +16,7 @@ export default class Card extends Component {
               <h1 className="card__title">{this.props.listing.listing_name}</h1>
             </div>
             <div className="card__container">
-              <div className="card__priceContainer">
                 <h5 className="card__price">{this.props.listing.price}</h5>
-              </div>
               <h5 className="card__location">Phoenix, Az</h5>
             </div>
           </div>

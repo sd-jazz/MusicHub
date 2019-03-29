@@ -6,6 +6,7 @@
 
 .card__outerContainer {
     width: 200px;
+    height: 300px;
 }
 
 .card__fullContainer {
@@ -20,7 +21,14 @@
 .card__container {
     display: flex;
     justify-content: space-between;
+    align-content: flex-end;
     margin-bottom: 0px;
-    padding: 0px 10px;
+    padding: 20px 10px 0 10px;
+    overflow: hidden;
+}
+
+.card__title {
+    font-size: 1em;
+    text-align: center
 }
 
