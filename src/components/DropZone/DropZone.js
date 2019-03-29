@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Dropzone from 'react-dropzone';
-import request from 'superagent';
 // const CLOUDINARY_UPLOAD_PRESET = 'ahhubrf1';
 // const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/saturnslist/upload';
 const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/musichub/upload';
@@ -28,9 +27,9 @@ export default class DropZone extends Component {
     // Initiates signature request from the server when someone has uploaded a file 
       handleImageUpload(file) {
 
-        let upload = request.post(CLOUDINARY_UPLOAD_URL)
-                            .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
-                            .field('file', file);
+        let upload = axios.post(CLOUDINARY_UPLOAD_URL)
+          .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
+          .field('file', file);
     
         upload.end((err, response) => {
           if (err) {

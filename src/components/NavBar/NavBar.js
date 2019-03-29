@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import "./navbar.css";
 import axios from "axios";
-import { getUser } from "../../redux/reducer";
+import { getUser, get_searched_listings } from "../../redux/reducer";
 // import { throws } from 'assert';
 import SellModal from "../Modal/Modal";
 class NavBar extends Component {
@@ -12,7 +12,8 @@ class NavBar extends Component {
     super();
     this.state = {
       searchFilter: "",
-      filteredListings: []
+      filteredListings: [],
+      searched_listings: this.props.searched_listings
     };
   }
   componentDidMount = () => {
@@ -99,7 +100,8 @@ class NavBar extends Component {
 let mapStateToProps = state => {
   return {
     user: state.user,
-    preset: state.preset
+    preset: state.preset,
+    searched_listings: state.searched_listings
   };
 };
-export default connect(mapStateToProps,{ getUser })(NavBar);
+export default connect(mapStateToProps,{ getUser, get_searched_listings })(NavBar);

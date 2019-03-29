@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import { get_searched_listings } from '../../redux/reducer'
 // import axios from 'axios';
 import Card from '../Card/Card';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux'; 
 
 class SearchResults extends Component {
     constructor(props){
         super(props)
         this.state = {
-            searched_listing: this.props.searched_listings
+            searched_listings: this.props.searched_listings
         }
     }
 
@@ -17,16 +18,22 @@ class SearchResults extends Component {
     }
 
     render(){
-
         // const { searched_listing } = this.state
-
-        let searchResults = this.props.searched_listing.map(listing => {
-
+        console.log(this.props)
+        let searchResults = this.props.searched_listings.map(listing => {
+            console.log("LISTING", listing)
             return (
-                <div className="searchResults__mappedResults" key={listing.listing_name}>
-                    <img src={ listing.images } alt={ listing.listing_name }/> 
-                    {/* <div key={listing.listing_id} className='home__card'><Card listing={listing} /></div> */}
-                </div>
+                <Link key={listing.listing_id} to={`/productview/${listing.listing_id}`}  className='home__card'><Card listing={listing}/>
+
+                    {/* <div className="searchResults__mappedResults" key={listing.listing_name}>
+
+                        <div key={listing.listing_id} className='home__card'>
+                            <Card listing={listing} />
+                        </div>
+
+                </div> */}
+                
+                </Link>
             )
         })
 
@@ -44,11 +51,11 @@ class SearchResults extends Component {
     }
 }
 
-// const mapStateToProps = (reducerState) => {
-//     return {
-//         searched_listings: reducerState.search_listings
-//     }
-// }
+const mapStateToProps = (reducerState) => {
+    console.log("REDUCER STATE", reducerState)
+    return {
+        searched_listings: reducerState.searched_listings
+    }
+}
 
-// export default connect (mapStateToProps, { get_searched_listings })(SearchResults);
-export default SearchResults; 
+export default connect (mapStateToProps, { get_searched_listings })(SearchResults);

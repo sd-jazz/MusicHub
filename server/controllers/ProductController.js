@@ -37,7 +37,7 @@ module.exports = {
         }).catch(err => console.log('getListingID ERROR', err))
       },
       getStatusAll: (req, res, next) => {
-        console.log('GET STATUS ALL', req.params)
+        console.log('REQ.PARAMS', req.params)
         const {searchFilter} = req.params
         req.app.get('db').get_status_all([searchFilter]).then(listings => {
           res.status(200).json(listings)
@@ -45,7 +45,7 @@ module.exports = {
       },
       getListingByType: (req, res) => {
         const {listing_type} = req.params
-        req.app.get('db').get_listings_by_type(listing_type).then(listings => {
+        req.app.get('db').get_status_all(listing_type).then(listings => {
           res.status(200).json(listings);
         }).catch(err => console.log('getListingByType ERROR', err))
       }
