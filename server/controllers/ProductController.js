@@ -1,9 +1,7 @@
 module.exports = {
 
     getAllListings: (req, res, next) => {
-        console.log("getAllListings")
         req.app.get('db').get_all_listings().then(listing => {
-          // console.log('listing:', listing)
           res.status(200).json(listing);
         }).catch(err => console.log('(getAllListings) ERROR', err))
       },
@@ -19,26 +17,21 @@ module.exports = {
 
       createListing: (req, res, next) => {
         const {user_id, listing_name, description, time_stamp, type, tags, price, sold } = req.body
-        console.log( req.body )
         const db = req.app.get('db')
         db.create_listing([user_id, listing_name, description, time_stamp, type, tags, price, sold]).then(listing => {
-          console.log('res.data', res.data)
           res.status(200).json(listing)
         }).catch(err => console.log("createListing", err))
     },
   
       deleteListing: (req, res, next) => {
         const { listing_id } = req.params;
-        console.log("listing_id", listing_id, "req.params", req.params)
         req.app.get('db').delete_listing({ listing_id: listing_id }).then(response =>{
           res.status(200).json(response);
         }).catch(err => console.log ('deleteListing ERROR', err))
       },
 
       getListingInfo: (req, res, next) => {
-        console.log("getListingID")
         const { listing_id } = req.params
-        console.log("req.params", req.params)
         req.app.get('db').get_listing_info([listing_id]).then(listing => {
           res.status(200).json(listing);
         }).catch(err => console.log('getListingID ERROR', err))
@@ -49,6 +42,12 @@ module.exports = {
         req.app.get('db').get_status_all([searchFilter]).then(listings => {
           res.status(200).json(listings)
         })
+      },
+      getListingByType: (req, res) => {
+        const {listing_type} = req.params
+        req.app.get('db').get_listings_by_type(listing_type).then(listings => {
+          res.status(200).json(listings);
+        }).catch(err => console.log('getListingByType ERROR', err))
       }
 
     //   editListing: (req, res, next) => {

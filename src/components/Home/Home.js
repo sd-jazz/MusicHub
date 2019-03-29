@@ -45,9 +45,7 @@ class Home extends Component {
 
 
         let mappedListings = filteredListings.map(listing => {
-            return <Link key={listing.listing_id}  to={`/productview/${listing.listing_id}`}className='home__card'><Card listing={listing} 
-            onClick={() => {this.props.update_listing_id(listing.listing_id)}}
-             /></Link>
+            return <Link key={listing.listing_id}  to={`/productview/${listing.listing_id}`}className='home__card'><Card listing={listing} /></Link>
         })
 
 
