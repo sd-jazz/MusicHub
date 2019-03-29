@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-// import "./secondNav.css";
+import "./secondNav.css";
 import { connect } from "react-redux";
 import { get_listing_type } from "../../redux/reducer";
 class SecondNav2 extends Component {
@@ -22,103 +22,133 @@ class SecondNav2 extends Component {
   render() {
     console.log();
     let uiMenuStyle = {
-      justifyContent: "space-between"
+      justifyContent: "space-between",
+      backgroundColor: 'black',
+      borderRadius: 0
     };
     let dropDownStyle = {
       borderRadius: 0,
       textAlign: "center",
       marginBottom: 0,
-      backgroundColor: `rgb(55, 72, 92)`,
       borderRadius: 0,
-      text: "white",
-      border: 'none'
+      textDecoration: "none",
+      border: "none",
+      backgroundImage: 'none',
+      backgroundColor: '#333333',
+      color: 'white'
     };
     let dropDownMenuStyle = {
       textAlign: "center",
-      width: '100%'
+      width: "100%"
     };
+
+    let itemStyle = {
+        textDecoration: 'none',
+        backgroundColor: 'white'
+    }
     return (
       <div className="ui menu" style={uiMenuStyle}>
-        <div className="ui simple dropdown " style={dropDownStyle} >
+        <div className="ui simple dropdown " style={dropDownStyle}>
           Orchestral
           <div className="menu" style={dropDownMenuStyle}>
-            <h2>Brass</h2>
-            <hr></hr>
-            <Link className='item' to={`/catagory_view/french_horns`}>
-              French Horns
+            <Link className="item" to={`/catagory_view/brass`}>
+              Brass
             </Link>
-            <Link className='item' to={`/catagory_view/trombones`}>
-              Trombones
+            <Link className="item" to={`/catagory_view/percussion`}>
+              Percussion
             </Link>
-            <Link className='item' to={`/catagory_view/trumpets`}>
-              Trumpets
+            <Link className="item" to={`/catagory_view/strings`}>
+              Strings
             </Link>
-            <Link className='item' to={`/catagory_view/tubas`}>
-              Tubas
-            </Link>
-            <h2>Brass</h2>
-            <hr></hr>
-            <Link className='item' to={`/catagory_view/french_horns`}>
-              French Horns
-            </Link>
-            <Link className='item' to={`/catagory_view/trombones`}>
-              Trombones
-            </Link>
-            <Link className='item' to={`/catagory_view/trumpets`}>
-              Trumpets
-            </Link>
-            <Link className='item' to={`/catagory_view/tubas`}>
-              Tubas
+            <Link className="item" to={`/catagory_view/woodwinds`}>
+              Woodwinds
             </Link>
           </div>
         </div>
         <div className="ui simple dropdown" style={dropDownStyle}>
-          Dropdown2
-          <div className="menu">
-            <div className="item">Choice 1</div>
-            <div className="item">Choice 2</div>
-            <div className="item">Choice 3</div>
+          Guitars
+          <div className="menu" style={dropDownMenuStyle}>
+            <Link className="item" to={`/catagory_view/bass_guitars`}>
+              Bass Guitars
+            </Link>
+            <Link className="item" to={`/catagory_view/acoustic_guitars`}>
+              Acoustic Guitars
+            </Link>
+            <Link className="item" to={`/catagory_view/electric_guitars`}>
+              Electric Guitars
+            </Link>
           </div>
         </div>
         <div className="ui simple dropdown" style={dropDownStyle}>
-          Dropdown2
-          <div className="menu">
-            <div className="item">Choice 1</div>
-            <div className="item">Choice 2</div>
-            <div className="item">Choice 3</div>
+          Keyboards
+          <div className="menu" style={dropDownMenuStyle}>
+            <Link className="item" to={`/catagory_view/pianos`}>
+              Pianos
+            </Link>
+            <Link className="item" to={`/catagory_view/electric_piano`}>
+              Electric Pianos
+            </Link>
           </div>
         </div>
         <div className="ui simple dropdown" style={dropDownStyle}>
-          Dropdown2
-          <div className="menu">
-            <div className="item">Choice 1</div>
-            <div className="item">Choice 2</div>
-            <div className="item">Choice 3</div>
+          Drums
+          <div className="menu" style={dropDownMenuStyle}>
+            <Link className="item" to={`/catagory_view/bass_drums`}>
+              Bass Drums
+            </Link>
+            <Link className="item" to={`/catagory_view/cymbals`}>
+              Cymbals
+            </Link>
+            <Link className="item" to={`/catagory_view/hi_hats`}>
+              Hi-Hats
+            </Link>
+            <Link className="item" to={`/catagory_view/kits`}>
+              Kits
+            </Link>
+            <Link className="item" to={`/catagory_view/snares`}>
+              Snares
+            </Link>
+            <Link className="item" to={`/catagory_view/electric_piano`}>
+              Tom-Toms
+            </Link>
           </div>
         </div>
         <div className="ui simple dropdown" style={dropDownStyle}>
-          Dropdown2
-          <div className="menu">
-            <div className="item">Choice 1</div>
-            <div className="item">Choice 2</div>
-            <div className="item">Choice 3</div>
+          Audio Equipment
+          <div className="menu" style={dropDownMenuStyle}>
+            <Link className="item" to={`/catagory_view/cables`}>
+              Cables
+            </Link>
+            <Link className="item" to={`/catagory_view/headphones`}>
+              Headphones
+            </Link>
+            <Link className="item" to={`/catagory_view/microphones`}>
+              Microphones
+            </Link>
+            <Link className="item" to={`/catagory_view/midi`}>
+              Midi
+            </Link>
+            <Link className="item" to={`/catagory_view/turntables`}>
+              Turntables
+            </Link>
           </div>
         </div>
         <div className="ui simple dropdown" style={dropDownStyle}>
-          Dropdown2
-          <div className="menu">
-            <div className="item">Choice 1</div>
-            <div className="item">Choice 2</div>
-            <div className="item">Choice 3</div>
+          Services
+          <div className="menu" style={dropDownMenuStyle}>
+          <Link className="item" to={`/catagory_view/turntables`}>
+              Turntables
+            </Link>
+          <Link className="item" to={`/catagory_view/turntables`}>
+              Turntables
+            </Link>
+          <Link className="item" to={`/catagory_view/turntables`}>
+              Turntables
+            </Link>
           </div>
         </div>
         <div className="ui simple dropdown" style={dropDownStyle}>
-          Dropdown2
-          <div className="menu">
-            <div className="item">Choice 1</div>
-            <div className="item">Choice 2</div>
-            <div className="item">Choice 3</div>
-          </div>
+          <Link className={itemStyle} to={`/catagory_view/other`}>Other</Link>
         </div>
       </div>
     );
