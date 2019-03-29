@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
-
-class Messages extends Component {
+class Sell extends Component {
     constructor (props){
 
     super(props)
@@ -11,9 +10,9 @@ class Messages extends Component {
     }
     render(){
         return (
-            <div className="messages"></div>
+            <div className="sell"></div>
         )
     }
 }
 
-export default Messages;
+export default Sell;
