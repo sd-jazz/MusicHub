@@ -18,11 +18,7 @@
     padding-top: 32px;
 }
 
-input {
-    width: 500px;
-    height: 30px;
-    border-radius: 5px;
-}
+
 
 .navBar__smallNavs {
     display: flex;
