@@ -1,3 +1,25 @@
 .user {
-    min-height: 80vh;
+    display: flex;
+    justify-content: space-around;
+    min-height: 85vh;
+}
+
+.user__itemInfo {
+    border: solid 1px #DBDBDB;
+    width: 200px;
+}
+
+.user__itemImage {
+    height: 200px;
+    width: 200px;
+    border-top: solid 1px #DBDBDB;
+    border-right: solid 1px #DBDBDB;
+    border-left: solid 1px #DBDBDB;
+    background-color: #A0A0A0;
+}
+
+/* .user__itemName, .user__itemPrice, .user__itemLocation */
+.user__itemInfo {
+    float: left;
+    text-align: left;
 }
