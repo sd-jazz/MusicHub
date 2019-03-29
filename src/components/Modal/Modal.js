@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { Button } from "semantic-ui-react";
+import { connect } from "react-redux";
+import { getUser } from "../../redux/reducer";
 import axios from "axios";
 
 class Modal extends Component {
@@ -11,9 +13,8 @@ class Modal extends Component {
       description: "",
       price: 0,
       category: "",
-      type1: "",
-      type2: "",
-      
+      type: "",
+
       condition: "new"
     };
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -29,44 +30,71 @@ class Modal extends Component {
     });
   }
 
-  uploadItem=()=>{
-      const post = {
-        user_id: 2,
-        listing_name: this.state.title,
-        description: this.state.description,
-        time_stamp: new Date,
-        type: this.state.type2,
-        price: this.state.price
-        
-    }
-      if(this.state.title&&this.state.price&&this.state.description&&this.state.type2){
-         console.log(this.state) 
-         axios.post(`/api/listings`, post).then(res=>{
+  uploadItem = () => {
+    const post = {
+      user_id: this.props.user.user_id,
+      listing_name: this.state.title,
+      description: this.state.description,
+      time_stamp: new Date(),
+      type: this.state.type,
+      price: this.state.price,
+      condition: this.state.condition
+    };
 
-         })
-      }else{
-          alert("incomplete form")
-      }
-  }
+    if (
+      this.state.title &&
+      this.state.price &&
+      this.state.description &&
+      this.state.category === "other"
+    ) {
+      post.type = this.state.category;
+      axios.post(`/api/listings`, post).then(res => {
+        this.props.close();
+      });
+    } else if (
+      this.state.title &&
+      this.state.price &&
+      this.state.description &&
+      this.state.type
+    ) {
+      console.log(this.state);
+      axios.post(`/api/listings`, post).then(res => {
+        this.props.close();
+      });
+    } else {
+      alert("incomplete form");
+    }
+  };
 
   render() {
     return (
       <div>
-          {
-            this.props.user ? 
-           <div>
+        {this.props.user ? (
+          <div>
             <Button>Upload a photo</Button>
             <label>
               Title:
-              <input name="title" type="text" onChange={this.handleInputChange} />
+              <input
+                name="title"
+                type="text"
+                onChange={this.handleInputChange}
+              />
             </label>
             <label>
               Description:
-              <input name="description" type="text" onChange={this.handleInputChange} />
+              <input
+                name="description"
+                type="text"
+                onChange={this.handleInputChange}
+              />
             </label>
             <label>
               Price:
-              <input name="price" type="number" onChange={this.handleInputChange} />
+              <input
+                name="price"
+                type="number"
+                onChange={this.handleInputChange}
+              />
             </label>
             <label>
               Type:
@@ -75,7 +103,7 @@ class Modal extends Component {
                 value={this.state.category}
                 onChange={this.handleInputChange}
               >
-                <option value=""></option>
+                <option value="" />
                 <option value="orchestral">Orchestral</option>
                 <option value="guitar">Guitar</option>
                 <option value="keyboards">Keyboards</option>
@@ -85,220 +113,109 @@ class Modal extends Component {
                 <option value="services">Services</option>
               </select>
             </label>
-            {
-                this.state.category === "orchestral" ?
-                <label>
-              Type:
-              <select
-                name="type1"
-                value={this.state.type1}
-                onChange={this.handleInputChange}
-              >
-                <option value=""></option>
-                <option value="brass">Brass</option>
-                <option value="strings">Strings</option>
-                <option value="woodwinds">Woodwinds</option>
-                <option value="percussion">Percussion</option>
-              </select>
-            </label>
-            : 
-            null
-            }
-            {
-                this.state.category === "orchestral" && this.state.type1 === "brass" ?
-                <label>
-              Type:
-              <select
-                name="type2"
-                value={this.state.type2}
-                onChange={this.handleInputChange}
-              >
-                <option value=""></option>
-                <option value="french_horns">French Horns</option>
-                <option value="trombones">Trombone</option>
-                <option value="trumpets">Trumpets</option>
-                <option value="tubas">Tubas</option>
-              </select>
-            </label>
-            : 
-            null
-            }
-            {
-                this.state.category === "orchestral" && this.state.type1 === "strings"?
-                <label>
-              Type:
-              <select
-                name="type2"
-                value={this.state.type2}
-                onChange={this.handleInputChange}
-              >
-                <option value=""></option>
-                <option value="basses">Basses</option>
-                <option value="cellos">Cellos</option>
-                <option value="violas">Violas</option>
-                <option value="violins">Violins</option>
-              </select>
-            </label>
-            : 
-            null
-            }
-            {
-                this.state.category === "orchestral" && this.state.type1 === "woodwinds"?
-                <label>
-              Type:
-              <select
-                name="type2"
-                value={this.state.type2}
-                onChange={this.handleInputChange}
-              >
-                <option value=""></option>
-                <option value="bass_clarinets">Bass Clarinets</option>
-                <option value="bassoons">Bassoons</option>
-                <option value="clarinets">Clarinets</option>
-                <option value="flutes">Flutes</option>
-                <option value="saxophones">Saxophones</option>
-              </select>
-            </label>
-            : 
-            null
-            }
-            {
-                this.state.category === "orchestral" && this.state.type2 === "percussion"?
-                <label>
-              Type:
-              <select
-                name="type2"
-                value={this.state.type2}
-                onChange={this.handleInputChange}
-              >
-                <option value=""></option>
-                <option value="bass_drums">Bass Drums</option>
-                <option value="bongos">Bongos</option>
-                <option value="marimbas">Marimbas</option>
-                <option value="snares">Snares</option>
-                <option value="timpani">Timpanis</option>
-                <option value="xylophones">Xylophones</option>
-              </select>
-            </label>
-            : 
-            null
-            }
-            {
-                this.state.category === "guitar" ?
-                <label>
-              Type:
-              <select
-                name="type2"
-                value={this.state.type2}
-                onChange={this.handleInputChange}
-              >
-                <option value=""></option>
-                <option value="bass_guitars">Bass</option>
-                <option value="acoustic_guitars">Accoustic</option>
-                <option value="electric_guitars">Electric</option>
-              </select>
-            </label>
-            : 
-            null
-            }
-            {
-                this.state.category === "keyboards" ?
-                <label>
-              Type:
-              <select
-                name="type2"
-                value={this.state.type2}
-                onChange={this.handleInputChange}
-              >
-                <option value=""></option>
-                <option value="pianos">Piano</option>
-                <option value="electric_pianos">Electric Piano</option>
-              </select>
-            </label>
-            : 
-            null
-            }
-            {
-                this.state.category === "drums" ?
-                <label>
-              Type:
-              <select
-                name="type2"
-                value={this.state.type2}
-                onChange={this.handleInputChange}
-              >
-                <option value=""></option>
-                <option value="bass_drums">Bass Drums</option>
-                <option value="cymbals">Cymbals</option>
-                <option value="hi_hats">Hi-hats</option>
-                <option value="kits">Kits</option>
-                <option value="snares">Snares</option>
-                <option value="tom_toms">Tom-toms</option>
-              </select>
-            </label>
-            : 
-            null
-            }
-            {
-                this.state.category === "other" ?
-                <label>
-              Type:
-              <select
-                name="type2"
-                value={this.state.type2}
-                onChange={this.handleInputChange}
-              >
-                <option value=""></option>
-                <option value="harmonicas">Harmonicas</option>
-                <option value="tambourines">Tambourines</option>
-              </select>
-            </label>
-            : 
-            null
-            }
-            {
-                this.state.category === "audio" ?
-                <label>
-              Type:
-              <select
-                name="type2"
-                value={this.state.type2}
-                onChange={this.handleInputChange}
-              >
-                <option value=""></option>
-                <option value="cables">Cables</option>
-                <option value="headphones">Headphones</option>
-                <option value="microphones">Microphones</option>
-                <option value="midis">MIDIs</option>
-                <option value="turntables">Turntables</option>
-              </select>
-            </label>
-            : 
-            null
-            }
-            {
-                this.state.category === "services" ?
-                <label>
-              Type:
-              <select
-                name="type2"
-                value={this.state.type2}
-                onChange={this.handleInputChange}
-              >
-                <option value=""></option>
-                <option value="performers">Performers</option>
-                <option value="dj">DJ</option>
-                <option value="tuning">Tuning</option>
-                <option value="lessons">Lessons</option>
-              </select>
-            </label>
-            : 
-            null
-            }
-            
+            {this.state.category === "orchestral" ? (
+              <label>
+                Type:
+                <select
+                  name="type"
+                  value={this.state.type}
+                  onChange={this.handleInputChange}
+                >
+                  <option value="" />
+                  <option value="brass">Brass</option>
+                  <option value="strings">Strings</option>
+                  <option value="woodwinds">Woodwinds</option>
+                  <option value="percussion">Percussion</option>
+                </select>
+              </label>
+            ) : null}
+            {this.state.category === "guitar" ? (
+              <label>
+                Type:
+                <select
+                  name="type"
+                  value={this.state.type}
+                  onChange={this.handleInputChange}
+                >
+                  <option value="" />
+                  <option value="bass_guitars">Bass</option>
+                  <option value="acoustic_guitars">Accoustic</option>
+                  <option value="electric_guitars">Electric</option>
+                </select>
+              </label>
+            ) : null}
+            {this.state.category === "keyboards" ? (
+              <label>
+                Type:
+                <select
+                  name="type"
+                  value={this.state.type}
+                  onChange={this.handleInputChange}
+                >
+                  <option value="" />
+                  <option value="pianos">Piano</option>
+                  <option value="electric_pianos">Electric Piano</option>
+                </select>
+              </label>
+            ) : null}
+            {this.state.category === "drums" ? (
+              <label>
+                Type:
+                <select
+                  name="type"
+                  value={this.state.type}
+                  onChange={this.handleInputChange}
+                >
+                  <option value="" />
+                  <option value="bass_drums">Bass Drums</option>
+                  <option value="cymbals">Cymbals</option>
+                  <option value="hi_hats">Hi-hats</option>
+                  <option value="kits">Kits</option>
+                  <option value="snares">Snares</option>
+                  <option value="tom_toms">Tom-toms</option>
+                </select>
+              </label>
+            ) : null}
+            {this.state.category === "audio" ? (
+              <label>
+                Type:
+                <select
+                  name="type"
+                  value={this.state.type}
+                  onChange={this.handleInputChange}
+                >
+                  <option value="" />
+                  <option value="cables">Cables</option>
+                  <option value="headphones">Headphones</option>
+                  <option value="microphones">Microphones</option>
+                  <option value="midis">MIDIs</option>
+                  <option value="turntables">Turntables</option>
+                </select>
+              </label>
+            ) : null}
+            {this.state.category === "services" ? (
+              <label>
+                Type:
+                <select
+                  name="type"
+                  value={this.state.type}
+                  onChange={this.handleInputChange}
+                >
+                  <option value="" />
+                  <option value="lessons">Lessons</option>
+                  <option value="performers">Performers</option>
+                  <option value="tuning">Tuning</option>
+                </select>
+              </label>
+            ) : null}
+
             <label>
               Condition:
-              <select name="condition" value={this.state.condition} onChange={this.handleInputChange}>
+              <select
+                name="condition"
+                value={this.state.condition}
+                onChange={this.handleInputChange}
+              >
                 <option value="new">New(Never used)</option>
                 <option value="open box">Open-box(Never used)</option>
                 <option value="used">Used</option>
@@ -307,15 +224,22 @@ class Modal extends Component {
               </select>
             </label>
             <button onClick={this.uploadItem}>Upload</button>
-            </div>
-            :
-            <div>
-                Please Login
-            </div>
-        }
-        </div>
+          </div>
+        ) : (
+          <div>Please Login</div>
+        )}
+      </div>
     );
   }
 }
 
-export default Modal;
+const mapStateToProps = reducerState => {
+  return {
+    user: reducerState.user
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { getUser }
+)(Modal);
