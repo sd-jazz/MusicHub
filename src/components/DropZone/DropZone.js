@@ -16,7 +16,7 @@ export default class DropZone extends Component {
     }
 
     // Triggers when object (image) is dropped onto the target
-    onImageDrop(files) {
+    onImageDrop = (files) => {
         this.setState({
           uploadedFile: files[0]
         });

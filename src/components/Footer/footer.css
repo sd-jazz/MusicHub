@@ -7,10 +7,15 @@
     justify-content: space-around;
 }
 
-h3 {
+.footer__title {
     margin-left: 36.1%;
+    color: white;
 }
 
-.footer__linksLeft, .footer__linksRight {
+.footer__links {
     display: flex;
+}
+
+a {
+    padding: 0 10px;
 }

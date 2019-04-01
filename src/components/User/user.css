@@ -14,48 +14,38 @@
     display: flex;
     min-height: 85vh;
     justify-content: space-around;
-    margin-top: 10%;
+    margin-top: 9vh;
 }
 
 .user__image {
     height: 100px;
     width: 100px;
-    background-color: royalblue;
     margin-right: 15px;
     border-radius: 50%;
+}
+
+.user__noImage {
+    padding-top: 40px;
 }
 
 .user__userInfo {
     display: flex;
 }
 
-.user__items {
-    justify-content: space-between;
-    align-content: flex-end;
-    overflow: hidden;
+.user__cardContainer {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 66vw;
+    border: 3px solid black;
+    padding: 3vh 0;
+    margin-bottom: 4vh;
+}
+
+.user__card {
+    color: black;
 }
 
 .user__location {
     margin-top: 20%;
-}
-
-.user__itemInfo {
-    border: solid 1px #DBDBDB;
-    width: 200px;
-}
-
-.user__itemImage {
-    height: 200px;
-    width: 200px;
-    border-top: solid 1px #DBDBDB;
-    border-right: solid 1px #DBDBDB;
-    border-left: solid 1px #DBDBDB;
-    background-color: #A0A0A0;
-}
-
-/* .user__itemName, .user__itemPrice, .user__itemLocation */
-.user__itemInfo {
-    float: left;
-    text-align: left;
-    padding: 3px;
 }

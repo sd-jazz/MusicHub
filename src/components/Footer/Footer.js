@@ -7,9 +7,11 @@ export default class Footer extends Component {
     render(){
         
         return (
-            <div class="footer">
+            <div className="footer">
+            <Link className="footer__title" to="/" >
                 <h3>MusicHub 2019</h3>
-                <div class="footer__linksRight">
+            </Link>
+                <div className="footer__links">
                     <Link to="/sell">
                         <h2>Sell</h2>
                     </Link>
