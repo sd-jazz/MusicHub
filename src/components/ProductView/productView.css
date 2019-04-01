@@ -11,16 +11,15 @@
 .productView__userInfo{
     display: flex; 
     flex-direction: column; 
-    border: solid black;
+    border: solid 2px #DBDBDB;
+    align-items: center;
+    border-radius: 5px
 }
 
 .productView__descriptionAndUserInfo{
     display: flex; 
 }
 
-.productView__textDescription{
-    display: flex; 
-}
 
 .productView__nameAndPrice{
     display: flex;
@@ -29,23 +28,63 @@
 
 .productView__location{
     display: flex;
+    width: 200px
 }
 
 .productView__productInfo{
     display: flex; 
     flex-direction: column; 
     justify-content: flex-start;
+    padding:5px;
+    width: 80vw
 }
 
 .productView__profilePicture{
-    border: solid; 
+    height: 30px;
     border-radius: 50%;
+    margin-top: 5px
 }
 
 .productView__userInfo{
-    width: 70vw;
+    width: 20vw;
 }
 
 .productView__similarDisplay{
     display: flex; 
+}
+
+.productView__description {
+    justify-content: flex-start;
+    align-self: flex-start;
+}
+.productView__descriptionText {
+    justify-content: flex-start;
+    align-self: flex-start;
+}
+
+.productView__saveButton, .productView__messageButton {
+    width: 80%;
+    border-radius: 5px;
+    border-color: #487798;
+    color: #487798
+    
+}
+
+
+
+.productView__saveButton {
+    margin: 0.5em 0
+}
+
+
+.productView__lineBreakListingInfo {
+    width: 100%
+}
+.productView__lineBreakUserInfo {
+    width: 80%;
+    margin-bottom: 0.5em
+}
+
+.productView__userRating {
+    margin: 0.5em 0
 }
