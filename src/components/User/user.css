@@ -1,7 +1,42 @@
 .user {
+    display: inline;
+}
+
+.user__report {
+    margin: 2% 2% 0 0;
+    border-radius: 3px;
+    float: right;
+    border: 2px solid #487798;
+    background-color: #FAFAFA;
+}
+
+.user__person {
     display: flex;
-    justify-content: space-around;
     min-height: 85vh;
+    justify-content: space-around;
+    margin-top: 10%;
+}
+
+.user__image {
+    height: 100px;
+    width: 100px;
+    background-color: royalblue;
+    margin-right: 15px;
+    border-radius: 50%;
+}
+
+.user__userInfo {
+    display: flex;
+}
+
+.user__items {
+    justify-content: space-between;
+    align-content: flex-end;
+    overflow: hidden;
+}
+
+.user__location {
+    margin-top: 20%;
 }
 
 .user__itemInfo {
@@ -22,4 +57,5 @@
 .user__itemInfo {
     float: left;
     text-align: left;
+    padding: 3px;
 }
