@@ -1,0 +1,14 @@
+.searchResults {
+    display: flex; 
+    flex-direction: row; 
+}
+
+.searchResults__results{
+    display: flex;
+    flex-direction: row; 
+}
+
+.searchedResults__cardContainer{
+    display: flex;
+    flex-direction: row; 
+}

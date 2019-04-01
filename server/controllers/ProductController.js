@@ -15,13 +15,21 @@ module.exports = {
         }).catch(err => console.log('(getUserListings) ERROR', err))
       },
 
-      createListing: (req, res, next) => {
-        const {user_id, listing_name, description, time_stamp, type, tags, price, condition } = req.body
-        const db = req.app.get('db')
-        db.create_listing([user_id, listing_name, description, time_stamp, type, tags, price, condition]).then(listing => {
-          res.status(200).json(listing)
-        }).catch(err => console.log("createListing", err))
-    },
+    //   createListing: (req, res, next) => {
+    //     const {user_id, listing_name, description, time_stamp, type, tags, price, condition } = req.body
+    //     const db = req.app.get('db')
+    //     db.create_listing([user_id, listing_name, description, time_stamp, type, tags, price, condition]).then(listing => {
+    //       res.status(200).json(listing)
+    //     }).catch(err => console.log("createListing", err))
+    // },
+
+    createListing: (req, res, next) => {
+      const {user_id, listing_name, description, time_stamp, type, tags, price, condition, images } = req.body
+      const db = req.app.get('db')
+      db.create_listing([user_id, listing_name, description, time_stamp, type, tags, price, condition, images]).then(listing => {
+        res.status(200).json(listing)
+      }).catch(err => console.log("createListing", err))
+  },
   
       deleteListing: (req, res, next) => {
         const { listing_id } = req.params;

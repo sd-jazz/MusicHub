@@ -1,12 +1,15 @@
 import React, { Component } from "react";
+import MappedImages from './MappedImages';
 import { Button } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { getUser } from "../../redux/reducer";
 import axios from "axios";
+import Dropzone from 'react-dropzone';
+const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/dtmyvlymm/image/upload';
 
 class Modal extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       image: "",
       title: "",
@@ -14,8 +17,9 @@ class Modal extends Component {
       price: 0,
       category: "",
       type: "",
-
-      condition: "new"
+      condition: "new",
+      uploadedFile:'',
+      cloudinaryUrl: []
     };
     this.handleInputChange = this.handleInputChange.bind(this);
   }
@@ -38,7 +42,8 @@ class Modal extends Component {
       time_stamp: new Date(),
       type: this.state.type,
       price: this.state.price,
-      condition: this.state.condition
+      condition: this.state.condition,
+      images: this.state.cloudinaryUrl
     };
 
     if (
@@ -49,6 +54,7 @@ class Modal extends Component {
     ) {
       post.type = this.state.category;
       axios.post(`/api/listings`, post).then(res => {
+        console.log("POST", post)
         this.props.close();
       });
     } else if (
@@ -59,6 +65,7 @@ class Modal extends Component {
     ) {
       console.log(this.state);
       axios.post(`/api/listings`, post).then(res => {
+        console.log("POST", post)
         this.props.close();
       });
     } else {
@@ -66,12 +73,76 @@ class Modal extends Component {
     }
   };
 
+      // Triggers when object (image) is dropped onto the target
+      onImageDrop = (files) => {
+        console.log("onImageDrop FILES", files)
+        this.setState({
+          uploadedFile: files[0]
+        });
+        
+        this.handleImageUpload(files[0]);
+      }
+
+      handleImageUpload = (file) => {
+
+        // Initiates signature request from the server when someone has uploaded a file 
+        console.log("handleImageUpload START", "FILE", file)
+        axios.get('/api/upload').then(response => {
+            console.log("RESPONSE", response, "RESPONSE.DATA.SIGNATURE", response.data.signature)
+            let formData = new FormData();
+            formData.append("signature", response.data.signature)
+            formData.append("api_key", "262651599613782");
+            formData.append("timestamp", response.data.timestamp)
+            formData.append("file", file)
+            // const config = {
+            //   headers: { "X-Requested-With": "XMLHttpRequest" },
+            // }
+            console.log("FORM DATA AFTER AXIOS.GET", formData)
+            
+            // You can either save that url in your database or display it directly on the page 
+            axios.post(CLOUDINARY_UPLOAD_URL, formData/*, config*/).then(response => {
+              console.log("response.data.secure_url", response.data.secure_url, "STATE", this.state)
+                this.setState({
+                    cloudinaryUrl: [...this.state.cloudinaryUrl, response.data.secure_url]
+                })
+            }).catch( err => {
+              console.log("RIP MY AXIOS.POST CALL", err);
+            })
+        
+        })
+      }
+
+        login = () => {
+          const redirectUri = encodeURIComponent(`${window.location.origin}/auth`);
+          window.location = `https://${
+            process.env.REACT_APP_AUTH_DOMAIN
+          }/authorize?client_id=${
+            process.env.REACT_APP_CLIENT_ID
+          }&scope=openid%20email%20profile&redirect_uri=${redirectUri}&response_type=code`;
+        };
+      
   render() {
     return (
       <div>
         {this.props.user ? (
           <div>
-            <Button>Upload a photo</Button>
+            <button>
+            {/* <Button>Upload a photo</Button> */}
+            <div className='Modal__DropZone'>
+
+        <Dropzone onDrop={this.onImageDrop} accept="image/*"multiple={false}>
+        {({getRootProps, getInputProps}) => (
+          <section>
+            <div {...getRootProps()}>
+              <input {...getInputProps()} />
+              <p>Drag 'n' drop some files here, or click to select files</p>
+            </div>
+          </section>
+        )}
+      </Dropzone>
+            </div>
+            </button>
+
             <label>
               Title:
               <input
@@ -224,9 +295,16 @@ class Modal extends Component {
               </select>
             </label>
             <button onClick={this.uploadItem}>Upload</button>
+            <div className="Modal__mappedImagesInModal">
+                <MappedImages image={this.state.cloudinaryUrl}/>
+            </div>
           </div>
         ) : (
-          <div>Please Login</div>
+          <button onClick={() => this.login()}>
+              <div >
+                Please Login
+              </div>
+          </button>
         )}
       </div>
     );

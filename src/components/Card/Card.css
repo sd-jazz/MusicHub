@@ -1,23 +1,15 @@
 .card {
     border: solid black 1px;
     margin: 5px;
-
 }
-
 .card__outerContainer {
     width: 200px;
     height: 300px;
 }
-
-.card__fullContainer {
-
-}
-
 .card__image {
     width: 200px;
     height: 225px;
 }
-
 .card__container {
     display: flex;
     justify-content: space-between;
@@ -26,9 +18,7 @@
     padding: 20px 10px 0 10px;
     overflow: hidden;
 }
-
 .card__title {
     font-size: 1em;
     text-align: center
 }
-
