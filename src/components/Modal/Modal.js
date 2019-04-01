@@ -6,6 +6,7 @@ import { getUser } from "../../redux/reducer";
 import axios from "axios";
 import Dropzone from 'react-dropzone';
 const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/dtmyvlymm/image/upload';
+const mapbox = 'https://api.mapbox.com/geocoding/v5/mapbox.places/85016.json?access_token=pk.eyJ1IjoiYmNrZW5uZWR5OTciLCJhIjoiY2p0eHV6a3dzMXR0cjQ1bXAzY2M4N2IyZyJ9.WS1Qf8wiBeDFOhFh5S-pzw'
 
 class Modal extends Component {
   constructor(props) {
@@ -19,7 +20,10 @@ class Modal extends Component {
       type: "",
       condition: "new",
       uploadedFile:'',
-      cloudinaryUrl: []
+      cloudinaryUrl: [],
+      location: 85016,
+      longitude: 0,
+      latitude: 0,
     };
     this.handleInputChange = this.handleInputChange.bind(this);
   }
@@ -120,6 +124,18 @@ class Modal extends Component {
             process.env.REACT_APP_CLIENT_ID
           }&scope=openid%20email%20profile&redirect_uri=${redirectUri}&response_type=code`;
         };
+
+        getCoords = () => {
+          axios.get(mapbox).then(res=>{
+            console.log(res.data.features[0].center[0])
+            this.setState({
+              longitude: res.data.features[0].center[0],
+              latitude: res.data.features[0].center[1]
+            })
+            console.log(this.state.longitude, this.state.latitude)
+          })
+        }
+      
       
   render() {
     return (
@@ -293,6 +309,10 @@ class Modal extends Component {
                 <option value="recertified">Recertified</option>
                 <option value="for parts">For parts</option>
               </select>
+            </label>
+            <label>
+              Zipcode:
+              <input name="location" type="number" onChange={this.handleInputChange}/>
             </label>
             <button onClick={this.uploadItem}>Upload</button>
             <div className="Modal__mappedImagesInModal">
