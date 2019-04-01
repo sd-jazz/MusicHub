@@ -41,7 +41,7 @@ massive( process.env.CONNECTION_STRING ).then( db => {
   // CLOUDINARY
 
   app.get('/api/upload', (req, res) => {
-
+    console.log("CLOUDINARY BACK END")
     const timestamp = Math.round((new Date()).getTime() / 1000);
     
     const api_secret  = process.env.CLOUDINARY_SECRET_API;
@@ -53,8 +53,11 @@ massive( process.env.CONNECTION_STRING ).then( db => {
         timestamp: timestamp
     };
         res.json(payload);
+        console.log("PAYLOAD", payload, "SIGNATURE", signature);
 
 })
+
+// app.post()
 
 //Nodemailer Start
 var transporter = nodemailer.createTransport({
