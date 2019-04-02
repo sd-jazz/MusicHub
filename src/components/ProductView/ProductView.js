@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import "./productView.css";
 import { update_listing_id } from "../../redux/reducer";
 import CarouselContainer from "./CarouselContainer";
+import Map from "../Map/Map";
 
 class ProductView extends Component {
   constructor(props) {
@@ -100,7 +101,7 @@ class ProductView extends Component {
           </div>
         </div>
 
-        <div className="productView__googleMaps">GOOGLE MAPS</div>
+        <Map/>
 
         <div className="productView__similarOfferings">SIMILAR OFFERINGS</div>
       </div>

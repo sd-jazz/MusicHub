@@ -4,7 +4,7 @@ create table users (
     auth0_id integer,
     profile_name text,
     email text, 
-    picure text
+    picture text
 );
 
 create table listings (
