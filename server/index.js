@@ -23,46 +23,43 @@ app.use(
   session({
     secret: "mega hyper ultra secret",
     saveUninitialized: false,
-    resave: false
-  })
-);
+    resave: false,
+  }));
 
-// PRODUCT CONTROLLER
+  // PRODUCT CONTROLLER 
 
-app.post("/api/listings", pc.createListing);
-app.get("/api/get_listings", pc.getAllListings);
-app.get("/api/get_user_listings/:id", pc.getUserListings);
-app.delete("/api/delete_listing/:listing_id", pc.deleteListing);
-app.get("/api/listings/:listing_id", pc.getListingInfo);
-app.get("/api/get_listings_by_type/:listing_type", pc.getListingByType);
-app.get("/api/user_data", aC.getUserData);
-app.get("/auth", aC.login);
-app.get("/auth/logout", aC.logout);
-app.get("/api/listing/:listing_id", pc.getListingInfo);
-app.get("/api/listing/search/:searchFilter", pc.getStatusAll);
+  app.post('/api/listings', pc.createListing);
+  app.get('/api/get_listings', pc.getAllListings);
+  app.get('/api/get_user_listings/:id', pc.getUserListings);
+  app.delete('/api/delete_listing/:listing_id/:user_id', pc.deleteListing);
+  app.get('/api/listings/:listing_id', pc.getListingInfo)
+  app.get('/api/get_listings_by_type/:listing_type', pc.getListingByType)
+  app.get('/api/user_data', aC.getUserData)
+  app.get('/auth', aC.login)
+  app.get('/auth/logout', aC.logout)
+  app.get('/api/listing/:listing_id', pc.getListingInfo)
+  app.get('/api/listing/search/:searchFilter', pc.getStatusAll)
 
-// app.put('/api/edit_listing/', pc.editListing;
+  // app.put('/api/edit_listing/', pc.editListing;
 
-// CLOUDINARY
+  // CLOUDINARY
 
-app.get("/api/upload", (req, res) => {
-  console.log("CLOUDINARY BACK END");
-  const timestamp = Math.round(new Date().getTime() / 1000);
+  app.get('/api/upload', (req, res) => {
+    console.log("CLOUDINARY BACK END")
+    const timestamp = Math.round((new Date()).getTime() / 1000);
+    
+    const api_secret  = process.env.CLOUDINARY_SECRET_API;
 
-  const api_secret = process.env.CLOUDINARY_SECRET_API;
+    const signature = cloudinary.utils.api_sign_request({ timestamp: timestamp }, api_secret);
 
-  const signature = cloudinary.utils.api_sign_request(
-    { timestamp: timestamp },
-    api_secret
-  );
+    const payload = {
+        signature: signature,
+        timestamp: timestamp
+    };
+        res.json(payload);
+        console.log("PAYLOAD", payload, "SIGNATURE", signature);
 
-  const payload = {
-    signature: signature,
-    timestamp: timestamp
-  };
-  res.json(payload);
-  console.log("PAYLOAD", payload, "SIGNATURE", signature);
-});
+})
 
 // app.post()
 
