@@ -27,7 +27,7 @@ massive( process.env.CONNECTION_STRING ).then( db => {
   app.post('/api/listings', pc.createListing);
   app.get('/api/get_listings', pc.getAllListings);
   app.get('/api/get_user_listings/:id', pc.getUserListings);
-  app.delete('/api/delete_listing:listing_id', pc.deleteListing);
+  app.delete('/api/delete_listing/:listing_id/:user_id', pc.deleteListing);
   app.get('/api/listings/:listing_id', pc.getListingInfo)
   app.get('/api/get_listings_by_type/:listing_type', pc.getListingByType)
   app.get('/api/user_data', aC.getUserData)

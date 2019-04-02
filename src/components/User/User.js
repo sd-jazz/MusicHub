@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {getUser} from "../../redux/reducer"
+import { Glyphicon } from 'react-bootstrap';
+import Star from '../Ratings/Ratings';
 import Card from '../Card/Card';
 import {Link} from 'react-router-dom'
 import './user.css'
@@ -17,12 +19,29 @@ class User extends Component {
     }
 
     componentDidMount = () => {
-        console.log('========',this.props)
         const {user_id} = this.props.user;
         axios.get(`/api/get_user_listings/${user_id}`).then(response =>{
-            console.log("response",response.data)
             this.setState({
                 listings: response.data
+            })
+        })
+    }
+    componentDidUpdate = () => {
+        const {user_id} = this.props.user;
+        axios.get(`/api/get_user_listings/${user_id}`).then(response =>{
+            this.setState({
+                listings: response.data
+            })
+        })
+    }
+
+    deletePost = (listing) => {
+        const {user_id} = this.props.user
+        console.log('listing', listing.listing_id)
+        axios.delete(`/api/delete_listing/${listing.listing_id}/${user_id}`).then(res => {
+            console.log('delete', res.data)
+            this.setState({
+                listings: res.data
             })
         })
     }
@@ -32,7 +51,12 @@ class User extends Component {
         const {listings} = this.state
         const {user} = this.props
         const mappedListings = listings.map(listing => {
-            return <Link key={listing.listing_id}  to={`/productview/${listing.listing_id}`}className='home__card'><Card listing={listing} /></Link>
+            return (
+                <div>
+                    <Link key={listing.listing_id}  to={`/productview/${listing.listing_id}`}className='home__card'><Card listing={listing} /></Link>
+                    <button onClick={() => this.deletePost(listing)}>Delete</button>
+                </div>    
+                )
         })
         return (
             <div className="user">
@@ -43,10 +67,11 @@ class User extends Component {
                             <img className="user__image" alt="user" src={user.picture}/>
                             <div className="user__noImage">
                                 <div className="user__name">{user.profile_name}</div>
-                                <div className="user__rating">stars</div>
+                                {/* <div className="user__rating">stars</div> */}
+                                <Star star="1"/> 
                             </div>
                         </div>
-                        <div className="user__location">location</div>
+                        {/* <div className="user__location">location</div> */}
                     </div>
                     <div className="user__right">
                         <div className="user__cardContainer">{mappedListings}</div>
