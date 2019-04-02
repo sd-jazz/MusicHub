@@ -10,15 +10,16 @@ import SearchResults from './components/SearchResults/SearchResults';
 
 
 
+
 export default function routes() { 
     return (
     <Switch>
         <Route component={ Home } exact path="/" /> 
         {/* <Route component={ Upload } path="/sell" />  */}
-        <Route component={ Messages } path="/messages" /> 
         <Route component={ User } path="/user" />
         <Route component={ CatagoryView } path='/catagory_view/:listing_type'/>
         <Route component={ ProductView } path="/productview/:listing_id" />
+        <Route component={ Messages } path="/messages" />
         <Route component={ SearchResults } path='/search_results/' /> 
     </Switch>
     )
