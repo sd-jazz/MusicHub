@@ -1,0 +1,16 @@
+.marker {
+    background-color: lightblue;
+    opacity: 0.5;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+  }
+  
+  .map-container{
+    height: 200px;
+    width: 100%;
+  }
+
+  .mapboxgl-canvas {
+      position: static!important;
+  }
