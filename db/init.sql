@@ -47,5 +47,20 @@ create table pictures(
     picture_url text
 );
 
+create table rooms(
+    room_id serial
+    user_1 integer,
+    user_2 integer,
+    room_name varchar(64) primary key
+);
+
+create table room_data(
+time_sent TIMESTAMPTZ NOT NULL DEFAULT NOW()
+,sender integer
+,recipient integer
+,message text
+,room_name varchar(64) references rooms(room_name)
+);
+
 
 
