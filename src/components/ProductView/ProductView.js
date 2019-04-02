@@ -23,7 +23,8 @@ class ProductView extends Component {
           time_stamp: "",
           type: "",
           user_id: "", 
-          images: []
+          images: [],
+          zipcode: null,
         }
       ]
     };
@@ -48,7 +49,7 @@ class ProductView extends Component {
 
   render() {
     console.log("LISTING INFORMATION", this.state.listing_id[0], "IMAGES", this.state.listing_id[0].images, "this.state.picture", this.state.listing_id[0].picture);
-
+    console.log("zipcode state", this.state.listing_id[0].zipcode)
     return (
       <div className="productView">
         <div className="productView__images">
@@ -101,7 +102,7 @@ class ProductView extends Component {
           </div>
         </div>
 
-        <Map/>
+          <Map zipcode={this.state.listing_id[0].zipcode}/>
 
         <div className="productView__similarOfferings">SIMILAR OFFERINGS</div>
       </div>

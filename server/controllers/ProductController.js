@@ -24,9 +24,9 @@ module.exports = {
     // },
 
     createListing: (req, res, next) => {
-      const {user_id, listing_name, description, time_stamp, type, tags, price, condition, images } = req.body
+      const {user_id, listing_name, description, time_stamp, type, tags, price, condition, images, zipcode } = req.body
       const db = req.app.get('db')
-      db.create_listing([user_id, listing_name, description, time_stamp, type, tags, price, condition, images]).then(listing => {
+      db.create_listing([user_id, listing_name, description, time_stamp, type, tags, price, condition, images, zipcode]).then(listing => {
         res.status(200).json(listing)
       }).catch(err => console.log("createListing", err))
   },
