@@ -1,6 +1,9 @@
 import React, {Component} from 'react'
 import ReactMapboxGl, { Layer, Feature} from "react-mapbox-gl";
 import "./map.css"
+import axios from "axios";
+
+
 
 const Map = ReactMapboxGl({
     accessToken: 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4M29iazA2Z2gycXA4N2pmbDZmangifQ.-g_vE53SD2WrJ6tFX7QHmA',
@@ -16,8 +19,8 @@ class map extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      lng: -111.98,
-      lat: 33.44
+      lng: null,
+      lat: null
     //   geojson: {
     //     type: 'FeatureCollection',
     //     features: [{
@@ -37,6 +40,8 @@ class map extends Component {
   }
 
   componentDidMount() {
+    // this.getCoords();
+    
     // const { lng, lat, zoom } = this.state;
 
     // const map = new mapboxgl.Map({
@@ -71,6 +76,22 @@ class map extends Component {
 
 //   }
   }
+  componentDidUpdate(){
+    this.getCoords();
+  }
+
+  getCoords = () => {
+    // console.log("props", this.props)
+    const mapbox = `https://api.mapbox.com/geocoding/v5/mapbox.places/${this.props.zipcode}.json?access_token=pk.eyJ1IjoiYmNrZW5uZWR5OTciLCJhIjoiY2p0eHV6a3dzMXR0cjQ1bXAzY2M4N2IyZyJ9.WS1Qf8wiBeDFOhFh5S-pzw`
+      axios.get(mapbox).then(res=>{
+        this.setState({
+          lng: res.data.features[0].center[0],
+          lat: res.data.features[0].center[1]
+        })
+        // console.log(this.state.lng, this.state.lat)
+      })
+
+    }
 
 
   render() {
@@ -78,6 +99,8 @@ class map extends Component {
     const {lng,lat} = this.state;
     
     return (
+      <div>
+      {this.state.lng&&this.state.lat ? 
         <Map
         style="mapbox://styles/mapbox/dark-v9"
         scrollZoom="false"
@@ -104,6 +127,11 @@ class map extends Component {
             <Feature coordinates={[lng, lat]}/>
           </Layer>
       </Map>
+
+      :
+      null
+      }
+      </div>
     );
   }
 }
