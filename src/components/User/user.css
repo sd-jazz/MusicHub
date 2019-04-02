@@ -44,6 +44,8 @@
     border: 3px solid black;
     padding: 1vh 0 2vh 0;
     margin: 0 3vh 3vh 4vh;
+    width: 60vw;
+    min-height: 80vh;
 }
 
 .user__card {

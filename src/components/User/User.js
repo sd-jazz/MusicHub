@@ -52,7 +52,7 @@ class User extends Component {
         const {user} = this.props
         const mappedListings = listings.map(listing => {
             return (
-                <div>
+                <div className="user___card">
                     <Link key={listing.listing_id}  to={`/productview/${listing.listing_id}`}className='home__card'><Card listing={listing} /></Link>
                     <button onClick={() => this.deletePost(listing)}>Delete</button>
                 </div>    

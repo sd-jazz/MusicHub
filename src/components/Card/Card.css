@@ -2,6 +2,7 @@
     border: solid black 1px;
     margin: 5px;
     border-radius: 5px; 
+    background-color: white;
 }
 .card__outerContainer {
     width: 200px;
