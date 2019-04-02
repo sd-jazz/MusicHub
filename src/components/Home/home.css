@@ -23,3 +23,7 @@
 .home__card {
     color: black;
 }
+
+a:hover{
+    color: blue
+}

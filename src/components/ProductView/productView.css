@@ -19,10 +19,15 @@
 .productView__nameAndPrice{
     display: flex;
     justify-content: space-between; 
+    padding-left: 10px; 
+    padding-right: 10px;
 }
 .productView__location{
     display: flex;
-    width: 200px
+    width: 200px;
+    padding-left: 10px; 
+    padding-right: 10px;
+    font-weight: bold; 
 }
 .productView__productInfo{
     display: flex; 
@@ -49,6 +54,8 @@
 .productView__descriptionText {
     justify-content: flex-start;
     align-self: flex-start;
+    padding-left: 10px; 
+    padding-right: 10px;
 }
 .productView__saveButton, .productView__messageButton {
     width: 80%;
@@ -69,4 +76,8 @@
 }
 .productView__userRating {
     margin: 0.5em 0
+}
+
+.productView__googleMaps{
+    margin-top: 20px; 
 }

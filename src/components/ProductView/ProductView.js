@@ -101,8 +101,11 @@ class ProductView extends Component {
             <button className="productView__saveButton">Save</button>
           </div>
         </div>
-
+        
+        <div className="productView__googleMaps">
           <Map zipcode={this.state.listing_id[0].zipcode}/>
+        </div>
+
 
         <div className="productView__similarOfferings">SIMILAR OFFERINGS</div>
       </div>
