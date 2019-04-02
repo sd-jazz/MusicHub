@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {getUser} from "../../redux/reducer"
-import { Glyphicon } from 'react-bootstrap';
-import Star from '../Ratings/Ratings';
 import Card from '../Card/Card';
 import {Link} from 'react-router-dom'
 import './user.css'
@@ -52,7 +50,7 @@ class User extends Component {
         const {user} = this.props
         const mappedListings = listings.map(listing => {
             return (
-                <div>
+                <div className="user___card">
                     <Link key={listing.listing_id}  to={`/productview/${listing.listing_id}`}className='home__card'><Card listing={listing} /></Link>
                     <button onClick={() => this.deletePost(listing)}>Delete</button>
                 </div>    
@@ -68,7 +66,6 @@ class User extends Component {
                             <div className="user__noImage">
                                 <div className="user__name">{user.profile_name}</div>
                                 {/* <div className="user__rating">stars</div> */}
-                                <Star star="1"/> 
                             </div>
                         </div>
                         {/* <div className="user__location">location</div> */}
