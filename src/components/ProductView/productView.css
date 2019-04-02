@@ -2,12 +2,10 @@
     display: flex;
     flex-direction: column
 }
-
 .productView__images{
     display: flex; 
     justify-content: center; 
 }
-
 .productView__userInfo{
     display: flex; 
     flex-direction: column; 
@@ -15,22 +13,17 @@
     align-items: center;
     border-radius: 5px
 }
-
 .productView__descriptionAndUserInfo{
     display: flex; 
 }
-
-
 .productView__nameAndPrice{
     display: flex;
     justify-content: space-between; 
 }
-
 .productView__location{
     display: flex;
     width: 200px
 }
-
 .productView__productInfo{
     display: flex; 
     flex-direction: column; 
@@ -38,21 +31,17 @@
     padding:5px;
     width: 80vw
 }
-
 .productView__profilePicture{
     height: 30px;
     border-radius: 50%;
     margin-top: 5px
 }
-
 .productView__userInfo{
     width: 20vw;
 }
-
 .productView__similarDisplay{
     display: flex; 
 }
-
 .productView__description {
     justify-content: flex-start;
     align-self: flex-start;
@@ -61,7 +50,6 @@
     justify-content: flex-start;
     align-self: flex-start;
 }
-
 .productView__saveButton, .productView__messageButton {
     width: 80%;
     border-radius: 5px;
@@ -69,14 +57,9 @@
     color: #487798
     
 }
-
-
-
 .productView__saveButton {
     margin: 0.5em 0
 }
-
-
 .productView__lineBreakListingInfo {
     width: 100%
 }
@@ -84,7 +67,6 @@
     width: 80%;
     margin-bottom: 0.5em
 }
-
 .productView__userRating {
     margin: 0.5em 0
 }
