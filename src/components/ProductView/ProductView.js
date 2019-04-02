@@ -100,8 +100,10 @@ class ProductView extends Component {
             <button className="productView__saveButton">Save</button>
           </div>
         </div>
-
-        <Map/>
+        
+        <div className="productView__googleMaps">
+          <Map/>
+        </div>
 
         <div className="productView__similarOfferings">SIMILAR OFFERINGS</div>
       </div>
