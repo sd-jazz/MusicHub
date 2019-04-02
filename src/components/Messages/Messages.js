@@ -18,11 +18,19 @@ class Messages extends Component {
         e.preventDefault();
         this.socket.emit('SEND_MESSAGE', {
             author: this.state.username,
-            message: this.state.message
+            message: this.state.message,
         });
         this.setState({message: ''});
     }
 
+    this.sendPm = e => {
+        e.preventDefault();
+        this.socket.emit('SEND_PRIVATE', {
+            user1_id: this.props.user_id,
+            user2_id: this.match.params.user_id,
+            message: this.state.message,
+        })
+    }
     this.socket.on('RECEIVE_MESSAGE', function(data){
         addMessage(data);
     });
@@ -32,6 +40,8 @@ class Messages extends Component {
         this.setState({messages: [...this.state.messages, data]});
         console.log(this.state.messages);
     };
+
+
   }
 
   messageHandler = (val) => {
