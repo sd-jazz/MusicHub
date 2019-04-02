@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Modal, Header } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import "./navbar.css";
+import './NavBar2.css'
 import axios from "axios";
 import { getUser, get_searched_listings } from "../../redux/reducer";
 // import { throws } from 'assert';
@@ -135,17 +135,24 @@ class NavBar extends Component {
                 Login
               </Link>
             ) : (
-              <Link
-                className="item"
-                to="/"
-                style={{ color: "white" }}
-                onClick={() => this.logout()}
-              >
-                <h2 style={{ color: "white" }}>
-                  {this.props.user.profile_name}
-                </h2>
+              <div className="ui__loggedIn item">
+                <Link
+                  className="item"
+                  to="/"
+                  style={{ color: "white" }}
+                  onClick={() => this.logout()}
+                >
                 Logout
-              </Link>
+                </Link>
+                <Link 
+                  className="item"
+                  to="/user"
+                >
+                  <h2 style={{ color: "white" }}>
+                    {this.props.user.profile_name}
+                  </h2>
+                </Link>
+              </div>
             )}
           </div>
         </div>
