@@ -39,6 +39,7 @@ class Modal extends Component {
   }
 
   uploadItem = () => {
+    console.log("CLOUDINARY URL DURING UPLOAD", this.state.cloudinaryUrl)
     const post = {
       user_id: this.props.user.user_id,
       listing_name: this.state.title,

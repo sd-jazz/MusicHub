@@ -21,7 +21,8 @@ class ProductView extends Component {
           tags: "",
           time_stamp: "",
           type: "",
-          user_id: ""
+          user_id: "", 
+          images: []
         }
       ]
     };
@@ -31,12 +32,10 @@ class ProductView extends Component {
   // Deconstruct everything we need from the listing and place them in the appropriate divs
 
   componentDidMount() {
-    console.log("PROPS", this.props);
     this.fetchListingID();
   }
 
   fetchListingID = () => {
-    console.log("fetchListingID BEGIN");
     axios
       .get(`/api/listings/${this.props.match.params.listing_id}`)
       .then(response => {
@@ -47,12 +46,12 @@ class ProductView extends Component {
   };
 
   render() {
-    console.log(this.state.listing_id[0]);
+    console.log("LISTING INFORMATION", this.state.listing_id[0], "IMAGES", this.state.listing_id[0].images, "this.state.picture", this.state.listing_id[0].picture);
 
     return (
       <div className="productView">
         <div className="productView__images">
-        <CarouselContainer/>
+        <CarouselContainer images={[this.state.listing_id[0].images]}/>
           {/* <img
             src="https://i.ytimg.com/vi/R1b5FlhMc8s/maxresdefault.jpg"
             className="card__image"
@@ -84,7 +83,7 @@ class ProductView extends Component {
           </div>
 
           <div className="productView__userInfo">
-            <img className="productView__profilePicture" style={{height: '80px', width: '80px', marginBottom: '5px', alignSelf:'center'}}src='https://memegenerator.net/img/images/400x/15202579.jpg'/>
+            <img className="productView__profilePicture" style={{height: '80px', width: '80px', marginBottom: '5px', alignSelf:'center'}}src={this.state.listing_id[0].picture}/>
 
             <div className="productView__profileName">
               <h3 className='ui header'>{this.state.listing_id[0].profile_name}</h3>
