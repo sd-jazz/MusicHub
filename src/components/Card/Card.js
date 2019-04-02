@@ -1,22 +1,21 @@
 import React, { Component } from "react";
 import "./Card.css";
-
 export default class Card extends Component {
   render() {
+    console.log("THIS.PROPS", this.props, "THIS.PROPS.IMAGES.listing.images", this.props.listing.images)
     return (
       <div className='card'>
         <article className="card__outerContainer">
-          <img
-            src="https://images.reverb.com/image/upload/s--kvuZaEhH--/a_exif,c_limit,e_unsharp_mask:80,f_auto,fl_progressive,g_south,h_620,q_90,w_620/v1457007138/aaq4bjcndmkldatp4a13.jpg"
+          <img src={this.props.listing.images[0]}
+            //src="https://images.reverb.com/image/upload/s--kvuZaEhH--/a_exif,c_limit,e_unsharp_mask:80,f_auto,fl_progressive,g_south,h_620,q_90,w_620/v1457007138/aaq4bjcndmkldatp4a13.jpg"
             className="card__image"
-            alt="kitten looking menacing."
-          />
+            alt="No image to display" />
           <div className="card__fullContainer">
             <div className="card__titleContainer">
               <h1 className="card__title">{this.props.listing.listing_name}</h1>
             </div>
             <div className="card__container">
-                <h5 className="card__price">{this.props.listing.price}</h5>
+                <h5 className="card__price">${this.props.listing.price}</h5>
               <h5 className="card__location">Phoenix, AZ</h5>
             </div>
           </div>
