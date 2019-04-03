@@ -1,3 +1,5 @@
+
+
 .productView {
     display: flex;
     flex-direction: column;
@@ -15,6 +17,7 @@
 }
 .productView__descriptionAndUserInfo{
     display: flex; 
+    flex-direction: flex-start; 
 }
 .productView__nameAndPrice{
     display: flex;
@@ -27,6 +30,7 @@
     width: 200px;
     padding-left: 10px; 
     padding-right: 10px;
+    padding-top: 15px; 
     font-weight: bold; 
 }
 .productView__productInfo{
@@ -56,6 +60,7 @@
     align-self: flex-start;
     padding-left: 10px; 
     padding-right: 10px;
+    font-size: 1.2em;
 }
 .productView__saveButton, .productView__messageButton {
     width: 80%;
@@ -80,4 +85,12 @@
 
 .productView__googleMaps{
     margin-top: 20px; 
+}
+
+.ProductView__description_description{
+    display: flex;
+    font-weight: bolder; 
+    font-size: 1.4em;
+    padding-left: 10px;
+    padding-bottom: 15px; 
 }

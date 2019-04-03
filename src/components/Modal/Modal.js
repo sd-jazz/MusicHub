@@ -13,13 +13,12 @@ class Modal extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      image: "",
       title: "",
       description: "",
-      price: 0,
+      price: null,
       category: "",
       type: "",
-      condition: "new",
+      condition: "",
       uploadedFile:'',
       cloudinaryUrl: [],
       zipcode: null,
@@ -56,6 +55,7 @@ class Modal extends Component {
       this.state.price &&
       this.state.description &&
       this.state.zipcode &&
+      this.state.condition &&
       this.state.cloudinaryUrl.length>=1 &&
       this.state.category === "other"
     ) {
@@ -69,6 +69,7 @@ class Modal extends Component {
       this.state.price &&
       this.state.description &&
       this.state.zipcode &&
+      this.state.condition &&
       this.state.cloudinaryUrl.length>=1 &&
       this.state.type
     ) {
@@ -151,38 +152,26 @@ class Modal extends Component {
       
   render() {
     return (
-      <div>
+      <div className="modal__outerContainer">
         {this.props.user ? (
           <div id="modal">
-            <button>
-            {/* <Button>Upload a photo</Button> */}
-            <div className='Modal__DropZone'>
 
-        <Dropzone onDrop={this.onImageDrop} accept="image/*"multiple={false}>
+        <Dropzone  onDrop={this.onImageDrop} accept="image/*"multiple={false}>
         {({getRootProps, getInputProps}) => (
           <section>
             <div {...getRootProps()}>
               <input {...getInputProps()} />
-              <p>Drag 'n' drop some files here, or click to select files</p>
+              <p id="dropzone">Click to select files, or drop file here</p>
             </div>
           </section>
         )}
       </Dropzone>
-            </div>
-            </button>
-            <div>
+            <div className="modal__titleContainer">
               <label>
                 Title:
                 <input
                   name="title"
-                  type="text"
-                  onChange={this.handleInputChange}
-                />
-              </label>
-              <label>
-                Description:
-                <input
-                  name="description"
+                  // placeholder="What are you selling?"
                   type="text"
                   onChange={this.handleInputChange}
                 />
@@ -190,15 +179,27 @@ class Modal extends Component {
               <label>
                 Price:
                 <input
+                  // value={this.state.price}
                   name="price"
-                  type="number"
+                  type="text"
+                  maxLength="10"
+                  onChange={event => this.setState({price: event.target.value.replace(/\D/,'')})}
+                />
+              </label>
+            </div>
+            <div>
+            <label>
+                Description:
+                <textarea
+                  name="description"
+                  className="modal__descriptionInput"
                   onChange={this.handleInputChange}
                 />
               </label>
             </div>
             <div>
               <label>
-                Type:
+                Category:
                 <select
                   name="category"
                   value={this.state.category}
@@ -309,7 +310,7 @@ class Modal extends Component {
                   </select>
                 </label>
               ) : null}
-
+              {this.state.category !== "services" ?
               <label>
                 Condition:
                 <select
@@ -317,6 +318,7 @@ class Modal extends Component {
                   value={this.state.condition}
                   onChange={this.handleInputChange}
                 >
+                  <option value=""></option>
                   <option value="new">New(Never used)</option>
                   <option value="open box">Open-box(Never used)</option>
                   <option value="used">Used</option>
@@ -324,9 +326,12 @@ class Modal extends Component {
                   <option value="for parts">For parts</option>
                 </select>
               </label>
+              :
+              null
+              }
               <label>
                 Zipcode:
-                <input name="zipcode" type="number" onChange={this.handleInputChange}/>
+                <input name="zipcode" maxLength="5" type="text" onChange={event => this.setState({zipcode: event.target.value.replace(/\D/,'')})}/>
                 {/* or
                 <button onClick={this.getCoords}>Find My Location</button> */}
               </label>
@@ -335,15 +340,15 @@ class Modal extends Component {
               <button onClick={this.uploadItem}>Upload</button>
             </div>
             <div className="Modal__mappedImagesInModal">
-                <MappedImages image={this.state.cloudinaryUrl}/>
+                <MappedImages className="Modal__mappedImagesInModal" image={this.state.cloudinaryUrl}/>
             </div>
           </div>
         ) : (
-          <button onClick={() => this.login()}>
-              <div >
+          <div className="modal__noUser">
+            <button onClick={() => this.login()}>
                 Please Login
-              </div>
-          </button>
+            </button>
+          </div>
         )}
       </div>
     );
