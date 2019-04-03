@@ -2,6 +2,17 @@
     position: static !important;
 }
 
+select::-ms-expand {
+    display: none;
+}
+
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+}
+
 #modal{
     display: flex;
     flex-direction: column;
@@ -9,11 +20,62 @@
 }
 
 #modal div{
+    /* width: 100%; */
     /* margin-top: 10px;
     margin-bottom: 10px; */
     margin: 10px 5px 10px 5px;
+    display: flex;
+}
+
+
+#modal input, textarea, select{
+    border: solid 1px lightgray;
+    background-color: white;
+    border-radius: 5px;
+}
+
+#modal button{
+    border-radius: 4px;
+}
+
+
+
+#modal div > label{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-right: 5px;
+    margin-left: 5px;
 }
 
 #uploadButton{
     align-self: flex-end;
+}
+
+.modal__descriptionInput{
+    height: 70px;
+    width: 100%;
+}
+
+.modal__titleContainer{
+    display: flex;
+}
+
+/* .modal__noUser{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */
+
+.modal__noUser button{
+    border-radius: 5px;
+}
+
+#dropzone{
+    height: 100px;
+    width: 100%;
+    border: 2.2px lightgray dashed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
