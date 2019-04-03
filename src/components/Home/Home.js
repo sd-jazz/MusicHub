@@ -32,8 +32,57 @@ class Home extends Component {
         })
     }
 
+    sortByPriceDesc = () => {
+        console.log("PRICE DESC")
+          let priceDesc = this.state.listings.sort((a, b) => (b.price - a.price))
+            this.setState({
+                listings: priceDesc
+            })
+      }
+
+      sortByPriceAsc = () => {
+          console.log("PRICE ASC")
+          let priceAsc = this.state.listings.sort((a, b) => (a.price - b.price))
+            this.setState({
+                listings: priceAsc
+            })
+      }
+
+      sortByDateAsc = () => {
+          console.log("DATE ASC")
+          let dateAsc = this.state.listings.sort((a, b) => (a.time_stamp - b.time_stamp))
+            this.setState({
+                listings: dateAsc
+            })
+      }
+
+      sortByDateDesc = () => {
+          console.log("DATE DESC")
+          let dateDesc = this.state.listings.sort((a, b) => (b.time_stamp - a.time_stamp))
+            this.setState({
+                listings: dateDesc
+            })
+      }
+
+
+      fireSortFunctions = (e) => {
+        console.log(e.target.value)
+        if(e.target.value === "PLH"){
+            this.sortByPriceAsc()
+        }
+        else if(e.target.value === "PHL"){
+            this.sortByPriceDesc()
+        }
+       else if(e.target.value === "DLH"){
+            this.sortByDateAsc()
+        }
+       else if(e.target.value ==="DHL"){
+            this.sortByDateDesc()
+        }
+      }
 
     render(){
+        console.log("LISTINGS", this.state.listings)
         const { listing_id } = this.state
         // const filteredListings = listings.filter(listing => {
         //     return listing.listing_name.toLowerCase().includes(this.state.filterText)
@@ -58,7 +107,11 @@ class Home extends Component {
             <div className='home'>
                 <div className='home__filter'>
                     <input onChange={(e) => this.filterTextHandler(e.target.value)}></input>
-                    <SortDropdown listings={this.props.data}/>
+                    <SortDropdown 
+                    listings={this.state.listings} 
+                    sortByAsc={this.sortByPriceAsc}
+                    sortByDesc={this.sortByPriceAsc}
+                    fireSortFunctions={this.fireSortFunctions} />
                 </div>
                     <div className='home__cardContainer'>
                         {mappedListings}

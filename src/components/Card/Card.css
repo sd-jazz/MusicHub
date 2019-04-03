@@ -5,10 +5,11 @@
     background-color: white;
 }
 .card__outerContainer {
-    width: 200px;
-    height: 325px;
+    width: 250px;
+    height: 370px;
 }
 .card__image {
+    padding-top: 10px; 
     width: 200px;
     height: 225px;
 }
@@ -19,7 +20,6 @@
     margin-bottom: 0px;
     padding: 20px 10px 0 10px;
     overflow: hidden;
-
 }
 .card__title {
     height: 50px; 
@@ -27,4 +27,15 @@
     text-align: center;
     font-weight: bolder;
     padding-top: 10px;  
+    padding-bottom: 60px; 
 }
+
+.card__price, .card__location{
+    font-weight: 650;
+    padding-top: 30px; 
+}
+
+.card__hr {
+    padding-bottom: 20px; 
+}
+
