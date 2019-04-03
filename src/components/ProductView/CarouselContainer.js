@@ -35,11 +35,10 @@ export default class CarouselContainer extends React.Component {
 
 
   render() {
-    console.log("RENDER", this.props.images)
     const product_images = this.props.images.map((product, i)=> {
       console.log("PRODUCTS.IMAGES", product)
       return(
-          <img style={{minHeight: 250}} src={product[i]} alt="No Image to Display"></img>
+          <img style={{maxHeight: 500}} src={product[i]} alt="image"></img>
       )
     })
 
