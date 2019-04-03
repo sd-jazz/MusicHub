@@ -22,14 +22,11 @@ class NavBar extends Component {
       this.setState({ filteredListings: res.data });
     });
     axios.get(`/api/user_data`).then(res => {
+      console.log('===',res.data)
       this.props.getUser(res.data);
     });
   };
-  // componentDidUpdate = (prevProps) => {
-  //   if(this.props.filteredListings !== prevProps.filteredListings){
-  //     // this.search
-  //   }
-  // }
+  
   updateSearch = text => {
     this.setState({
       searchFilter: text

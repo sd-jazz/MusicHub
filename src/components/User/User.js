@@ -25,6 +25,10 @@ class User extends Component {
                 listings: response.data
             })
         })
+        axios.get(`/api/user_data`).then(res => {
+            console.log('===',res.data)
+            this.props.getUser(res.data);
+          });
     }
     componentDidUpdate = () => {
         const {user_id} = this.props.user;
@@ -48,6 +52,7 @@ class User extends Component {
 
     //get all from listing_id where user_id =
     render(){
+        console.log(this.props)
         const {listings} = this.state
         const {user} = this.props
         const mappedListings = listings.map(listing => {
@@ -83,6 +88,7 @@ class User extends Component {
 }
 
 function mapStateToProps(state){
+    console.log(state)
     return{
         user: state.user
 

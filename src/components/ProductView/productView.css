@@ -1,7 +1,6 @@
 .productView {
     display: flex;
     flex-direction: column;
-    height: 80vh;
 }
 .productView__images{
     display: flex; 
