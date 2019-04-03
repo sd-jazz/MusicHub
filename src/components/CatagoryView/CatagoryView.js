@@ -14,7 +14,7 @@ class CatagoryView extends Component {
             filterText: '',
             listings: [],
             listing_id: this.props.listing_id,
-            listing_type: this.props.listing_type
+            listing_type: this.props.match.params.listing_type
         }
     }
     
