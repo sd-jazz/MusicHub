@@ -1,4 +1,5 @@
-.MappedImages__Products{
-    max-width: 10px;
-    max-height: 10px
+
+.MappedImages__Products img{
+    max-width: 100px;
+    max-height: 100px
 }
