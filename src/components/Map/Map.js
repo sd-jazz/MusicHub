@@ -9,6 +9,7 @@ const Map = ReactMapboxGl({
     accessToken: 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4M29iazA2Z2gycXA4N2pmbDZmangifQ.-g_vE53SD2WrJ6tFX7QHmA',
     scrollZoom: false,
     doubleClickZoom: false,
+    interactive: false
     // minZoom: 10,
     // maxZoom: 12
   });

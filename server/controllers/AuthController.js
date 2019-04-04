@@ -59,5 +59,8 @@ module.exports = {
     logout: (req, res) => {
         req.session.destroy();
         res.status(200).send(null)
+    },
+    sessionInfo: (req,res) => {
+        res.status(200).json(req.session.user)
     }
 }
