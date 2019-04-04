@@ -2,7 +2,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-height: 80vh;
 }
 
 .home__filter {
@@ -18,8 +17,13 @@
     flex-wrap: wrap;
     width: 125vh;
     margin-top: 10px;
+    min-height: 90vh;
 }
 
 .home__card {
     color: black;
+}
+
+a:hover{
+    color: blue
 }

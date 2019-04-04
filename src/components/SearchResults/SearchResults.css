@@ -1,6 +1,10 @@
 .searchResults {
     display: flex; 
     flex-direction: row; 
+    justify-content: center;
+    border: 3px solid black;
+    padding: 1vh 0 2vh 0;
+    margin: 4vh 3vh;
 }
 
 .searchResults__results{
@@ -11,4 +15,5 @@
 .searchedResults__cardContainer{
     display: flex;
     flex-direction: row; 
+    min-height: 90vh;
 }

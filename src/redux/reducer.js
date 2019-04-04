@@ -1,5 +1,11 @@
 const initialState = {
-    user: null,
+    user: {
+            user_id: null,
+            auth0_id: '',
+            profile_name: '',
+            email: '',
+            picture: ''
+    },
     listing_id: null,
     listing_type: null, 
     searched_listings: [],

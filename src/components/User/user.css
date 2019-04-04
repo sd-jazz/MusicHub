@@ -3,7 +3,7 @@
 }
 
 .user__report {
-    margin: 2% 2% 0 0;
+    margin: 50px 2% 0 0;
     border-radius: 3px;
     float: right;
     border: 2px solid #37485C;
@@ -14,14 +14,14 @@
     display: flex;
     min-height: 85vh;
     justify-content: space-around;
-    margin-top: 9vh;
+    margin: 0 auto;
 }
 
 .user__image {
     height: 150px;
     width: 150px;
-    margin-right: 15px;
     border-radius: 50%;
+    margin: 0 auto;
 }
 
 .user__noImage {
@@ -29,12 +29,13 @@
 }
 
 .user__userInfo {
-    display: flex;
     background-color: #37485C;
     padding: 10px;
     border-radius: 5px;
     color: white;
-    margin: 0 3vh;
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 50px;
 }
 
 .user__cardContainer {
@@ -43,7 +44,9 @@
     flex-wrap: wrap;
     border: 3px solid black;
     padding: 1vh 0 2vh 0;
-    margin: 0 3vh 3vh 4vh;
+    margin: 50px 0;
+    width: 60vw;
+    min-height: 80vh;
 }
 
 .user__card {
@@ -51,5 +54,37 @@
 }
 
 .user__location {
-    margin-top: 20%;
+    margin-top: 20px;
 }
+
+@media only screen and (max-width: 768px) {
+    .user__report {
+        display: none;
+    }
+    .user__person {
+        flex-direction: column;
+    }
+    .user__userInfo {
+        background-color: #37485C;
+        margin-top: 20px;
+        padding: 10px;
+        border-radius: 5px;
+        color: white;
+        width: 80%;
+    }
+    .user__image {
+        height: 150px;
+        width: 150px;
+        border-radius: 50%;
+    }
+    .user__cardContainer {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        border: 3px solid black;
+        margin: 0 auto;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        width: 80%;
+    }
+} 

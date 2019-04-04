@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {getUser} from "../../redux/reducer"
-import Star from '../Ratings/Ratings';
+// import { Glyphicon } from 'react-bootstrap';
+// import Star from '../Ratings/Ratings';
 import Card from '../Card/Card';
 import {Link} from 'react-router-dom'
 import './user.css'
@@ -24,6 +25,10 @@ class User extends Component {
                 listings: response.data
             })
         })
+        axios.get(`/api/user_data`).then(res => {
+            console.log('===',res.data)
+            this.props.getUser(res.data);
+          });
     }
     componentDidUpdate = () => {
         const {user_id} = this.props.user;
@@ -47,11 +52,12 @@ class User extends Component {
 
     //get all from listing_id where user_id =
     render(){
+        console.log(this.props)
         const {listings} = this.state
         const {user} = this.props
         const mappedListings = listings.map(listing => {
             return (
-                <div>
+                <div className="user___card">
                     <Link key={listing.listing_id}  to={`/productview/${listing.listing_id}`}className='home__card'><Card listing={listing} /></Link>
                     <button onClick={() => this.deletePost(listing)}>Delete</button>
                 </div>    
@@ -67,7 +73,7 @@ class User extends Component {
                             <div className="user__noImage">
                                 <div className="user__name">{user.profile_name}</div>
                                 {/* <div className="user__rating">stars</div> */}
-                                <Star star="1"/> 
+                                {/* <Star star="1"/>  */}
                             </div>
                         </div>
                         {/* <div className="user__location">location</div> */}
@@ -82,6 +88,7 @@ class User extends Component {
 }
 
 function mapStateToProps(state){
+    console.log(state)
     return{
         user: state.user
 

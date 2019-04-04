@@ -24,8 +24,9 @@ class ProductView extends Component {
           tags: "",
           time_stamp: "",
           type: "",
-          user_id: "",
-          images: []
+          user_id: "", 
+          images: [],
+          zipcode: null,
         }
       ]
     };
@@ -79,7 +80,7 @@ class ProductView extends Component {
               </div>
 
               <div className="productView__listingPrice">
-                <h2 className="ui header">${this.state.listing_id[0].price}</h2>
+                <h2 className='ui header'>${this.state.listing_id[0].price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</h2>
               </div>
             </div>
 
@@ -89,10 +90,8 @@ class ProductView extends Component {
             </div>
             <hr className="productView__lineBreakListingInfo" />
             <div className="productView__description">
-              <h3 className="ui header">Description</h3>
-              <div className="productView__descriptionText">
-                {this.state.listing_id[0].description}
-              </div>
+                <h3 className="ProductView__description_description">Description</h3>
+              <div className='productView__descriptionText'>{this.state.listing_id[0].description}</div>
             </div>
           </div>
 
@@ -125,8 +124,10 @@ class ProductView extends Component {
             <button className="productView__saveButton">Save</button>
           </div>
         </div>
-
-        {/* <Map/> */}
+        
+        <div className="productView__googleMaps">
+          <Map zipcode={this.state.listing_id[0].zipcode}/>
+        </div>
 
         <div className="productView__similarOfferings">SIMILAR OFFERINGS</div>
       </div>
