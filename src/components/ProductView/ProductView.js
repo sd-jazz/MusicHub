@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
+import io from "socket.io-client";
 import "./productView.css";
 import { update_listing_id } from "../../redux/reducer";
 import CarouselContainer from "./CarouselContainer";
-import Map from "../Map/Map";
+import { Link } from "react-router-dom";
+// import Map from "../Map/Map";
 
 class ProductView extends Component {
   constructor(props) {
@@ -28,6 +30,7 @@ class ProductView extends Component {
         }
       ]
     };
+    this.socket = io("localhost:4010");
   }
 
   // Need SQL file to get listing by ID#
@@ -47,25 +50,33 @@ class ProductView extends Component {
       });
   };
 
+  connectUsers = () => {
+    this.socket.emit("CONNECT_USERS", {
+      user1_id: this.props.user.user_id,
+      user1_profileName: this.props.user.profile_name,
+      user2_id: this.state.listing_id[0].user_id,
+      user2_profileName: this.state.listing_id[0].profile_name,
+      listing_name: this.state.listing_id[0].listing_name,
+      listing_id: this.props.match.params.listing_id
+    });
+  };
+
   render() {
-    console.log("LISTING INFORMATION", this.state.listing_id[0], "IMAGES", this.state.listing_id[0].images, "this.state.picture", this.state.listing_id[0].picture);
-    console.log("zipcode state", this.state.listing_id[0].zipcode)
+    console.log(this.state.listing_id[0].user_id);
+    console.log(this.props.user);
     return (
       <div className="productView">
         <div className="productView__images">
-        <CarouselContainer images={[this.state.listing_id[0].images]}/>
-          {/* <img
-            src="https://i.ytimg.com/vi/R1b5FlhMc8s/maxresdefault.jpg"
-            className="card__image"
-            alt="kitten looking menacing."
-          /> */}
+          <CarouselContainer images={[this.state.listing_id[0].images]} />
         </div>
 
         <div className="productView__descriptionAndUserInfo">
           <div className="productView__productInfo">
             <div className="productView__nameAndPrice">
               <div className="productView__listingName">
-                <h2 className='ui header'>{this.state.listing_id[0].listing_name}</h2>
+                <h2 className="ui header">
+                  {this.state.listing_id[0].listing_name}
+                </h2>
               </div>
 
               <div className="productView__listingPrice">
@@ -77,7 +88,7 @@ class ProductView extends Component {
               LOCATION
               {this.state.listing_id[0].location}
             </div>
-            <hr className='productView__lineBreakListingInfo'/>
+            <hr className="productView__lineBreakListingInfo" />
             <div className="productView__description">
                 <h3 className="ProductView__description_description">Description</h3>
               <div className='productView__descriptionText'>{this.state.listing_id[0].description}</div>
@@ -85,18 +96,30 @@ class ProductView extends Component {
           </div>
 
           <div className="productView__userInfo">
-            <img className="productView__profilePicture" style={{height: '80px', width: '80px', marginBottom: '5px', alignSelf:'center'}}src={this.state.listing_id[0].picture}/>
+            <img
+              className="productView__profilePicture"
+              style={{
+                height: "80px",
+                width: "80px",
+                marginBottom: "5px",
+                alignSelf: "center"
+              }}
+              src={this.state.listing_id[0].picture}
+            />
 
             <div className="productView__profileName">
-              <h3 className='ui header'>{this.state.listing_id[0].profile_name}</h3>
+              <h3 className="ui header">
+                {this.state.listing_id[0].profile_name}
+              </h3>
             </div>
 
             <div className="productView__userRating">USER RATING</div>
 
-              <hr  className='productView__lineBreakUserInfo'/>
+            <hr className="productView__lineBreakUserInfo" />
 
-
-            <button className="productView__messageButton">Message</button>
+            <Link onClick={this.connectUsers} to={`/messages`}>
+              <button className="productView__messageButton">Message</button>
+            </Link>
 
             <button className="productView__saveButton">Save</button>
           </div>
@@ -106,7 +129,6 @@ class ProductView extends Component {
           <Map zipcode={this.state.listing_id[0].zipcode}/>
         </div>
 
-
         <div className="productView__similarOfferings">SIMILAR OFFERINGS</div>
       </div>
     );
@@ -115,7 +137,8 @@ class ProductView extends Component {
 
 const mapStateToProps = reducerState => {
   return {
-    listing_id: reducerState.listing_id
+    listing_id: reducerState.listing_id,
+    user: reducerState.user
   };
 };
 

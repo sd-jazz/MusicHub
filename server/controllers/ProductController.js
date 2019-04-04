@@ -56,6 +56,37 @@ module.exports = {
         req.app.get('db').get_listings_by_type(listing_type).then(listings => {
           res.status(200).json(listings);
         }).catch(err => console.log('getListingByType ERROR', err))
+      },
+      getUserByListing: (req, res) => {
+        const {listing_user_id} = req.params
+        req.app.get('db').get_user_by_listing([listing_user_id]).then(user => {
+          res.status(200).json(user)
+        }).catch(err => console.log('Get user by listing ERROR', err))
+      },
+      getChatroomAsSender: (req, res) => {
+        const {user_id} = req.params
+        req.app.get('db').get_chatroom_as_sender([user_id]).then(rooms => {
+          res.status(200).json(rooms)
+        }).catch(err => console.log('Get room as sender ERROR', err))
+      },
+      getChatroomAsRecipient: (req, res) => {
+        const {user_id} = req.params
+        req.app.get('db').get_chatroom_as_recipient([user_id]).then(rooms => {
+          res.status(200).json(rooms)
+        }).catch(err => console.log('Get room as recipient ERROR', err))
+      },
+      getChatroomByRoomName: (req, res) => {
+        const {room_name} = req.params
+        req.app.get('db').get_chatroom_by_room_name([room_name]).then(room => {
+          res.status(200).json(room)
+        }).catch(err => console.log('Get room by name ERROR', err))
+      },
+      getRoomData: (req, res) => {
+        const {room_name} = req.params
+        req.app.get('db').get_room_data([room_name]).then(roomData => {
+          console.log(roomData)
+          res.status(200).json(roomData)
+        }).catch(err => console.log('Get room data ERROR', err))
       }
 
     //   editListing: (req, res, next) => {

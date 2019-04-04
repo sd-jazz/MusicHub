@@ -8,12 +8,14 @@ const initialState = {
     },
     listing_id: null,
     listing_type: null, 
-    searched_listings: []
+    searched_listings: [],
+    room_name: ''
 }
 const UPDATE_LISTING_ID = "UPDATE_LISTING_ID"
 const GET_LISTING_TYPE = 'GET_LISTING_TYPE'
 const GET_USER = 'GET_USER'
 const GET_SEARCHED_LISTINGS = 'GET_SEARCHED_LISTINGS'
+const GET_ROOM_NAME = 'GET_ROOM_NAME'
 function reducer(state = initialState, action){
     switch(action.type){
     case GET_USER:
@@ -25,8 +27,10 @@ function reducer(state = initialState, action){
     return {...state, listing_type: action.payload}
     
     case GET_SEARCHED_LISTINGS: 
-    console.log("FIRED", action.payload)
     return {...state, searched_listings: action.payload}
+    
+    case GET_ROOM_NAME: 
+    return {...state, room_name: action.payload}
     
 
     default:
@@ -50,6 +54,12 @@ export function get_listing_type( listing_type ){
     return {
         type: GET_LISTING_TYPE,
         payload: listing_type 
+    }
+}
+export function get_room_name( room_name ){
+    return {
+        type: GET_ROOM_NAME,
+        payload: room_name
     }
 }
 
