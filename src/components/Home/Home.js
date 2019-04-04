@@ -107,11 +107,7 @@ class Home extends Component {
             <div className='home'>
                 <div className='home__filter'>
                     <input onChange={(e) => this.filterTextHandler(e.target.value)}></input>
-                    <SortDropdown 
-                    listings={this.state.listings} 
-                    sortByAsc={this.sortByPriceAsc}
-                    sortByDesc={this.sortByPriceAsc}
-                    fireSortFunctions={this.fireSortFunctions} />
+                    <SortDropdown fireSortFunctions={this.fireSortFunctions} />
                 </div>
                     <div className='home__cardContainer'>
                         {mappedListings}
