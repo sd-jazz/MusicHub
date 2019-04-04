@@ -20,6 +20,7 @@ class CatagoryView extends Component {
     
     componentDidMount = () => {
         axios.get(`/api/get_listings_by_type/${this.props.match.params.listing_type}`).then(response =>{
+            console.log(this.props.match.params.listing_type)
             this.setState({
                 listings: response.data
             })

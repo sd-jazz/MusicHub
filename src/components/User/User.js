@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {getUser} from "../../redux/reducer"
-import { Glyphicon } from 'react-bootstrap';
 import Star from '../Ratings/Ratings';
 import Card from '../Card/Card';
 import {Link} from 'react-router-dom'
