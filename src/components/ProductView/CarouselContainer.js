@@ -35,6 +35,22 @@ export default class CarouselContainer extends React.Component {
 
 
   render() {
+
+    // const imageArray = [
+    //   "https://cdn-img.health.com/sites/default/files/styles/large_16_9/public/styles/main/public/gettyimages-522881398.jpg?itok=0g33xDwx",
+    //   "http://placehold.it/1000x400/ffffff/c0392b/&text=slide2",
+    //   "http://placehold.it/1000x400/ffffff/c0392b/&text=slide3",
+    //   "http://placehold.it/1000x400/ffffff/c0392b/&text=slide4",
+    //   "http://placehold.it/1000x400/ffffff/c0392b/&text=slide5"
+    // ];
+
+    // const product_images = imageArray.map((product) => {
+    //   console.log("PRODUCTS.IMAGES", product)
+    //   return(
+    //       <img style={{maxHeight: 500}} src={product} alt="image"></img>
+    //   )
+    // })
+    
     const product_images = this.props.images.map((product, i)=> {
       console.log("PRODUCTS.IMAGES", product)
       return(
