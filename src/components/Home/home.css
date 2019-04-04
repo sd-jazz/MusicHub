@@ -1,22 +1,23 @@
 .home {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    
 }
 
 .home__filter {
     display: flex;
+    justify-content: space-around;
     margin-top: 10px;
-    width: 116vh;
-    justify-content: space-between
 }
 
 .home__cardContainer {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    width: 125vh;
+    width: 80%;
+    margin: 0 auto;
     margin-top: 10px;
+    margin-bottom: 10px;
     min-height: 90vh;
 }
 
@@ -25,5 +26,5 @@
 }
 
 a:hover{
-    color: blue
+    color: gray
 }
