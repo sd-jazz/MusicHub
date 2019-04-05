@@ -11,3 +11,21 @@
     display: flex;
     align-items: center;
 }
+.dropdownVisible {
+    display: none;
+}
+.nonDropVisible {
+    display: block;
+}
+
+.two {
+    padding-right: 10px;
+}
+@media only screen and (max-width: 768px){
+    .dropdownVisible {
+        display: block;
+    }
+    .nonDropVisible {
+        display: none;
+    }
+}
