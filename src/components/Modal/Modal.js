@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import {withRouter} from "react-router-dom";
 import "./modal.css"
 import MappedImages from './MappedImages';
 // import { Button } from "semantic-ui-react";
@@ -77,6 +78,8 @@ class Modal extends Component {
       axios.post(`/api/listings`, post).then(res => {
         console.log("POST", post)
         this.props.close();
+        this.props.history.push("/user");
+        
       });
     } else {
       alert("incomplete form");
@@ -178,13 +181,17 @@ class Modal extends Component {
               </label>
               <label>
                 Price:
-                <input
-                  // value={this.state.price}
-                  name="price"
-                  type="text"
-                  maxLength="10"
-                  onChange={event => this.setState({price: event.target.value.replace(/\D/,'')})}
-                />
+                <span className="modal__titleContainer__currency">
+                  $
+                  <input
+                    name="price"
+                    type="text"
+                    maxLength="10"
+                    value={this.state.price}
+                    onChange={event => this.setState({price: event.target.value.replace(/\D/g,'').replace(/\B(?=(\d{3})+(?!\d))/g, ",")})}
+                  />
+
+                </span>
               </label>
             </div>
             <div>
@@ -331,7 +338,7 @@ class Modal extends Component {
               }
               <label>
                 Zipcode:
-                <input name="zipcode" maxLength="5" type="text" onChange={event => this.setState({zipcode: event.target.value.replace(/\D/,'')})}/>
+                <input name="zipcode" value={this.state.zipcode} maxLength="5" type="text" onChange={event => this.setState({zipcode: event.target.value.replace(/\D/,'')})}/>
                 {/* or
                 <button onClick={this.getCoords}>Find My Location</button> */}
               </label>
@@ -361,7 +368,9 @@ const mapStateToProps = reducerState => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  { getUser }
-)(Modal);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    { getUser }
+  )(Modal)
+);

@@ -31,12 +31,13 @@ class User extends Component {
           });
     }
     componentDidUpdate = () => {
-        const {user_id} = this.props.user;
-        axios.get(`/api/get_user_listings/${user_id}`).then(response =>{
-            this.setState({
-                listings: response.data
-            })
-        })
+        // const {user_id} = this.props.user;
+        // axios.get(`/api/get_user_listings/${user_id}`).then(response =>{
+        //         this.setState({
+        //             listings: response.data
+        //         })
+                
+        // })
     }
 
     deletePost = (listing) => {
@@ -52,7 +53,7 @@ class User extends Component {
 
     //get all from listing_id where user_id =
     render(){
-        console.log(this.props)
+        console.log(this.state)
         const {listings} = this.state
         const {user} = this.props
         const mappedListings = listings.map(listing => {
