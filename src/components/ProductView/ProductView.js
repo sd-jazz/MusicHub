@@ -6,7 +6,7 @@ import "./productView.css";
 import { update_listing_id } from "../../redux/reducer";
 import CarouselContainer from "./CarouselContainer";
 import { Link } from "react-router-dom";
-// import Map from "../Map/Map";
+import Map from "../Map/Map";
 
 class ProductView extends Component {
   constructor(props) {
@@ -62,8 +62,6 @@ class ProductView extends Component {
   };
 
   render() {
-    console.log(this.state.listing_id[0].user_id);
-    console.log(this.props.user);
     return (
       <div className="productView">
         <div className="productView__images">
@@ -85,9 +83,11 @@ class ProductView extends Component {
             </div>
 
             <div className="productView__location">
-              LOCATION
-              {this.state.listing_id[0].location}
+              <div className="productView__zipcode">
+                <h2>{this.state.listing_id[0].zipcode}</h2>
+              </div>
             </div>
+            
             <hr className="productView__lineBreakListingInfo" />
             <div className="productView__description">
                 <h3 className="ProductView__description_description">Description</h3>
