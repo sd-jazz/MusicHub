@@ -70,7 +70,7 @@ class NavBar extends Component {
     };
     let inputStyle = {
       height: 25,
-      width: 300,
+      width: 200,
       alignSelf: "center",
       borderBottomRightRadius: 0,
       borderTopRightRadius: 0,
@@ -81,6 +81,16 @@ class NavBar extends Component {
       borderTopLeftRadius: 0,
       borderBottomLeftRadius: 0
     };
+    let dropdownRight = {
+    
+    }
+    let dropdownButton = {
+     
+    }
+    let dropdownBox = {
+      height: 40,
+      width: 40
+    }
     console.log(this.state.searchFilter);
     return (
       <div>
@@ -104,10 +114,13 @@ class NavBar extends Component {
               </button>
             </Link>
           </div>
-          <div className="right menu">
+          {/* <div className="right menu nonDropVisible"> */}
+          <div className="one ui right compact menu dropdownVisible" style={dropdownRight}>
+          <div className="two ui simple dropdown  dropdownVisible" >
+          <div className="three menu dropdownVisible" >
           <Modal
               trigger={
-                <Link onClick={this.handleOpen} className="item" style={{ color: "white" }} to="#">
+                <Link onClick={this.handleOpen} className="item" style={{ color: "black" }} to="#">
                   Sell
                 </Link>
               }
@@ -119,14 +132,14 @@ class NavBar extends Component {
                 <SellModal close={this.handleClose}/>
               </Modal.Content>
             </Modal>
-            <Link style={{ color: "white" }} className="item" to="/messages">
+            <Link style={{ color: "black" }} className="item" to="/messages">
               Messages
             </Link>
             {!this.props.user ? (
               <Link
                 to="#"
                 className="item"
-                style={{ color: "white" }}
+                style={{ color: "black" }}
                 onClick={() => this.login()}
               >
                 Login
@@ -152,6 +165,9 @@ class NavBar extends Component {
               </div>
             )}
           </div>
+          </div>
+          </div>
+          {/* </div> */}
         </div>
       </div>
     );

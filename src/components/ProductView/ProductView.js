@@ -6,7 +6,7 @@ import "./productView.css";
 import { update_listing_id } from "../../redux/reducer";
 import CarouselContainer from "./CarouselContainer";
 import { Link } from "react-router-dom";
-// import Map from "../Map/Map";
+import Map from "../Map/Map";
 
 class ProductView extends Component {
   constructor(props) {
