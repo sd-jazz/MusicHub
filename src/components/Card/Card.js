@@ -13,7 +13,7 @@ export default class Card extends Component {
             alt="image" />
           <div className="card__fullContainer">
             <div className="card__titleContainer">
-              <h1 className="card__title">{this.props.listing.listing_name}</h1>
+              <h1 className="card__title">{this.props.listing.listing_name.length<45 ? this.props.listing.listing_name : this.props.listing.listing_name.substring(0,45) + "..."}</h1>
             </div>
             <div className="card__container">
                 <h5 className="card__price">${this.props.listing.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</h5>

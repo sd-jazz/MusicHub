@@ -32,6 +32,11 @@ select {
     border: solid 1px lightgray;
     background-color: white;
     border-radius: 5px;
+
+}
+
+#modal input:focus, textarea:focus, select:focus{
+    outline: none;
 }
 
 #modal button{
@@ -78,4 +83,17 @@ select {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.modal__titleContainer__currency {
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    padding-left: 5px;
+}
+
+
+.modal__titleContainer__currency input {
+    border: none !important;
+
+   
 }
