@@ -15,14 +15,6 @@ module.exports = {
         }).catch(err => console.log('(getUserListings) ERROR', err))
       },
 
-    //   createListing: (req, res, next) => {
-    //     const {user_id, listing_name, description, time_stamp, type, tags, price, condition } = req.body
-    //     const db = req.app.get('db')
-    //     db.create_listing([user_id, listing_name, description, time_stamp, type, tags, price, condition]).then(listing => {
-    //       res.status(200).json(listing)
-    //     }).catch(err => console.log("createListing", err))
-    // },
-
     createListing: (req, res, next) => {
       const {user_id, listing_name, description, time_stamp, type, tags, price, condition, images, zipcode } = req.body
       const db = req.app.get('db')
@@ -57,6 +49,15 @@ module.exports = {
           res.status(200).json(listings);
         }).catch(err => console.log('getListingByType ERROR', err))
       },
+
+      getSimilarListings: (req, res) => {
+        console.log("HIT ENDPOINT")
+        const {listing_type} = req.params
+        req.app.get('db').get_similar_listings(listing_type).then(listings => {
+          res.status(200).json(listings);
+        }).catch(err => console.log('getSimilarListings ERROR', err))
+      },
+
       getUserByListing: (req, res) => {
         const {listing_user_id} = req.params
         req.app.get('db').get_user_by_listing([listing_user_id]).then(user => {

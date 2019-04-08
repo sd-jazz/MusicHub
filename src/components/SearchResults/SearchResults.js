@@ -98,20 +98,21 @@ class SearchResults extends Component {
         })
         return(
         <div className="searchResults__Master">
-            {searched_listings.length == 0 && <div className="searchResults__noResults">
-                <div className="searchResults__noResultsFound">
-                    <h1>Sorry, there are no results for your search.  Please try again.</h1>
+            {searched_listings.length == 0 ? (
+                <div className="searchResults__none">
+                    <div className="searchResults__noResultsFound">
+                        <h1>Sorry, there are no results for your search.  Please try again.</h1>
+                    </div>
+                    <div className='searchResults__filterNone'>
+                        <input placeHolder="Filter by name" onChange={(e) => this.filterTextHandler(e.target.value)}></input>
+                        <SortDropdown fireSortFunctions={this.fireSortFunctions} />
+                    </div>
+                    <div className="searchResults__mappedListingsNone">
+                        {mappedListings}
+                    </div>
                 </div>
-                <div className='searchResults__filter'>
-                    <input placeHolder="Filter by name" onChange={(e) => this.filterTextHandler(e.target.value)}></input>
-                    <SortDropdown fireSortFunctions={this.fireSortFunctions} />
-                </div>
-                <div className="searchResults__mappedListings">
-                    {mappedListings}
-                </div>
-            </div>}
-
-            {searched_listings && <div className='searchResults'>
+        ) : (
+            <div className='searchResults'>
                     <div className='searchedResults__cardContainer'>
                     <div className='searchResults__filter'>
                         <input onChange={(e) => this.filterTextHandler(e.target.value)}></input>
@@ -120,7 +121,8 @@ class SearchResults extends Component {
                         {searchResults}
                     </div>
 
-            </div>}
+        </div>
+        )}
         </div>
         )
     }

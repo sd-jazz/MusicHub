@@ -4,7 +4,8 @@ import { connect } from "react-redux";
 import io from "socket.io-client";
 import "./productView.css";
 import { update_listing_id } from "../../redux/reducer";
-import CarouselContainer from "./CarouselContainer";
+// import CarouselContainer from "./CarouselContainer";
+import SlickContainer from './SlickContainer'
 import { Link } from "react-router-dom";
 import Map from "../Map/Map";
 
@@ -27,6 +28,7 @@ class ProductView extends Component {
           user_id: "", 
           images: [],
           zipcode: null,
+          similar_listings: []
         }
       ]
     };
@@ -37,7 +39,7 @@ class ProductView extends Component {
   // Deconstruct everything we need from the listing and place them in the appropriate divs
 
   componentDidMount() {
-    this.fetchListingID();
+    this.fetchListingID()
   }
 
   fetchListingID = () => {
@@ -47,8 +49,23 @@ class ProductView extends Component {
         this.setState({
           listing_id: response.data
         });
+      }).then(() =>{
+        console.log("SIMILAR LISTINGS CALLBACK")
+        this.getSimilarListings()
       });
   };
+
+  getSimilarListings = () => {
+    const { fuck } = this.state.listing_id[0].type
+    console.log("getSimilarListings START", this.state.listing_id[0].type, "DECONSTRUCT???", fuck)
+    axios.get(`/api/get_similar_listings/${this.state.listing_id[0].type}`).then(response =>{
+        console.log("SIMILAR PROPS CALLBACK")
+        this.setState({
+            similar_listings: response.data
+        })
+    })
+}
+
 
   connectUsers = () => {
     this.socket.emit("CONNECT_USERS", {
@@ -62,10 +79,18 @@ class ProductView extends Component {
   };
 
   render() {
+    console.log("STATE", this.state.listing_id, "IMAGES", this.state.listing_id[0].images, "SIMILAR PRODUCTS", this.state.listing_id[0].type)
     return (
       <div className="productView">
+                    <div className="productView__listingName">
+                <h2 className="ui header">
+                  {this.state.listing_id[0].listing_name}
+                </h2>
+              </div>
+
         <div className="productView__images">
-          <CarouselContainer images={[this.state.listing_id[0].images]} />
+          {/* <CarouselContainer images={[this.state.listing_id[0].images]} id={[this.state.listing_id[0].listing_id]} /> */}
+          <SlickContainer images={this.state.listing_id[0].images} id={this.state.listing_id[0].listing_name}/> 
         </div>
 
         <div className="productView__descriptionAndUserInfo">

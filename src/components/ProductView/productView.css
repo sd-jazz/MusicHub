@@ -4,10 +4,10 @@
     display: flex;
     flex-direction: column;
 }
-.productView__images{
-    display: flex; 
-    justify-content: center; 
+.productView__images{ 
+    padding-top: 10px;
 }
+ 
 .productView__userInfo{
     display: flex; 
     flex-direction: column; 
@@ -61,6 +61,7 @@
     padding-left: 10px; 
     padding-right: 10px;
     font-size: 1.2em;
+    max-width: 1500px;
 }
 .productView__saveButton, .productView__messageButton {
     width: 80%;
@@ -93,4 +94,8 @@
     font-size: 1.4em;
     padding-left: 10px;
     padding-bottom: 15px; 
+}
+
+.productView__listingName, .productView__listingPrice{
+    padding-top: 10px;
 }

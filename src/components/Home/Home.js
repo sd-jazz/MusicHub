@@ -49,8 +49,9 @@ class Home extends Component {
       }
 
       sortByDateAsc = () => {
-          console.log("DATE ASC")
+          console.log("DATE ASCx1")
           let dateAsc = this.state.listings.sort((a, b) => (a.listing_id - b.listing_id))
+          console.log("DATE ASC 2", dateAsc)
             this.setState({
                 listings: dateAsc
             })

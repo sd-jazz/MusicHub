@@ -35,6 +35,7 @@ app.get("/api/get_user_listings/:id", pc.getUserListings);
 app.delete("/api/delete_listing/:listing_id/:user_id", pc.deleteListing);
 app.get("/api/listings/:listing_id", pc.getListingInfo);
 app.get("/api/get_listings_by_type/:listing_type", pc.getListingByType);
+app.get("/api/get_similar_listings/:listing_id.type", pc.getSimilarListings);
 app.get("/api/user_data", aC.getUserData);
 app.get("/auth", aC.login);
 app.get("/auth/logout", aC.logout);
