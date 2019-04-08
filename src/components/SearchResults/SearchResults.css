@@ -19,18 +19,23 @@
     min-height: 90vh;
 }
 
-.searchResults__noResults, .searchResults {
+.searchResults__noResults, .searchResults, .searchResults__none {
     display: flex; 
     flex-direction: column;
 }
 
-.searchResults__mappedListings {
+.searchResults__mappedListings, .searchResults__mappedListingsNone {
     display: flex; 
     flex-wrap: wrap; 
     justify-content: center;
 }
 
+.searchResults__mappedListingsNone {
+    padding-top: 10px;
+}
+
 .searchResults__noResultsFound {
+    padding-top: 156px;
     padding-bottom: 25px; 
     font-weight: bolder; 
     font-size: 30px;
@@ -46,4 +51,8 @@
     flex-direction: row; 
     justify-content: space-around; 
 }
-
+.searchResults__filterNone {
+    display: flex; 
+    flex-direction: row; 
+    justify-content: space-around; 
+}

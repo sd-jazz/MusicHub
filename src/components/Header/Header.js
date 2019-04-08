@@ -5,6 +5,7 @@ import './header.css';
 import SecondNav2 from '../secondNav/SecondNav2'
 import NavBar2 from '../NavBar/NavBar2';
 
+
 class Header extends Component {
     render (){
         return (
@@ -15,6 +16,7 @@ class Header extends Component {
                 <div className="headerMain2">
                     <SecondNav2 />
                 </div>
+                
             </div>
         )
     }

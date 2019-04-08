@@ -64,41 +64,92 @@ class NavBar extends Component {
     let uiMenuStyle = {
       marginBottom: 0,
       backgroundColor: `rgb(55, 72, 92)`,
-      height: 60,
       borderRadius: 0,
       text: "white"
     };
+    let mainTitle = {
+      padding: 20
+    }
     let inputStyle = {
       height: 25,
-      width: 200,
       alignSelf: "center",
+      marginTop: 50,
+      marginBottom: 20,
       borderBottomRightRadius: 0,
       borderTopRightRadius: 0,
     };
     let searchButtonStyle = {
       height: 25,
       fontSize: 10,
+      marginTop: 15,
+      marginBottom: 20,
       borderTopLeftRadius: 0,
       borderBottomLeftRadius: 0
     };
-    let dropdownRight = {
-    
-    }
-    let dropdownButton = {
-     
-    }
-    let dropdownBox = {
-      height: 40,
-      width: 40
-    }
     console.log(this.state.searchFilter);
     return (
       <div>
-        <div className="ui menu" style={uiMenuStyle}>
-          <Link to="/" className="header item">
+        {/* className="ui secondary menu mainHeader" */}
+        <div  className='mainHeader' style={uiMenuStyle}>
+          <Link to="/" className="header item" style={mainTitle}>
             <h1 style={{ color: "white", fontSize: 28 }}>MusicHub</h1>
           </Link>
-          <div className="ui input" style={inputStyle}>
+          
+          <div className="ui right compact secondary menu rightMenu">
+          <Modal
+              trigger={
+                <Link onClick={this.handleOpen} className="item" style={{ color: "white" }} to="#">
+                  Sell
+                </Link>
+              }
+              open={this.state.modalOpen}
+              onClose={this.handleClose}
+            >
+              <Header>Upload an item</Header>
+              <Modal.Content>
+                <SellModal close={this.handleClose}/>
+              </Modal.Content>
+            </Modal>
+            <Link style={{ color: "white" }} className="item" to="/messages">
+              Messages
+            </Link>
+            {!this.props.user ? (
+              
+              <Link
+                to="#"
+                className="item"
+                style={{ color: "white" }}
+                onClick={() => this.login()}
+              >
+                Login
+              </Link>
+             
+            ) : (
+             <>
+                <Link
+                  to="/"
+                  className="item"
+                  style={{ color: "white" }}
+                  onClick={() => this.logout()}
+                >
+                Logout
+                </Link>
+                <Link 
+                  to="/user"
+                  className="item"
+                  style={{ color: "white" }}
+                >
+                  {/* <h2 style={{ color: "white" }}> */}
+                    {/* {this.props.user.profile_name} */}
+                    Profile
+                  {/* </h2> */}
+                </Link>
+              </>
+            )}
+            
+          </div>
+        </div>
+        <div className="ui input globalInputBox" style={inputStyle}>
             <input
               style={inputStyle}
               onChange={e => this.updateSearch(e.target.value)}
@@ -114,61 +165,6 @@ class NavBar extends Component {
               </button>
             </Link>
           </div>
-          {/* <div className="right menu nonDropVisible"> */}
-          <div className="one ui right compact menu dropdownVisible" style={dropdownRight}>
-          <div className="two ui simple dropdown  dropdownVisible" >
-          <div className="three menu dropdownVisible" >
-          <Modal
-              trigger={
-                <Link onClick={this.handleOpen} className="item" style={{ color: "black" }} to="#">
-                  Sell
-                </Link>
-              }
-              open={this.state.modalOpen}
-              onClose={this.handleClose}
-            >
-              <Header>Upload an item</Header>
-              <Modal.Content>
-                <SellModal close={this.handleClose}/>
-              </Modal.Content>
-            </Modal>
-            <Link style={{ color: "black" }} className="item" to="/messages">
-              Messages
-            </Link>
-            {!this.props.user ? (
-              <Link
-                to="#"
-                className="item"
-                style={{ color: "black" }}
-                onClick={() => this.login()}
-              >
-                Login
-              </Link>
-            ) : (
-              <div className="ui__loggedIn item">
-                <Link
-                  className="item"
-                  to="/"
-                  style={{ color: "white" }}
-                  onClick={() => this.logout()}
-                >
-                Logout
-                </Link>
-                <Link 
-                  className="item"
-                  to="/user"
-                >
-                  <h2 style={{ color: "white" }}>
-                    {this.props.user.profile_name}
-                  </h2>
-                </Link>
-              </div>
-            )}
-          </div>
-          </div>
-          </div>
-          {/* </div> */}
-        </div>
       </div>
     );
   }
