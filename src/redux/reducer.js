@@ -45,6 +45,7 @@ export function getUser(user){
     }
 }
 export function update_listing_id( listing_id ){
+    console.log(listing_id)
     return {
         type: UPDATE_LISTING_ID,
         payload: listing_id 
