@@ -89,10 +89,11 @@ class NavBar extends Component {
     console.log(this.state.searchFilter);
     return (
       <div>
-        {/* className="ui secondary menu mainHeader" */}
-        <div  className='mainHeader' style={uiMenuStyle}>
+        {/* <div className="ui secondary menu mainHeader"> */}
+        <div className='headerNav'>
+        <div className='mainHeader' style={uiMenuStyle}>
           <Link to="/" className="header item" style={mainTitle}>
-            <h1 style={{ color: "white", fontSize: 28 }}>MusicHub</h1>
+            <h1 style={{ color: "white", fontSize: 28, fontFamily: 'arial' }}>MusicHub</h1>
           </Link>
           
           <div className="ui right compact secondary menu rightMenu">
@@ -111,7 +112,7 @@ class NavBar extends Component {
               </Modal.Content>
             </Modal>
             <Link style={{ color: "white" }} className="item" to="/messages">
-              Messages
+              <div className='navLinks'>Messages</div>
             </Link>
             {!this.props.user ? (
               
@@ -147,6 +148,7 @@ class NavBar extends Component {
               </>
             )}
             
+            </div>
           </div>
         </div>
         <div className="ui input globalInputBox" style={inputStyle}>

@@ -31,11 +31,11 @@
 }
 
 .searchResults__mappedListingsNone {
-    padding-top: 10px;
+    padding-top: 22px;
 }
 
 .searchResults__noResultsFound {
-    padding-top: 156px;
+    padding-top: 190px;
     padding-bottom: 25px; 
     font-weight: bolder; 
     font-size: 30px;
@@ -47,12 +47,18 @@
 }
 
 .searchResults__filter {
-    display: flex; 
-    flex-direction: row; 
-    justify-content: space-around; 
+    display: flex;
+    justify-content: space-around;
+    padding-top: 190px;
 }
 .searchResults__filterNone {
     display: flex; 
     flex-direction: row; 
     justify-content: space-around; 
+    padding-top: 0px;
+}
+
+.searchResults__resultsContainer {
+    padding-top: 24px;
+    margin: 0 auto;
 }

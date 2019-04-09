@@ -113,11 +113,12 @@ class SearchResults extends Component {
                 </div>
         ) : (
             <div className='searchResults'>
-                    <div className='searchedResults__cardContainer'>
+                  
                     <div className='searchResults__filter'>
-                        <input onChange={(e) => this.filterTextHandler(e.target.value)}></input>
+                        <input placeHolder="Filter by name" onChange={(e) => this.filterTextHandler(e.target.value)}></input>
                         <SortDropdown fireSortFunctions={this.fireSortFunctions} />
                     </div>
+                    <div className='searchResults__resultsContainer'>
                         {searchResults}
                     </div>
 
