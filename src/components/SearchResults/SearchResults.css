@@ -25,9 +25,11 @@
     flex-wrap: wrap; 
     justify-content: center;
 }
+
 .searchResults__mappedListingsNone {
     padding-top: 10px;
 }
+
 .searchResults__noResultsFound {
     padding-top: 156px;
     padding-bottom: 25px; 

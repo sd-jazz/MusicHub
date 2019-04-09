@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
+import SimilarListings from './SimilarListings';
+import Card from "../Card/Card";
 import { connect } from "react-redux";
 import io from "socket.io-client";
 import "./productView.css";
@@ -8,6 +10,7 @@ import { update_listing_id } from "../../redux/reducer";
 import SlickContainer from './SlickContainer'
 import { Link } from "react-router-dom";
 import Map from "../Map/Map";
+
 
 class ProductView extends Component {
   constructor(props) {
@@ -28,9 +31,10 @@ class ProductView extends Component {
           user_id: "", 
           images: [],
           zipcode: null,
-          similar_listings: []
         }
-      ]
+      ],
+      similar_listings: []
+
     };
     this.socket = io("localhost:4010");
   }
@@ -50,16 +54,14 @@ class ProductView extends Component {
           listing_id: response.data
         });
       }).then(() =>{
-        console.log("SIMILAR LISTINGS CALLBACK")
         this.getSimilarListings()
       });
   };
 
   getSimilarListings = () => {
-    const { fuck } = this.state.listing_id[0].type
-    console.log("getSimilarListings START", this.state.listing_id[0].type, "DECONSTRUCT???", fuck)
+    console.log("getSimilarListings START", this.state.listing_id[0].type)
     axios.get(`/api/get_similar_listings/${this.state.listing_id[0].type}`).then(response =>{
-        console.log("SIMILAR PROPS CALLBACK")
+        console.log("RESPONSE CALLBACK", response)
         this.setState({
             similar_listings: response.data
         })
@@ -79,7 +81,8 @@ class ProductView extends Component {
   };
 
   render() {
-    console.log("STATE", this.state.listing_id, "IMAGES", this.state.listing_id[0].images, "SIMILAR PRODUCTS", this.state.listing_id[0].type)
+    const { type } = this.state.listing_id[0].type
+    console.log("STATE", this.state.listing_id, "IMAGES", this.state.listing_id[0].images, "SIMILAR PRODUCTS", this.state.listing_id[0].type, "TYPE", type)
     return (
       <div className="productView">
                     <div className="productView__listingName">
@@ -154,7 +157,10 @@ class ProductView extends Component {
           <Map zipcode={this.state.listing_id[0].zipcode}/>
         </div>
 
-        <div className="productView__similarOfferings">SIMILAR OFFERINGS</div>
+        <div className="productView__similarListings">
+        SIMILAR LISTINGS
+          {/* <SimilarListings similar={this.state.similar_listings}/> */}
+        </div>
       </div>
     );
   }

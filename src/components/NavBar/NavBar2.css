@@ -6,26 +6,31 @@
 .item {
     color: white
 }
+.loggedOut {
+   padding: 100px;
+}
 
 .ui__loggedIn {
-    display: flex;
-    align-items: center;
+    /* display: flex;
+    align-items: center; */
 }
-.dropdownVisible {
-    display: none;
+.mainHeader {
+    /* display: flex;
+    flex-direction: row; */
 }
-.nonDropVisible {
-    display: block;
+.header {
+  
 }
-
-.two {
-    padding-right: 10px;
+.mainTitle {
+    
 }
 @media only screen and (max-width: 768px){
-    .dropdownVisible {
-        display: block;
+    /* .mainHeader {
+    display: flex;
+    flex-direction: column;
+    
     }
-    .nonDropVisible {
-        display: none;
-    }
+    .rightMenu {
+        margin: 0 auto;
+    } */
 }

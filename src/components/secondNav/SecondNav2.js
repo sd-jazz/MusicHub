@@ -34,21 +34,27 @@ class SecondNav2 extends Component {
       textDecoration: "none",
       border: "none",
       backgroundImage: 'none',
-      backgroundColor: '#333333',
-      color: 'white'
+      // backgroundColor: '#333333',
+      color: 'black'
     };
     let dropDownMenuStyle = {
-      textAlign: "center",
-      width: "100%"
+      textAlign: "center"
     };
-
     let itemStyle = {
         textDecoration: 'none',
-        backgroundColor: 'white'
+        color: 'black'
+    }
+    let mainDropDownMenuStyle = {
+      backgroundColor: '#333333'
+    }
+    let icon = {
+      color: 'white'
     }
     return (
-      <div className="ui menu" style={uiMenuStyle}>
-        <div className="ui simple dropdown " style={dropDownStyle}>
+      <div className="ui simple secondary dropdown menu" style={mainDropDownMenuStyle}>
+      <i className="bars icon" style={icon}></i>
+      <div className="menu">
+        <div className="ui item simple dropdown dropDownNav" style={dropDownStyle}>
           Orchestral
           <div className="menu" style={dropDownMenuStyle}>
             <Link className="item" to={`/catagory_view/brass`}>
@@ -65,7 +71,7 @@ class SecondNav2 extends Component {
             </Link>
           </div>
         </div>
-        <div className="ui simple dropdown" style={dropDownStyle}>
+        <div className="ui item simple dropdown" style={dropDownStyle}>
           Guitars
           <div className="menu" style={dropDownMenuStyle}>
             <Link className="item" to={`/catagory_view/bass_guitars`}>
@@ -79,7 +85,7 @@ class SecondNav2 extends Component {
             </Link>
           </div>
         </div>
-        <div className="ui simple dropdown" style={dropDownStyle}>
+        <div className="ui item simple dropdown" style={dropDownStyle}>
           Keyboards
           <div className="menu" style={dropDownMenuStyle}>
             <Link className="item" to={`/catagory_view/pianos`}>
@@ -90,7 +96,7 @@ class SecondNav2 extends Component {
             </Link>
           </div>
         </div>
-        <div className="ui simple dropdown" style={dropDownStyle}>
+        <div className="ui item simple dropdown" style={dropDownStyle}>
           Drums
           <div className="menu" style={dropDownMenuStyle}>
             <Link className="item" to={`/catagory_view/bass_drums`}>
@@ -113,7 +119,7 @@ class SecondNav2 extends Component {
             </Link>
           </div>
         </div>
-        <div className="ui simple dropdown" style={dropDownStyle}>
+        <div className="ui item simple dropdown" style={dropDownStyle}>
           Audio Equipment
           <div className="menu" style={dropDownMenuStyle}>
             <Link className="item" to={`/catagory_view/cables`}>
@@ -133,7 +139,7 @@ class SecondNav2 extends Component {
             </Link>
           </div>
         </div>
-        <div className="ui simple dropdown" style={dropDownStyle}>
+        <div className="ui item simple dropdown" style={dropDownStyle}>
           Services
           <div className="menu" style={dropDownMenuStyle}>
           <Link className="item" to={`/catagory_view/turntables`}>
@@ -147,8 +153,11 @@ class SecondNav2 extends Component {
             </Link>
           </div>
         </div>
-        <div className="ui simple dropdown" style={dropDownStyle}>
-          <Link className={itemStyle} to={`/catagory_view/other`}>Other</Link>
+        <div className="ui item simple dropdown" style={dropDownStyle}>
+          <Link style={itemStyle} to={`/catagory_view/other`}>
+              Other
+            </Link>
+        </div>
         </div>
       </div>
     );

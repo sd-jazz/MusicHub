@@ -51,9 +51,11 @@ module.exports = {
       },
 
       getSimilarListings: (req, res) => {
-        console.log("HIT ENDPOINT")
-        const {listing_type} = req.params
+        console.log("GET SIMILAR LISTINGS REQ.PARAMS", req.params)
+        const {listing_type, listing_id} = req.params
+        console.log("LISTING_ID CONSOLE", listing_id)
         req.app.get('db').get_similar_listings(listing_type).then(listings => {
+          console.log("LISTINGS BACK END", listings)
           res.status(200).json(listings);
         }).catch(err => console.log('getSimilarListings ERROR', err))
       },

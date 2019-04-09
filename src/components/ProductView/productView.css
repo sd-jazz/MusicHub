@@ -5,7 +5,7 @@
     flex-direction: column;
 }
 .productView__images{ 
-    padding-top: 10px;
+    padding-top: 125px;
 }
  
 .productView__userInfo{
@@ -99,3 +99,4 @@
 .productView__listingName, .productView__listingPrice{
     padding-top: 10px;
 }
+
