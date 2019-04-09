@@ -73,7 +73,7 @@ class NavBar extends Component {
     let inputStyle = {
       height: 25,
       alignSelf: "center",
-      marginTop: 50,
+      marginTop: 40,
       marginBottom: 20,
       borderBottomRightRadius: 0,
       borderTopRightRadius: 0,
@@ -81,7 +81,7 @@ class NavBar extends Component {
     let searchButtonStyle = {
       height: 25,
       fontSize: 10,
-      marginTop: 15,
+      marginTop: 10,
       marginBottom: 20,
       borderTopLeftRadius: 0,
       borderBottomLeftRadius: 0
