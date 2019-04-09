@@ -51,7 +51,7 @@ class SecondNav2 extends Component {
       color: 'white'
     }
     return (
-      <div className="ui simple secondary dropdown menu" style={mainDropDownMenuStyle}>
+      <div className="ui simple secondary dropdown menu dropMenu" style={mainDropDownMenuStyle}>
       <i className="bars icon" style={icon}></i>
       <div className="menu">
         <div className="ui item simple dropdown dropDownNav" style={dropDownStyle}>

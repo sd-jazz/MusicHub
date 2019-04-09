@@ -8,16 +8,19 @@
 }
 .card__outerContainer {
     width: 250px;
-    height: 500px;
+    height: 420px;
     border-radius: 5px;
     display: flex;
     flex-direction: column;
 }
 .card__image {
     width: 250px;
-    height: 350px;
+    height: 300px;
     border-top-right-radius: 4px;
     border-top-left-radius: 4px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
 }
 .card__container {
     display: flex;
@@ -31,13 +34,12 @@
     font-size: 20px;
     text-align: center;
     font-weight: bolder;
-    padding-top: 10px;  
-    padding-bottom: 60px; 
+    padding: 10px 7px 0 7px;  
 }
 
 .card__price, .card__location{
     font-weight: 650;
-    padding-top: 30px; 
+    padding: 46px 9px 0 9px; 
 }
 
 .card__hr {
