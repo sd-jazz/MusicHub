@@ -15,6 +15,7 @@
     min-height: 85vh;
     justify-content: space-around;
     margin: 0 auto;
+    padding-top: 100px;
 }
 
 .user__image {
@@ -35,18 +36,17 @@
     color: white;
     width: 100%;
     margin: 0 auto;
-    margin-top: 50px;
+    margin-top: 100px;
 }
 
 .user__cardContainer {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    border: 3px solid black;
     padding: 1vh 0 2vh 0;
-    margin: 50px 0;
+    margin: 86px 0;
     width: 60vw;
-    min-height: 80vh;
+    min-height: 90vh;
 }
 
 .user__card {
@@ -57,7 +57,7 @@
     margin-top: 20px;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 873px) {
     .user__report {
         display: none;
     }
@@ -66,7 +66,7 @@
     }
     .user__userInfo {
         background-color: #37485C;
-        margin-top: 20px;
+        margin-top: 96px;
         padding: 10px;
         border-radius: 5px;
         color: white;

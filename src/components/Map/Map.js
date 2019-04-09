@@ -85,10 +85,13 @@ class map extends Component {
     // console.log("props", this.props)
     const mapbox = `https://api.mapbox.com/geocoding/v5/mapbox.places/${this.props.zipcode}.json?access_token=pk.eyJ1IjoiYmNrZW5uZWR5OTciLCJhIjoiY2p0eHV6a3dzMXR0cjQ1bXAzY2M4N2IyZyJ9.WS1Qf8wiBeDFOhFh5S-pzw`
       axios.get(mapbox).then(res=>{
-        this.setState({
-          lng: res.data.features[0].center[0],
-          lat: res.data.features[0].center[1]
-        })
+        if(this.state.lng !== res.data.features[0].center[0]){
+          
+          this.setState({
+            lng: res.data.features[0].center[0],
+            lat: res.data.features[0].center[1]
+          })
+        }
         // console.log(this.state.lng, this.state.lat)
       })
 
@@ -98,6 +101,7 @@ class map extends Component {
   render() {
     // const { lng, lat } = this.state;
     const {lng,lat} = this.state;
+    console.log(this.state)
     
     return (
       <div>

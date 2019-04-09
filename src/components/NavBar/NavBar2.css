@@ -6,8 +6,31 @@
 .item {
     color: white
 }
+.loggedOut {
+   padding: 100px;
+}
 
 .ui__loggedIn {
+    /* display: flex;
+    align-items: center; */
+}
+.mainHeader {
+    /* display: flex;
+    flex-direction: row; */
+}
+.header {
+  
+}
+.mainTitle {
+    
+}
+@media only screen and (max-width: 768px){
+    /* .mainHeader {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    
+    }
+    .rightMenu {
+        margin: 0 auto;
+    } */
 }

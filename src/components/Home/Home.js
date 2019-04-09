@@ -49,8 +49,9 @@ class Home extends Component {
       }
 
       sortByDateAsc = () => {
-          console.log("DATE ASC")
-          let dateAsc = this.state.listings.sort((a, b) => (a.time_stamp - b.time_stamp))
+          console.log("DATE ASCx1")
+          let dateAsc = this.state.listings.sort((a, b) => (a.listing_id - b.listing_id))
+          console.log("DATE ASC 2", dateAsc)
             this.setState({
                 listings: dateAsc
             })
@@ -58,7 +59,7 @@ class Home extends Component {
 
       sortByDateDesc = () => {
           console.log("DATE DESC")
-          let dateDesc = this.state.listings.sort((a, b) => (b.time_stamp - a.time_stamp))
+          let dateDesc = this.state.listings.sort((a, b) => (b.listing_id - a.listing_id))
             this.setState({
                 listings: dateDesc
             })
@@ -106,7 +107,7 @@ class Home extends Component {
         return (
             <div className='home'>
                 <div className='home__filter'>
-                    <input onChange={(e) => this.filterTextHandler(e.target.value)}></input>
+                    <input placeHolder="Filter by name" onChange={(e) => this.filterTextHandler(e.target.value)}></input>
                     <SortDropdown fireSortFunctions={this.fireSortFunctions} />
                 </div>
                     <div className='home__cardContainer'>

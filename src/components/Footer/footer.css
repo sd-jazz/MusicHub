@@ -16,7 +16,20 @@
     display: flex;
 }
 
-a {
+.footer__links a {
     padding: 0 10px;
     color: white;
+}
+
+@media only screen and (max-width: 768px) {
+    .footer__links {
+        display: flex;
+    }
+    .footer__title {
+        display: none;
+        padding: 100px;
+    }
+    .footer__links a {
+        padding: 0 30px;
+    }
 }
