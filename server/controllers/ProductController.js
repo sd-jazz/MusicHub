@@ -57,13 +57,22 @@ module.exports = {
           res.status(200).json(listings);
         }).catch(err => console.log('getListingByType ERROR', err))
       },
+      getSimilarListings: (req, res) => {
+        console.log("GET SIMILAR LISTINGS REQ.PARAMS", req.params)
+        const {listing_type, listing_id} = req.params
+        console.log("LISTING_ID CONSOLE", listing_id)
+        req.app.get('db').get_similar_listings(listing_type).then(listings => {
+          console.log("LISTINGS BACK END", listings)
+          res.status(200).json(listings);
+        }).catch(err => console.log('getSimilarListings ERROR', err))
+      },
       getUserByListing: (req, res) => {
         const {listing_user_id} = req.params
         req.app.get('db').get_user_by_listing([listing_user_id]).then(user => {
           res.status(200).json(user)
         }).catch(err => console.log('Get user by listing ERROR', err))
       },
-      getChatroomAsSender: (req, res) => {
+      getChatroomAsSender: (req, res, db) => {
         const {user_id} = req.params
         req.app.get('db').get_chatroom_as_sender([user_id]).then(rooms => {
           res.status(200).json(rooms)
