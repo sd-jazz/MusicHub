@@ -91,7 +91,7 @@ class User extends Component {
                         <div className="user__userInfo">
                             <img className="user__image" alt="user" src={user.picture}/>
                             <div className="user__noImage">
-                                <div className="user__name">{user.profile_name}</div>
+                                <div className="user__name">{user.profile_name.split(' ')[0].split('@')[0]}</div>
                                 {/* <div className="user__rating">stars</div> */}
                                 {/* <Star star="1"/>  */}
                             </div>
