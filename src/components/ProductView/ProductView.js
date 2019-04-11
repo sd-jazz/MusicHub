@@ -81,6 +81,7 @@ class ProductView extends Component {
   };
 
   render() {
+    console.log(this.props.user)
     const { type } = this.state.listing_id[0].type
     console.log("STATE", this.state.listing_id, "IMAGES", this.state.listing_id[0].images, "SIMILAR PRODUCTS", this.state.listing_id[0].type, "TYPE", type)
     return (

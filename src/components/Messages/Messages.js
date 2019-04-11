@@ -36,7 +36,6 @@ class Messages extends Component {
       alignItems: "flex-start",
       justifyContent: "flex-start",
       textDecoration: "none",
-      padding: "5px"
     };
 
     let messageStyle = {
@@ -74,9 +73,8 @@ class Messages extends Component {
     });
     return (
       <div className="messagesContainer">
-         {mappedSenderRooms}
-         {mappedRecipientRooms}
-
+        {mappedSenderRooms}
+        {mappedRecipientRooms}
       </div>
     );
   }
