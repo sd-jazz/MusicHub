@@ -5,9 +5,7 @@ a{
     text-decoration: none;
     color: white;
 }
-.ui.simple.secondary.dropdown.menu.dropMenu {
-	/* margin-top: 24px; */
-}
+
 .dropdown {
     display: block;
 	font-size: 16px;
