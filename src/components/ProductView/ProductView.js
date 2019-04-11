@@ -112,7 +112,7 @@ class ProductView extends Component {
 
             <div className="productView__location">
               <div className="productView__zipcode">
-                <h2>{this.state.listing_id[0].zipcode}</h2>
+                <h2>{/*this.state.listing_id[0].zipcode*/}Phoenix, AZ</h2>
               </div>
             </div>
             
@@ -137,11 +137,11 @@ class ProductView extends Component {
 
             <div className="productView__profileName">
               <h3 className="ui header">
-                {this.state.listing_id[0].profile_name}
+                {this.state.listing_id[0].profile_name.split(' ')[0].split('@')[0]}
               </h3>
             </div>
 
-            <div className="productView__userRating">USER RATING</div>
+            {/* <div className="productView__userRating">USER RATING</div> */}
 
             <hr className="productView__lineBreakUserInfo" />
 
@@ -149,7 +149,7 @@ class ProductView extends Component {
               <button className="productView__messageButton">Message</button>
             </Link>
 
-            <button className="productView__saveButton">Save</button>
+            {/* <button className="productView__saveButton">Save</button> */}
           </div>
         </div>
         

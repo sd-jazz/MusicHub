@@ -64,7 +64,8 @@
     max-width: 1500px;
 }
 .productView__saveButton, .productView__messageButton {
-    width: 80%;
+    /* width: 80%; */
+    width: 120px;
     border-radius: 5px;
     border-color: #487798;
     color: #487798

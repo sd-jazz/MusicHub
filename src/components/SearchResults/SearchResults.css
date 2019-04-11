@@ -53,6 +53,9 @@
 }
 
 .searchResults__resultsContainer {
+    display: flex;
+    flex-wrap: wrap; 
     padding-top: 24px;
     margin: 0 auto;
 }
+
