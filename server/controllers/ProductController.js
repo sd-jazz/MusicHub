@@ -16,13 +16,20 @@ module.exports = {
       },
 
     createListing: (req, res, next) => {
-      const {user_id, listing_name, description, time_stamp, type, tags, price, condition, images, zipcode } = req.body
+      const {user_id, listing_name, description, time_stamp, type, tags, price, condition, images, zipcode, category } = req.body
       const db = req.app.get('db')
-      db.create_listing([user_id, listing_name, description, time_stamp, type, tags, price.replace(/,/g, ""), condition, images, zipcode]).then(listing => {
+      db.create_listing([user_id, listing_name, description, time_stamp, type, tags, price.replace(/,/g, ""), condition, images, zipcode, category]).then(listing => {
         res.status(200).json(listing)
       }).catch(err => console.log("createListing", err))
   },
-  
+    updateListing: (req, res, next) => {
+      const {user_id, listing_name, description, type, price, condition, zipcode, category } = req.body
+      const {listing_id} = req.params
+      const db = req.app.get('db')
+      db.update_listing([ listing_name, description, type, price.replace(/,/g, ""), condition, zipcode, category, listing_id, user_id ]).then(listing => {
+        res.status(200).json(listing)
+      }).catch(err => console.log("createListing", err))
+  },
       deleteListing: (req, res, next) => {
         const { listing_id, user_id } = req.params;
         req.app.get('db').delete_listing([listing_id, user_id]).then(response =>{

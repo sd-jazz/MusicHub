@@ -31,6 +31,7 @@ app.use(
 // PRODUCT CONTROLLER
 
 app.post("/api/listings", pc.createListing);
+app.put("/api/listings/:listing_id", pc.updateListing)
 app.get("/api/get_listings", pc.getAllListings);
 app.get("/api/get_user_listings/:id", pc.getUserListings);
 app.delete("/api/delete_listing/:listing_id/:user_id", pc.deleteListing);
