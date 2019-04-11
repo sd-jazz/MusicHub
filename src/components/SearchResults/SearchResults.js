@@ -97,6 +97,7 @@ class SearchResults extends Component {
             return <Link key={listing.listing_id}  to={`/productview/${listing.listing_id}`}className='home__card'><Card listing={listing} /></Link>
         })
         return(
+        <div className="searchResults__all">
         <div className="searchResults__Master">
             {searched_listings.length == 0 ? (
                 <div className="searchResults__none">
@@ -124,6 +125,7 @@ class SearchResults extends Component {
 
         </div>
         )}
+        </div>
         </div>
         )
     }

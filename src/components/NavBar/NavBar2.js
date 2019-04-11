@@ -65,7 +65,7 @@ class NavBar extends Component {
       marginBottom: 0,
       backgroundColor: `rgb(55, 72, 92)`,
       borderRadius: 0,
-      text: "white"
+      text: "black"
     };
     let mainTitle = {
       padding: 20
@@ -73,16 +73,21 @@ class NavBar extends Component {
     let inputStyle = {
       height: 25,
       alignSelf: "center",
-      marginTop: 40,
-      marginBottom: 20,
+
+      // marginTop: 15,
+      // marginBottom: 20,
+
       borderBottomRightRadius: 0,
       borderTopRightRadius: 0,
+      color: 'black'
     };
     let searchButtonStyle = {
       height: 25,
       fontSize: 10,
-      marginTop: 10,
-      marginBottom: 20,
+
+      // marginTop: 8,
+      // marginBottom: 20,
+
       borderTopLeftRadius: 0,
       borderBottomLeftRadius: 0
     };
@@ -91,11 +96,26 @@ class NavBar extends Component {
       <div>
         {/* <div className="ui secondary menu mainHeader"> */}
         <div className='headerNav'>
-        <div className='mainHeader' style={uiMenuStyle}>
+        <div className='ui menu' style={uiMenuStyle}>
           <Link to="/" className="header item" style={mainTitle}>
-            <h1 style={{ color: "white", fontSize: 28, fontFamily: 'arial' }}>MusicHub</h1>
+            <h1 style={{ color: "white", fontSize: 38, fontFamily: 'arial' }}>MusicHub</h1>
           </Link>
-          
+          <div className="ui input globalInputBox" style={inputStyle}>
+            <input
+              style={inputStyle}
+              onChange={e => this.updateSearch(e.target.value)}
+              placeholder="Search MusicHub"
+            />
+            <Link to="/search_results">
+              <button
+                style={searchButtonStyle}
+                className="ui secondary button"
+                onClick={() => this.searchBarGlobal()}
+              >
+                Search
+              </button>
+            </Link>
+          </div>
           <div className="ui right compact secondary menu rightMenu">
           <Modal
               trigger={
@@ -151,22 +171,6 @@ class NavBar extends Component {
             </div>
           </div>
         </div>
-        <div className="ui input globalInputBox" style={inputStyle}>
-            <input
-              style={inputStyle}
-              onChange={e => this.updateSearch(e.target.value)}
-              placeholder="Search MusicHub"
-            />
-            <Link to="/search_results">
-              <button
-                style={searchButtonStyle}
-                className="ui secondary button"
-                onClick={() => this.searchBarGlobal()}
-              >
-                Search
-              </button>
-            </Link>
-          </div>
       </div>
     );
   }

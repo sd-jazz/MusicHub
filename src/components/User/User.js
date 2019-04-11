@@ -60,7 +60,7 @@ class User extends Component {
             return (
                 <div className="user___card">
                     <Link key={listing.listing_id}  to={`/productview/${listing.listing_id}`}className='home__card'><Card listing={listing} /></Link>
-                    <button onClick={() => this.deletePost(listing)}>Delete</button>
+                    <button className="deleteBtn" onClick={() => this.deletePost(listing)}>Delete</button>
                 </div>    
                 )
         })
