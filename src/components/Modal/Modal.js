@@ -27,6 +27,21 @@ class Modal extends Component {
     this.handleInputChange = this.handleInputChange.bind(this);
   }
 
+  componentDidMount(){
+    if(this.props.listing){
+      const {listing_name, description, price, zipcode, condition, type, category} = this.props.listing
+      this.setState({
+        title: listing_name,
+        description,
+        price,
+        zipcode,
+        condition, 
+        type,
+        category
+      })
+    }
+  }
+
   handleInputChange(event) {
     const target = event.target;
     const value = target.value;
@@ -37,6 +52,53 @@ class Modal extends Component {
     });
   }
 
+  updateItem = () => {
+    // console.log("CLOUDINARY URL DURING UPLOAD", this.state.cloudinaryUrl)
+    const post = {
+      listing_name: this.state.title,
+      description: this.state.description,
+      type: this.state.type,
+      price: this.state.price,
+      condition: this.state.condition,
+      images: this.state.cloudinaryUrl,
+      zipcode: this.state.zipcode,
+      category: this.state.category,
+    };
+    if (
+      this.state.title &&
+      this.state.price &&
+      this.state.description &&
+      this.state.zipcode &&
+      this.state.condition &&
+      this.state.category &&
+      // this.state.cloudinaryUrl.length>=1 &&
+      this.state.category === "other"
+    ) {
+      post.type = this.state.category;
+      axios.put(`/api/listings/${this.props.listing.listing_id}`, post).then(res => {
+        this.props.close();
+        this.props.getListings();
+      });
+    } else if (
+      this.state.title &&
+      this.state.price &&
+      this.state.description &&
+      this.state.zipcode &&
+      this.state.condition &&
+      this.state.category &&
+      // this.state.cloudinaryUrl.length>=1 &&
+      this.state.type
+    ) {
+      console.log(this.state);
+      axios.put(`/api/listings/${this.props.listing.listing_id}`, post).then(res => {
+        this.props.close();
+        this.props.getListings();
+        
+      });
+    } else {
+      alert("incomplete form");
+    }
+  };
   uploadItem = () => {
     // console.log("CLOUDINARY URL DURING UPLOAD", this.state.cloudinaryUrl)
     const post = {
@@ -49,6 +111,7 @@ class Modal extends Component {
       condition: this.state.condition,
       images: this.state.cloudinaryUrl,
       zipcode: this.state.zipcode,
+      category: this.state.category,
     };
 
     if (
@@ -154,11 +217,14 @@ class Modal extends Component {
       
       
   render() {
+    console.log(this.props.listing)
     return (
       <div className="modal__outerContainer">
         {this.props.user ? (
           <div id="modal">
-
+        {this.props.edit?
+        null
+        :
         <Dropzone  onDrop={this.onImageDrop} accept="image/*"multiple={false}>
         {({getRootProps, getInputProps}) => (
           <section>
@@ -169,11 +235,13 @@ class Modal extends Component {
           </section>
         )}
       </Dropzone>
+        }
             <div className="modal__titleContainer">
               <label>
                 Title:
                 <input
                   name="title"
+                  value={this.state.title}
                   // placeholder="What are you selling?"
                   type="text"
                   onChange={this.handleInputChange}
@@ -199,6 +267,7 @@ class Modal extends Component {
                 Description:
                 <textarea
                   name="description"
+                  value={this.state.description}
                   className="modal__descriptionInput"
                   onChange={this.handleInputChange}
                 />
@@ -344,7 +413,11 @@ class Modal extends Component {
               </label>
             </div>
             <div id="uploadButton">
+              {this.props.edit ?
+              <button onClick={this.updateItem}>Save</button>
+              :
               <button onClick={this.uploadItem}>Upload</button>
+              }
             </div>
             <div className="Modal__mappedImagesInModal">
                 <MappedImages className="Modal__mappedImagesInModal" image={this.state.cloudinaryUrl}/>
