@@ -67,7 +67,7 @@ class Messages extends Component {
           }}
           to={`/messages/${room.room_name}`}
         >
-          {room.user1_name} - {room.listing_name}
+          {room.user1_name.split(' ')[0].split('@')[0]} - {room.listing_name}
         </Link>
       );
     });
