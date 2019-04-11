@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import {Modal,Header} from "semantic-ui-react";
 import { connect } from 'react-redux';
 import {getUser} from "../../redux/reducer"
 // import { Glyphicon } from 'react-bootstrap';
 // import Star from '../Ratings/Ratings';
 import Card from '../Card/Card';
+import SellModal from "../Modal/Modal";
 import {Link} from 'react-router-dom'
 import './user.css'
 import axios from 'axios';
@@ -14,7 +16,10 @@ class User extends Component {
     super(props)
         this.state = {
             listings: [],
-            listing_id: this.props.listing_id
+            listing_id: this.props.listing_id,
+            edit: false,
+            modalOpen: false,
+            selectedListing: null,
         }
     }
 
@@ -30,6 +35,16 @@ class User extends Component {
             this.props.getUser(res.data);
           });
     }
+
+    getListings = () => {
+        const {user_id} = this.props.user;
+        axios.get(`/api/get_user_listings/${user_id}`).then(response =>{
+            this.setState({
+                listings: response.data
+            })
+        })
+    }
+
     componentDidUpdate = () => {
         // const {user_id} = this.props.user;
         // axios.get(`/api/get_user_listings/${user_id}`).then(response =>{
@@ -39,6 +54,9 @@ class User extends Component {
                 
         // })
     }
+
+    handleOpen = (listing) => this.setState({ modalOpen: true, edit: true, selectedListing: listing });
+    handleClose = () => this.setState({ modalOpen: false, edit: false });
 
     deletePost = (listing) => {
         const {user_id} = this.props.user
@@ -60,6 +78,7 @@ class User extends Component {
             return (
                 <div className="user___card">
                     <Link key={listing.listing_id}  to={`/productview/${listing.listing_id}`}className='home__card'><Card listing={listing} /></Link>
+                    <button onClick={()=>this.handleOpen(listing)}>Edit</button>
                     <button className="deleteBtn" onClick={() => this.deletePost(listing)}>Delete</button>
                 </div>    
                 )
@@ -72,7 +91,7 @@ class User extends Component {
                         <div className="user__userInfo">
                             <img className="user__image" alt="user" src={user.picture}/>
                             <div className="user__noImage">
-                                <div className="user__name">{user.profile_name}</div>
+                                <div className="user__name">{user.profile_name.split(' ')[0].split('@')[0]}</div>
                                 {/* <div className="user__rating">stars</div> */}
                                 {/* <Star star="1"/>  */}
                             </div>
@@ -80,6 +99,22 @@ class User extends Component {
                         {/* <div className="user__location">location</div> */}
                     </div>
                     <div className="user__right">
+                    <Modal
+                        open={this.state.modalOpen}
+                        onClose={this.handleClose}
+                        
+                    
+                        >
+                        <Header>Edit Listing</Header>
+                        <Modal.Content>
+                            <SellModal 
+                            close={this.handleClose} 
+                            edit={this.state.edit} 
+                            listing={this.state.selectedListing}
+                            getListings={this.getListings}
+                            />
+                        </Modal.Content>
+                    </Modal>
                         <div className="user__cardContainer">{mappedListings}</div>
                     </div>
                 </div>
