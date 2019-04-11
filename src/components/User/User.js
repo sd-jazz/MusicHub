@@ -53,7 +53,6 @@ class User extends Component {
 
     //get all from listing_id where user_id =
     render(){
-        console.log(this.state)
         const {listings} = this.state
         const {user} = this.props
         const mappedListings = listings.map(listing => {
@@ -64,6 +63,7 @@ class User extends Component {
                 </div>    
                 )
         })
+
         return (
             <div className="user">
                 <button className="user__report">Report</button>
@@ -72,7 +72,7 @@ class User extends Component {
                         <div className="user__userInfo">
                             <img className="user__image" alt="user" src={user.picture}/>
                             <div className="user__noImage">
-                                <div className="user__name">{user.profile_name}</div>
+                                <div className="user__name">{user.profile_name.split(' ')[0].split('@')[0]}</div>
                                 {/* <div className="user__rating">stars</div> */}
                                 {/* <Star star="1"/>  */}
                             </div>
