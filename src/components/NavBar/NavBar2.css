@@ -1,16 +1,11 @@
-/* .headerNav {
-    display: flex;
-    flex-direction: row;
-} */
+
 .ui.right.compact.secondary.menu.rightMenu {
     padding-bottom: 5px;
 }
 .navbar2__input {
     height: 10px;
 }
-.mainHeader {
-    /* padding: 10px 0 0 0; */
-}
+
 
 .item {
     color: white
@@ -19,24 +14,3 @@
    padding: 100px;
 }
 
-.ui__loggedIn {
-    /* display: flex;
-    align-items: center; */
-}
-.mainHeader {
-    /* display: flex;
-    flex-direction: row; */
-}
-@media only screen and (max-width: 768px){
-    /* .mainHeader {
-    display: flex;
-    flex-direction: column;
-    
-    }
-    .rightMenu {
-        margin: 0 auto;
-    } */
-    .navLinks {
-    /* padding: 0 5vw; */
-}
-}

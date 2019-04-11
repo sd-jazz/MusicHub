@@ -56,9 +56,10 @@
 .user__location {
     margin-top: 20px;
 }
-.deleteBtn {
+.deleteBtn, .editBtn {
     border-radius: 5px;
     padding: 5px;
+    margin: 5px;
 }
 
 @media only screen and (max-width: 873px) {
