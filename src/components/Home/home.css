@@ -6,7 +6,7 @@
 .home__filter {
     display: flex;
     justify-content: space-around;
-    padding-top: 230px;
+    padding-top: 50px;
 }
 .home__cardContainer {
     display: flex;

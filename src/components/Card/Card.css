@@ -8,7 +8,7 @@
 }
 .card__outerContainer {
     width: 250px;
-    height: 420px;
+    height: 402px;
     border-radius: 5px;
     display: flex;
     flex-direction: column;
@@ -39,11 +39,11 @@
 
 .card__price, .card__location{
     font-weight: 650;
-    padding: 46px 9px 0 9px; 
+    padding: 30px 9px 0 9px; 
 }
 
 .card__hr {
-    padding-bottom: 20px; 
+    /* padding-bottom: 20px;  */
 }
 
 .card__fullContainer{

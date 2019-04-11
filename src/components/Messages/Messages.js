@@ -73,9 +73,10 @@ class Messages extends Component {
       );
     });
     return (
-      <div className="roomContainer" style={roomContainerStyle}>
-        {mappedSenderRooms}
-        {mappedRecipientRooms}
+      <div className="messagesContainer">
+         {mappedSenderRooms}
+         {mappedRecipientRooms}
+
       </div>
     );
   }

@@ -3,13 +3,13 @@
     flex-direction: row;
 } */
 .ui.right.compact.secondary.menu.rightMenu {
-    padding: 18px 0 9px 0;
+    padding-bottom: 5px;
 }
 .navbar2__input {
     height: 10px;
 }
 .mainHeader {
-    padding: 10px 0 0 0;
+    /* padding: 10px 0 0 0; */
 }
 
 .item {
@@ -37,6 +37,6 @@
         margin: 0 auto;
     } */
     .navLinks {
-    padding: 0 5vw;
+    /* padding: 0 5vw; */
 }
 }

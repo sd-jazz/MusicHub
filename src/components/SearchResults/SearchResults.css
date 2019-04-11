@@ -1,20 +1,24 @@
+.searchResults__all {
+    min-height: 90vh;
+}
 .searchResults__Master {
     display: flex; 
     flex-direction: column; 
     justify-content: center;
     /* border: 3px solid black; */
-    padding: 1vh 0 2vh 0;
-    margin: 4vh 3vh;
+    padding-top: 45px;
+    /* margin: 4vh 3vh; */
+    /* min-height: 90vh; */
 }
 .searchResults__results {
     display: flex;
     flex-direction: row; 
+    padding-top: 15px; 
 }
 .searchedResults__cardContainer {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;  
-    min-height: 90vh;
 }
 .searchResults__noResults, .searchResults, .searchResults__none {
     display: flex; 
@@ -27,11 +31,11 @@
 }
 
 .searchResults__mappedListingsNone {
-    padding-top: 22px;
+    padding-top: 32px;
 }
 
 .searchResults__noResultsFound {
-    padding-top: 190px;
+    padding-top: 20px;
     padding-bottom: 25px; 
     font-weight: bolder; 
     font-size: 30px;
@@ -43,7 +47,7 @@
 .searchResults__filter {
     display: flex;
     justify-content: space-around;
-    padding-top: 190px;
+    padding-top: 6px;
 }
 .searchResults__filterNone {
     display: flex; 
@@ -53,6 +57,9 @@
 }
 
 .searchResults__resultsContainer {
+    display: flex;
+    flex-wrap: wrap; 
     padding-top: 24px;
     margin: 0 auto;
 }
+

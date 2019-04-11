@@ -32,35 +32,39 @@ class SearchResults extends Component {
     }
 
     sortByPriceDesc = () => {
-        console.log("PRICE DESC")
-          let priceDesc = this.state.listings.sort((a, b) => (b.price - a.price))
+        console.log("PRICE DESC", this.state.listings)
+          let priceDesc = this.props.searched_listings.sort((a, b) => (b.price - a.price))
             this.setState({
-                listings: priceDesc
+                listings: priceDesc,
+                searched_listings: priceDesc
             })
       }
 
       sortByPriceAsc = () => {
-          console.log("PRICE ASC")
-          let priceAsc = this.state.listings.sort((a, b) => (a.price - b.price))
+          console.log("PRICE ASC", this.state.listings)
+          let priceAsc = this.props.searched_listings.sort((a, b) => (a.price - b.price))
             this.setState({
-                listings: priceAsc
+                listings: priceAsc,
+                searched_listings: priceAsc
             })
       }
 
       sortByDateAsc = () => {
-        console.log("DATE ASC")
-        let dateAsc = this.state.listings.sort((a, b) => (a.listing_id - b.listing_id))
+        console.log("DATE ASC", this.state.listings)
+        let dateAsc = this.props.searched_listings.sort((a, b) => (a.listing_id - b.listing_id))
           this.setState({
-              listings: dateAsc
-          })
+              listings: dateAsc,
+              searched_listings: dateAsc
+            })
     }
 
     sortByDateDesc = () => {
-        console.log("DATE DESC")
-        let dateDesc = this.state.listings.sort((a, b) => (b.listing_id - a.listing_id))
+        console.log("DATE DESC", this.state.listings)
+        let dateDesc = this.props.searched_listings.sort((a, b) => (b.listing_id - a.listing_id))
           this.setState({
-              listings: dateDesc
-          })
+              listings: dateDesc,
+              searched_listings: dateDesc
+            })
     }
 
       fireSortFunctions = (e) => {
@@ -97,6 +101,7 @@ class SearchResults extends Component {
             return <Link key={listing.listing_id}  to={`/productview/${listing.listing_id}`}className='home__card'><Card listing={listing} /></Link>
         })
         return(
+        <div className="searchResults__all">
         <div className="searchResults__Master">
             {searched_listings.length == 0 ? (
                 <div className="searchResults__none">
@@ -124,6 +129,7 @@ class SearchResults extends Component {
 
         </div>
         )}
+        </div>
         </div>
         )
     }
