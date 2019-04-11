@@ -6,7 +6,7 @@ a{
     color: white;
 }
 .ui.simple.secondary.dropdown.menu.dropMenu {
-	margin-top: 24px;
+	/* margin-top: 24px; */
 }
 .dropdown {
     display: block;

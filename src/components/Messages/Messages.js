@@ -37,7 +37,7 @@ class Messages extends Component {
           return  <Link onClick={() => this.props.get_room_name(room.room_name)} to={`/messages/${room.room_name}`}>{room.user1_name} - {room.listing_name}</Link>
       })
     return (
-      <div>
+      <div className="messagesContainer">
          {mappedSenderRooms}
          {mappedRecipientRooms}
       </div>
