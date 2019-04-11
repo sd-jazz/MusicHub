@@ -29,6 +29,8 @@ class User extends Component {
             this.setState({
                 listings: response.data
             })
+            console.log("res data ", response.data)
+            console.log("listings ", this.state.listings)
         })
         axios.get(`/api/user_data`).then(res => {
             console.log('===',res.data)
@@ -61,12 +63,22 @@ class User extends Component {
     deletePost = (listing) => {
         const {user_id} = this.props.user
         console.log('listing', listing.listing_id)
-        axios.delete(`/api/delete_listing/${listing.listing_id}/${user_id}`).then(res => {
-            console.log('delete', res.data)
-            this.setState({
-                listings: res.data
+        console.log("listing", listing.room_id)
+        if(listing.room_id){
+            axios.delete(`/api/delete_listing/${listing.listing_id}/${user_id}/${listing.room_id}/${listing.room_name}`).then(res => {
+                console.log('delete', res.data)
+                this.setState({
+                    listings: res.data
+                })
             })
-        })
+        } else{
+            axios.delete(`/api/delete_listing/${listing.listing_id}/${user_id}`).then(res => {
+                console.log('delete', res.data)
+                this.setState({
+                    listings: res.data
+                })
+            })
+        }
     }
 
     //get all from listing_id where user_id =

@@ -34,6 +34,7 @@ app.post("/api/listings", pc.createListing);
 app.put("/api/listings/:listing_id", pc.updateListing)
 app.get("/api/get_listings", pc.getAllListings);
 app.get("/api/get_user_listings/:id", pc.getUserListings);
+app.delete("/api/delete_listing/:listing_id/:user_id/:room_id/:room_name", pc.deleteListing);
 app.delete("/api/delete_listing/:listing_id/:user_id", pc.deleteListing);
 app.get("/api/listings/:listing_id", pc.getListingInfo);
 app.get("/api/get_listings_by_type/:listing_type", pc.getListingByType);

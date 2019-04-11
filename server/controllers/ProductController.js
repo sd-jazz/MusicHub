@@ -31,8 +31,8 @@ module.exports = {
     }).catch(err => console.log("createListing", err))
 },
     deleteListing: (req, res, next) => {
-      const { listing_id, user_id } = req.params;
-      req.app.get('db').delete_listing([listing_id, user_id]).then(response =>{
+      const { listing_id, user_id, room_id, room_name } = req.params;
+      req.app.get('db').delete_listing([room_name, room_id, listing_id, user_id]).then(response =>{
         res.status(200).json(response);
       }).catch(err => console.log ('deleteListing ERROR', err))
     },
