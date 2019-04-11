@@ -62,7 +62,8 @@ class CatagoryView extends Component {
 
       sortByDateAsc = () => {
           console.log("DATE ASC")
-          let dateAsc = this.state.listings.sort((a, b) => (a.time_stamp - b.time_stamp))
+          let dateAsc = this.state.listings.sort((a, b) => (a.listing_id - b.listing_id))
+          console.log("DATE ASC 2", dateAsc)
             this.setState({
                 listings: dateAsc
             })
@@ -70,7 +71,8 @@ class CatagoryView extends Component {
 
       sortByDateDesc = () => {
           console.log("DATE DESC")
-          let dateDesc = this.state.listings.sort((a, b) => (b.time_stamp - a.time_stamp))
+          let dateDesc = this.state.listings.sort((a, b) => (b.listing_id - a.listing_id))
+          console.log("DATE DESC 2", dateDesc)
             this.setState({
                 listings: dateDesc
             })
@@ -96,10 +98,10 @@ class CatagoryView extends Component {
 
 
     render(){
+        console.log("STATE", this.state)
         const { listings } = this.state
-        console.log("LISTINGS", listings, "listing_type", this.state.listing_type)
+        console.log("LISTINGS", listings)
 
-        
         const filteredListings = listings.filter(listing => {
             return listing.listing_name.toLowerCase().includes(this.state.filterText)
         })

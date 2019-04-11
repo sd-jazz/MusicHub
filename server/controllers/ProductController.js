@@ -15,18 +15,10 @@ module.exports = {
         }).catch(err => console.log('(getUserListings) ERROR', err))
       },
 
-    //   createListing: (req, res, next) => {
-    //     const {user_id, listing_name, description, time_stamp, type, tags, price, condition } = req.body
-    //     const db = req.app.get('db')
-    //     db.create_listing([user_id, listing_name, description, time_stamp, type, tags, price, condition]).then(listing => {
-    //       res.status(200).json(listing)
-    //     }).catch(err => console.log("createListing", err))
-    // },
-
     createListing: (req, res, next) => {
       const {user_id, listing_name, description, time_stamp, type, tags, price, condition, images, zipcode } = req.body
       const db = req.app.get('db')
-      db.create_listing([user_id, listing_name, description, time_stamp, type, tags, price, condition, images, zipcode]).then(listing => {
+      db.create_listing([user_id, listing_name, description, time_stamp, type, tags, price.replace(/,/g, ""), condition, images, zipcode]).then(listing => {
         res.status(200).json(listing)
       }).catch(err => console.log("createListing", err))
   },
@@ -57,13 +49,24 @@ module.exports = {
           res.status(200).json(listings);
         }).catch(err => console.log('getListingByType ERROR', err))
       },
+  
+      getSimilarListings: (req, res) => {
+        console.log("GET SIMILAR LISTINGS REQ.PARAMS", req.params)
+        const {listing_type, listing_id} = req.params
+        console.log("LISTING_ID CONSOLE", listing_id)
+        req.app.get('db').get_similar_listings(listing_type).then(listings => {
+          console.log("LISTINGS BACK END", listings)
+          res.status(200).json(listings);
+        }).catch(err => console.log('getSimilarListings ERROR', err))
+      },
+  
       getUserByListing: (req, res) => {
         const {listing_user_id} = req.params
         req.app.get('db').get_user_by_listing([listing_user_id]).then(user => {
           res.status(200).json(user)
         }).catch(err => console.log('Get user by listing ERROR', err))
       },
-      getChatroomAsSender: (req, res) => {
+      getChatroomAsSender: (req, res, db) => {
         const {user_id} = req.params
         req.app.get('db').get_chatroom_as_sender([user_id]).then(rooms => {
           res.status(200).json(rooms)

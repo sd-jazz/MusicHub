@@ -1,0 +1,32 @@
+.SlickContainer__images {
+    /* display: flex;
+    flex-direction: row; 
+    justify-content: space-between;  
+    align-items: baseline;
+    flex-wrap: wrap; */
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	align-items: baseline;
+    align-content: stretch;
+    max-width: 1200x; 
+}
+
+/* .SlickContainer_mappedImage{ 
+    width: 250px;
+    height: 150px; 
+    padding-left: 500px;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px; 
+} */
+
+.SlickContainer__singleImage{
+    padding-left: 20px;
+    padding-right: 20px; 
+    padding-bottom: 10px; 
+    width: 375px;
+    height: 300px; 
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px; 
+}

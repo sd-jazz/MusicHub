@@ -11,11 +11,12 @@ const socket = require("socket.io");
 
 require("dotenv").config();
 app.use(bodyParser.json());
-
+let database;
 massive(process.env.CONNECTION_STRING)
   .then(db => {
     console.log("connected to db");
     app.set("db", db);
+    database = db;
   })
   .catch(err => console.log(err));
 
@@ -35,6 +36,7 @@ app.get("/api/get_user_listings/:id", pc.getUserListings);
 app.delete("/api/delete_listing/:listing_id/:user_id", pc.deleteListing);
 app.get("/api/listings/:listing_id", pc.getListingInfo);
 app.get("/api/get_listings_by_type/:listing_type", pc.getListingByType);
+app.get("/api/get_similar_listings/:listing_type", pc.getSimilarListings);
 app.get("/api/user_data", aC.getUserData);
 app.get("/auth", aC.login);
 app.get("/auth/logout", aC.logout);
@@ -108,7 +110,6 @@ io.on("connection", function(socket) {
 
   socket.on("CONNECT_USERS", data => {
     const db = app.get("db");
-    console.log(data);
     let uniqueRoom = `${data.listing_name} - ${data.user2_profileName}`;
     db.check_rooms([data.user1_id, data.user2_id, data.listing_id]).then(
       room_response => {
@@ -121,9 +122,7 @@ io.on("connection", function(socket) {
             data.listing_name,
             data.user1_profileName,
             data.user2_profileName
-          ]).then(response => {
-            console.log(response);
-          });
+          ])
         }
       }
     );
@@ -131,18 +130,24 @@ io.on("connection", function(socket) {
 
   socket.on("PM_MESSAGE", messageData => {
     const db = app.get("db");
-    console.log(messageData);
-    socket.join(messageData.room_name);
     io.in(messageData.room_name).emit("PM_MESSAGE", {
-      message: messageData.message
+      message: messageData.message,
+      sender: messageData.sender
     });
     db.create_room_data([
       messageData.room_name,
       messageData.sender,
       messageData.recipient,
       messageData.message
-    ]).then(res => {
-      console.log(res.data);
-    });
+    ])
+  });
+
+  socket.on('JOIN_ROOM', roomName => {
+    socket.join(roomName.room_name)
+  });
+
+  socket.on('LEAVE_ROOM', roomName => {
+    socket.leave(roomName.room_name)
+    console.log('User has left the room')
   });
 });

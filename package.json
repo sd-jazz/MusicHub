@@ -15,11 +15,12 @@
     "mapbox-gl": "^0.53.1",
     "massive": "^5.7.7",
     "nodemailer": "^6.0.0",
-    "nuka-carousel": "^4.5.3",
     "react": "^16.8.5",
     "react-dom": "^16.8.5",
     "react-dropzone": "^10.0.6",
+    "react-image-magnify": "^2.7.4",
     "react-mapbox-gl": "^4.2.0",
+    "react-medium-image-zoom": "^3.0.15",
     "react-redux": "^6.0.1",
     "react-router-dom": "^5.0.0",
     "react-scripts": "2.1.8",
@@ -28,7 +29,8 @@
     "semantic-ui-react": "^0.85.0",
     "sinon": "^7.3.1",
     "socket.io": "^2.2.0",
-    "socket.io-client": "^2.2.0"
+    "socket.io-client": "^2.2.0",
+    "styled-components": "^4.2.0"
   },
   "scripts": {
     "start": "react-scripts start",

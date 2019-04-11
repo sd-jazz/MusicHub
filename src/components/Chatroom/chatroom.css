@@ -1,0 +1,50 @@
+.myMessages {
+    border-radius: 20px;
+    padding: 8px 15px;
+    margin-top: 5px;
+    margin-bottom: 5px; color: white;
+    margin-left: 5%;
+    background: #546D8C;
+}
+
+.theirMessages {
+    border-radius: 20px;
+    padding: 8px 15px;
+    margin-top: 5px;
+    margin-bottom: 5px; color: white;
+    margin-right: 5%;
+    background: rgb(184, 184, 184);
+}
+
+.messagesContainer {
+    min-height: 85vh;
+    padding-top: 10px;
+}
+
+.messagesContainer__messages{
+    overflow: auto;
+    height: 85vh
+}
+
+.messagesContainer__form {
+    width: 100vh
+}
+
+.listingInfo {
+    border: solid grey 1px;
+    border-radius: 5px;
+    margin: 5px
+}
+
+.listingInfo__image {
+    width: 100%
+}
+
+.listingInfo__name {
+    margin: 5px 0;
+    font-size: 24px;
+}
+
+.listingInfo__price {
+    margin-bottom: 5px;
+}

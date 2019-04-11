@@ -10,24 +10,20 @@
     /* margin: 4vh 3vh; */
     /* min-height: 90vh; */
 }
-
 .searchResults__results {
     display: flex;
     flex-direction: row; 
     padding-top: 15px; 
 }
-
 .searchedResults__cardContainer {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;  
 }
-
 .searchResults__noResults, .searchResults, .searchResults__none {
     display: flex; 
     flex-direction: column;
 }
-
 .searchResults__mappedListings, .searchResults__mappedListingsNone {
     display: flex; 
     flex-wrap: wrap; 
@@ -44,12 +40,10 @@
     font-weight: bolder; 
     font-size: 30px;
 }
-
 .productView__location{
     font-weight: bolder; 
     font-size: 15px; 
 }
-
 .searchResults__filter {
     display: flex;
     justify-content: space-around;

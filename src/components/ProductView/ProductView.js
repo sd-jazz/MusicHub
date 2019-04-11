@@ -1,12 +1,16 @@
 import React, { Component } from "react";
 import axios from "axios";
+import SimilarListings from './SimilarListings';
+import Card from "../Card/Card";
 import { connect } from "react-redux";
 import io from "socket.io-client";
 import "./productView.css";
 import { update_listing_id } from "../../redux/reducer";
-import CarouselContainer from "./CarouselContainer";
+// import CarouselContainer from "./CarouselContainer";
+import SlickContainer from './SlickContainer'
 import { Link } from "react-router-dom";
 import Map from "../Map/Map";
+
 
 class ProductView extends Component {
   constructor(props) {
@@ -28,7 +32,9 @@ class ProductView extends Component {
           images: [],
           zipcode: null,
         }
-      ]
+      ],
+      similar_listings: []
+
     };
     this.socket = io("localhost:4010");
   }
@@ -37,7 +43,7 @@ class ProductView extends Component {
   // Deconstruct everything we need from the listing and place them in the appropriate divs
 
   componentDidMount() {
-    this.fetchListingID();
+    this.fetchListingID()
   }
 
   fetchListingID = () => {
@@ -47,8 +53,21 @@ class ProductView extends Component {
         this.setState({
           listing_id: response.data
         });
+      }).then(() =>{
+        this.getSimilarListings()
       });
   };
+
+  getSimilarListings = () => {
+    console.log("getSimilarListings START", this.state.listing_id[0].type)
+    axios.get(`/api/get_similar_listings/${this.state.listing_id[0].type}`).then(response =>{
+        console.log("RESPONSE CALLBACK", response)
+        this.setState({
+            similar_listings: response.data
+        })
+    })
+}
+
 
   connectUsers = () => {
     this.socket.emit("CONNECT_USERS", {
@@ -62,10 +81,19 @@ class ProductView extends Component {
   };
 
   render() {
+    const { type } = this.state.listing_id[0].type
+    console.log("STATE", this.state.listing_id, "IMAGES", this.state.listing_id[0].images, "SIMILAR PRODUCTS", this.state.listing_id[0].type, "TYPE", type)
     return (
       <div className="productView">
+                    <div className="productView__listingName">
+                <h2 className="ui header">
+                  {this.state.listing_id[0].listing_name}
+                </h2>
+              </div>
+
         <div className="productView__images">
-          <CarouselContainer images={[this.state.listing_id[0].images]} />
+          {/* <CarouselContainer images={[this.state.listing_id[0].images]} id={[this.state.listing_id[0].listing_id]} /> */}
+          <SlickContainer images={this.state.listing_id[0].images} id={this.state.listing_id[0].listing_name}/> 
         </div>
 
         <div className="productView__descriptionAndUserInfo">
@@ -129,7 +157,10 @@ class ProductView extends Component {
           <Map zipcode={this.state.listing_id[0].zipcode}/>
         </div>
 
-        <div className="productView__similarOfferings">SIMILAR OFFERINGS</div>
+        <div className="productView__similarListings">
+        SIMILAR LISTINGS
+          {/* <SimilarListings similar={this.state.similar_listings}/> */}
+        </div>
       </div>
     );
   }
