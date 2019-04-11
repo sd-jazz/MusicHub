@@ -15,7 +15,7 @@
     min-height: 85vh;
     justify-content: space-around;
     margin: 0 auto;
-    padding-top: 100px;
+    /* padding-top: 100px; */
 }
 
 .user__image {
@@ -26,7 +26,7 @@
 }
 
 .user__noImage {
-    padding-top: 40px;
+    padding: 20px 0 5px 0;
 }
 
 .user__userInfo {
@@ -36,15 +36,15 @@
     color: white;
     width: 100%;
     margin: 0 auto;
-    margin-top: 100px;
+    margin-top: 50px;
 }
 
 .user__cardContainer {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    padding: 1vh 0 2vh 0;
-    margin: 86px 0;
+    /* padding: 4vh 0 2vh 0; */
+    margin: 50px 0;
     width: 60vw;
     min-height: 90vh;
 }
@@ -56,6 +56,10 @@
 .user__location {
     margin-top: 20px;
 }
+.deleteBtn {
+    border-radius: 5px;
+    padding: 5px;
+}
 
 @media only screen and (max-width: 873px) {
     .user__report {
@@ -66,7 +70,7 @@
     }
     .user__userInfo {
         background-color: #37485C;
-        margin-top: 96px;
+        margin-top: 136px;
         padding: 10px;
         border-radius: 5px;
         color: white;
