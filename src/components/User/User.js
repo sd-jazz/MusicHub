@@ -78,14 +78,14 @@ class User extends Component {
             return (
                 <div className="user___card">
                     <Link key={listing.listing_id}  to={`/productview/${listing.listing_id}`}className='home__card'><Card listing={listing} /></Link>
-                    <button onClick={()=>this.handleOpen(listing)}>Edit</button>
+                    <button className="editBtn" onClick={()=>this.handleOpen(listing)}>Edit</button>
                     <button className="deleteBtn" onClick={() => this.deletePost(listing)}>Delete</button>
                 </div>    
                 )
         })
         return (
             <div className="user">
-                <button className="user__report">Report</button>
+                {/* <button className="user__report">Report</button> */}
                 <div className="user__person">
                     <div className="user__left">
                         <div className="user__userInfo">

@@ -96,7 +96,7 @@ class NavBar extends Component {
       <div>
         {/* <div className="ui secondary menu mainHeader"> */}
         <div className='headerNav'>
-        <div className='ui menu' style={uiMenuStyle}>
+        <div className='ui secondary menu' style={uiMenuStyle}>
           <Link to="/" className="header item" style={mainTitle}>
             <h1 style={{ color: "white", fontSize: 38, fontFamily: 'arial' }}>MusicHub</h1>
           </Link>
