@@ -2,21 +2,24 @@ const axios = require('axios')
 
 module.exports = {
 
-    function1(a, b) {
-        return a + b
-    },
+    // function1(a, b) {
+    //     return a + b
+    // },
 
-    function2() {
-        return 'Sean is the greatest'
-    },
+    sortByPriceDesc (arr) {
+          let priceDesc = arr.sort((a, b) => (b - a))
+          return priceDesc
+      },
+    
+      fireSortFunctions (str, arr) {
+        if(str === "PHL"){
+            return this.sortByPriceDesc(arr)
+        }
+      },
 
-    func3(str, cb) {
-        cb(str)
-    },
-
-    getInternetData() {
-        return axios.get('https://swapi.co/api/people').then(res => {
-            return res.data.results
-        })
-    }
+    // getInternetData() {
+    //     return axios.get('https://swapi.co/api/people').then(res => {
+    //         return res.data.results
+    //     })
+    // }
 }

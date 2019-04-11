@@ -85,11 +85,11 @@ class ProductView extends Component {
     console.log("STATE", this.state.listing_id, "IMAGES", this.state.listing_id[0].images, "SIMILAR PRODUCTS", this.state.listing_id[0].type, "TYPE", type)
     return (
       <div className="productView">
-                    <div className="productView__listingName">
+                    {/* <div className="productView__listingName">
                 <h2 className="ui header">
                   {this.state.listing_id[0].listing_name}
                 </h2>
-              </div>
+              </div> */}
 
         <div className="productView__images">
           {/* <CarouselContainer images={[this.state.listing_id[0].images]} id={[this.state.listing_id[0].listing_id]} /> */}

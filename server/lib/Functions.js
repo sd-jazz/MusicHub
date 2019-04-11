@@ -1,10 +1,11 @@
-sortByPriceDesc = () => {
-    console.log("PRICE DESC")
-      let priceDesc = this.state.listings.sort((a, b) => (b.price - a.price))
-        this.setState({
-            listings: priceDesc
-        })
-  }
+// CLAIMED BY STEVE 
+// sortByPriceDesc = () => {
+//     console.log("PRICE DESC")
+//       let priceDesc = this.state.listings.sort((a, b) => (b.price - a.price))
+//         this.setState({
+//             listings: priceDesc
+//         })
+//   } 
 
   sortByPriceAsc = () => {
       console.log("PRICE ASC")
