@@ -66,7 +66,7 @@ class User extends Component {
         })
         return (
             <div className="user">
-                <button className="user__report">Report</button>
+                {/* <button className="user__report">Report</button> */}
                 <div className="user__person">
                     <div className="user__left">
                         <div className="user__userInfo">
