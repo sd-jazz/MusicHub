@@ -1,5 +1,6 @@
 const utils = require('./SteveUtils.js');
-const testDb = require('./init');
+const testDb = require('./SteveInit.js');
+
 // const axios = require('axios'); 
 // Container describe block
 
@@ -17,27 +18,51 @@ describe("Unit tests for utils.js", () => {
         })
       }); 
 
-      let db;
-
-      function clearDatabase(){
-          return db.query('DELETE FROM todos');
-      }
-  
-      beforeAll(() => {
+      describe("INTEGRATION TEST", () => {
+        let db;
+    
+        function clearDatabase() {
+          return db.query("Delete from fake_listings");
+        }
+    
+        beforeAll(() => {
           return testDb.initDb().then(database => {
-              db = database; 
-             
-          })
-      });
-  
-      beforeEach(() => {
-          return clearDatabase()
+            db = database;
+          });
+        });
+    
+        beforeEach(() => {
+          return clearDatabase();
+        });
+    
+        afterAll(() => {
+          return clearDatabase();
+        });
+    
+        describe("create", () => {
+          it("inserts a new listing", () => {
+            //create an object to test
+    
+            const listing = {
+              listing_name: "Fodera Bass",
+              price: 1000
+            };
+    
+            return utils.createListing(db, listing).then(newListing => {
+              // check to see if we are returning a value
+              expect(newListing.length).not.toEqual(0);
+    
+              //check to see if the object that was created is the same as the one we get back
+              expect(newListing[0]).toMatchObject({
+                listing_id: expect.any(Number),
+                price: listing.price,
+                listing_name: listing.listing_name
+              });
+            });
+          });
+        });
       })
-  
-      afterAll(() => {
-          return clearDatabase()
-      })
-
+    
    });
 
    

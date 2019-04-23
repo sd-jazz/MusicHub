@@ -89,7 +89,7 @@ class Home extends Component {
         //     return listing.listing_name.toLowerCase().includes(this.state.filterText)
         // })
 
-        const filteredListings = this.state.listings.filter(listing => {
+        let filteredListings = this.state.listings.filter(listing => {
             return listing.listing_name.toLowerCase().includes(this.state.filterText)
         })
 

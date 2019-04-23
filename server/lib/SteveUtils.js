@@ -2,10 +2,6 @@ const axios = require('axios')
 
 module.exports = {
 
-    // function1(a, b) {
-    //     return a + b
-    // },
-
     sortByPriceDesc (arr) {
           let priceDesc = arr.sort((a, b) => (b - a))
           return priceDesc
@@ -17,9 +13,9 @@ module.exports = {
         }
       },
 
-    // getInternetData() {
-    //     return axios.get('https://swapi.co/api/people').then(res => {
-    //         return res.data.results
-    //     })
-    // }
-}
+      createListing(db, listing){
+        return db.query('insert into fake_listings (listing_name, price) VALUES (${listing_name}, ${price})returning *;', {
+            listing_name: listing.listing_name,
+            price: listing.price,
+        })
+    }}

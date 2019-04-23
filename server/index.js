@@ -28,6 +28,10 @@ app.use(
   })
 );
 
+app.use( express.static( `${__dirname}/../build` ) )
+
+
+
 // PRODUCT CONTROLLER
 
 app.post("/api/listings", pc.createListing);
@@ -153,3 +157,8 @@ io.on("connection", function(socket) {
     console.log('User has left the room')
   });
 });
+
+const path = require('path')
+app.get('*', (req, res)=>{
+  res.sendFile(path.join(__dirname, '../build/index.html'));
+})

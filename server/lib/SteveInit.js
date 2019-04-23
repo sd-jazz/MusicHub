@@ -5,7 +5,7 @@ let dbPromise;
 
 module.exports = {
   initDb() {
-    dbPromise = dbPromise || massive(process.env.TEST_CONNECTION_STRING);
+    dbPromise = dbPromise || massive(process.env.CONNECTION_STRING);
     return dbPromise;
   }
 };
