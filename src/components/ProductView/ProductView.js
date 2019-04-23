@@ -159,7 +159,6 @@ class ProductView extends Component {
         </div>
 
         <div className="productView__similarListings">
-        SIMILAR LISTINGS
           {/* <SimilarListings similar={this.state.similar_listings}/> */}
         </div>
       </div>
