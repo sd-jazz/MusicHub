@@ -131,9 +131,14 @@ class NavBar extends Component {
                 <SellModal close={this.handleClose}/>
               </Modal.Content>
             </Modal>
+            { !this.props.user ? (
+              <div></div>
+              ) : (
             <Link style={{ color: "white" }} className="item" to="/messages">
               <div className='navLinks'>Messages</div>
             </Link>
+            )
+            }
             {!this.props.user ? (
               
               <Link

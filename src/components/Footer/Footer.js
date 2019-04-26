@@ -15,9 +15,6 @@ export default class Footer extends Component {
                     <Link to="/sell">
                         <h2>Sell</h2>
                     </Link>
-                    <Link to="/messages">
-                        <h2>Messages</h2>
-                    </Link>
                     <Link to="/user">
                         <h2>User</h2>
                     </Link>
@@ -26,3 +23,4 @@ export default class Footer extends Component {
         )
     }
 }
+

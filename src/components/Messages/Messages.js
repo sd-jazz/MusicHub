@@ -72,9 +72,17 @@ class Messages extends Component {
       );
     });
     return (
-      <div className="messagesContainer">
-        {mappedSenderRooms}
-        {mappedRecipientRooms}
+      <div>
+        { this.props.user ? (
+        <div className="messagesContainer">
+          {mappedSenderRooms}
+          {mappedRecipientRooms}
+        </div>
+        ) : (
+          <div className="Messages_noUser">
+          <h1>Please Log In</h1>
+          </div>
+        )}
       </div>
     );
   }

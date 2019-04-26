@@ -28,13 +28,12 @@ class ProductView extends Component {
           tags: "",
           time_stamp: "",
           type: "",
-          user_id: "", 
+          user_id: "",
           images: [],
-          zipcode: null,
+          zipcode: null
         }
       ],
       similar_listings: []
-
     };
     this.socket = io("localhost:4010");
   }
@@ -43,7 +42,7 @@ class ProductView extends Component {
   // Deconstruct everything we need from the listing and place them in the appropriate divs
 
   componentDidMount() {
-    this.fetchListingID()
+    this.fetchListingID();
   }
 
   fetchListingID = () => {
@@ -53,21 +52,23 @@ class ProductView extends Component {
         this.setState({
           listing_id: response.data
         });
-      }).then(() =>{
-        this.getSimilarListings()
+      })
+      .then(() => {
+        this.getSimilarListings();
       });
   };
 
   getSimilarListings = () => {
-    console.log("getSimilarListings START", this.state.listing_id[0].type)
-    axios.get(`/api/get_similar_listings/${this.state.listing_id[0].type}`).then(response =>{
-        console.log("RESPONSE CALLBACK", response)
+    console.log("getSimilarListings START", this.state.listing_id[0].type);
+    axios
+      .get(`/api/get_similar_listings/${this.state.listing_id[0].type}`)
+      .then(response => {
+        console.log("RESPONSE CALLBACK", response);
         this.setState({
-            similar_listings: response.data
-        })
-    })
-}
-
+          similar_listings: response.data
+        });
+      });
+  };
 
   connectUsers = () => {
     this.socket.emit("CONNECT_USERS", {
@@ -81,12 +82,21 @@ class ProductView extends Component {
   };
 
   render() {
-    console.log(this.props.user)
-    const { type } = this.state.listing_id[0].type
-    console.log("STATE", this.state.listing_id, "IMAGES", this.state.listing_id[0].images, "SIMILAR PRODUCTS", this.state.listing_id[0].type, "TYPE", type)
+    console.log(this.props.user);
+    const { type } = this.state.listing_id[0].type;
+    console.log(
+      "STATE",
+      this.state.listing_id,
+      "IMAGES",
+      this.state.listing_id[0].images,
+      "SIMILAR PRODUCTS",
+      this.state.listing_id[0].type,
+      "TYPE",
+      type
+    );
     return (
       <div className="productView">
-                    {/* <div className="productView__listingName">
+        {/* <div className="productView__listingName">
                 <h2 className="ui header">
                   {this.state.listing_id[0].listing_name}
                 </h2>
@@ -94,7 +104,10 @@ class ProductView extends Component {
 
         <div className="productView__images">
           {/* <CarouselContainer images={[this.state.listing_id[0].images]} id={[this.state.listing_id[0].listing_id]} /> */}
-          <SlickContainer images={this.state.listing_id[0].images} id={this.state.listing_id[0].listing_name}/> 
+          <SlickContainer
+            images={this.state.listing_id[0].images}
+            id={this.state.listing_id[0].listing_name}
+          />
         </div>
 
         <div className="productView__descriptionAndUserInfo">
@@ -107,7 +120,12 @@ class ProductView extends Component {
               </div>
 
               <div className="productView__listingPrice">
-                <h2 className='ui header'>${this.state.listing_id[0].price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</h2>
+                <h2 className="ui header">
+                  $
+                  {this.state.listing_id[0].price
+                    .toString()
+                    .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                </h2>
               </div>
             </div>
 
@@ -116,11 +134,15 @@ class ProductView extends Component {
                 <h2>{/*this.state.listing_id[0].zipcode*/}Phoenix, AZ</h2>
               </div>
             </div>
-            
+
             <hr className="productView__lineBreakListingInfo" />
             <div className="productView__description">
-                <h3 className="ProductView__description_description">Description</h3>
-              <div className='productView__descriptionText'>{this.state.listing_id[0].description}</div>
+              <h3 className="ProductView__description_description">
+                Description
+              </h3>
+              <div className="productView__descriptionText">
+                {this.state.listing_id[0].description}
+              </div>
             </div>
           </div>
 
@@ -138,7 +160,11 @@ class ProductView extends Component {
 
             <div className="productView__profileName">
               <h3 className="ui header">
-                {this.state.listing_id[0].profile_name.split(' ')[0].split('@')[0]}
+                {
+                  this.state.listing_id[0].profile_name
+                    .split(" ")[0]
+                    .split("@")[0]
+                }
               </h3>
             </div>
 
@@ -153,9 +179,9 @@ class ProductView extends Component {
             {/* <button className="productView__saveButton">Save</button> */}
           </div>
         </div>
-        
+
         <div className="productView__googleMaps">
-          <Map zipcode={this.state.listing_id[0].zipcode}/>
+          <Map zipcode={this.state.listing_id[0].zipcode} />
         </div>
 
         <div className="productView__similarListings">
