@@ -160,7 +160,6 @@ class Modal extends Component {
       }
 
       handleImageUpload = (file) => {
-
         // Initiates signature request from the server when someone has uploaded a file 
         console.log("handleImageUpload START", "FILE", file)
         axios.get('/api/upload').then(response => {
@@ -170,11 +169,7 @@ class Modal extends Component {
             formData.append("api_key", "262651599613782");
             formData.append("timestamp", response.data.timestamp)
             formData.append("file", file)
-            // const config = {
-            //   headers: { "X-Requested-With": "XMLHttpRequest" },
-            // }
             console.log("FORM DATA AFTER AXIOS.GET", formData)
-            
             // You can either save that url in your database or display it directly on the page 
             axios.post(CLOUDINARY_UPLOAD_URL, formData/*, config*/).then(response => {
               console.log("response.data.secure_url", response.data.secure_url, "STATE", this.state)
@@ -184,7 +179,6 @@ class Modal extends Component {
             }).catch( err => {
               console.log("RIP MY AXIOS.POST CALL", err);
             })
-        
         })
       }
 

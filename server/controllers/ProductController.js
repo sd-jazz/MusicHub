@@ -1,9 +1,9 @@
 module.exports = {
 
-  getAllListings: (req, res, next) => {
-      req.app.get('db').get_all_listings().then(listing => {
-        res.status(200).json(listing);
-      }).catch(err => console.log('(getAllListings) ERROR', err))
+    getAllListings: (req, res, next) => {
+        req.app.get('db').get_all_listings().then(listing => {
+          res.status(200).json(listing);
+        }).catch(err => console.log('(getAllListings) ERROR', err))
     },
 
     getUserListings: (req, res, next) => {
@@ -21,7 +21,7 @@ module.exports = {
     db.create_listing([user_id, listing_name, description, time_stamp, type, tags, price.replace(/,/g, ""), condition, images, zipcode, category]).then(listing => {
       res.status(200).json(listing)
     }).catch(err => console.log("createListing", err))
-},
+  },
   updateListing: (req, res, next) => {
     const {user_id, listing_name, description, type, price, condition, zipcode, category } = req.body
     const {listing_id} = req.params
@@ -29,7 +29,7 @@ module.exports = {
     db.update_listing([ listing_name, description, type, price.replace(/,/g, ""), condition, zipcode, category, listing_id, user_id ]).then(listing => {
       res.status(200).json(listing)
     }).catch(err => console.log("createListing", err))
-},
+  },
     deleteListing: (req, res, next) => {
       const { listing_id, user_id, room_id, room_name } = req.params;
       req.app.get('db').delete_listing([room_name, room_id, listing_id, user_id]).then(response =>{
