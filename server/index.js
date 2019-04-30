@@ -8,8 +8,8 @@ const pc = require("./controllers/ProductController");
 const nodemailer = require("nodemailer");
 const aC = require("./controllers/AuthController");
 const socket = require("socket.io");
-
 require("dotenv").config();
+
 app.use(bodyParser.json());
 let database;
 massive(process.env.CONNECTION_STRING)
@@ -62,14 +62,11 @@ app.get("/api/session_info", aC.sessionInfo);
 app.get("/api/upload", (req, res) => {
   console.log("CLOUDINARY BACK END");
   const timestamp = Math.round(new Date().getTime() / 1000);
-
   const api_secret = process.env.CLOUDINARY_SECRET_API;
-
   const signature = cloudinary.utils.api_sign_request(
     { timestamp: timestamp },
     api_secret
   );
-
   const payload = {
     signature: signature,
     timestamp: timestamp
